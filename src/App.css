@@ -1,0 +1,158 @@
+body{background: #f6f8f9}
+.App {
+/*   text-align: center; */
+  
+}
+.tag-group{
+  background: none;margin: 0px;
+}
+.table-data .table-group td{
+  border: 0px;
+  border-bottom: 1px solid #DDDDDD
+}
+.table-data .table-group thead.block-header{
+  background: none;
+}
+.table-data .table-group th{
+  background: none;
+  border: 0px;
+  border-bottom: 1px solid #DDDDDD
+}
+
+.button-success,.button-success:hover{
+  -webkit-box-shadow:none;
+  box-shadow:none;
+}
+.tag-primary{background:#20a0ff!important}
+.tag-group .tag-block:hover{background:#20a0ff!important}
+
+.a-link{color: #409eff;}
+
+.width-600{width: 600px;}
+.el-loading-spinner{
+  position: fixed!important;
+}
+
+
+#percentage {
+      display: block;
+      width: 0;
+      border-top: 3px solid #20a0ff;
+      transition: all 250ms ease;
+      box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
+    }
+
+.notify {
+
+    margin-top: 10px;
+    width: 30px; height: 30px;
+}
+.notify .ring {
+    position: absolute;
+    top: -19px;
+    right: -9px;
+    height: 24px;
+    width: 24px;
+    z-index: 10;
+    border: 5px solid #d9534f;
+    border-radius: 100%;
+     -moz-animation: ring 1s ease-in;
+ -moz-animation-iteration-count: infinite;
+-o-animation: ring 1s ease-in;
+-o-animation-iteration-count: infinite;
+-webkit-animation: ring 1s ease-in;
+-webkit-animation-iteration-count: infinite;
+animation-iteration-count: infinite;  
+}
+
+
+.notify .ring-point {
+    width: 6px;
+    height: 6px;
+    top: -10px;
+/*     position: absolute;
+right: -6px;
+top: -10px; */
+}
+@-webkit-keyframes ring {
+ 
+
+0% {
+    -webkit-transform: scale(0);
+    opacity: 0;
+}
+25% {
+    -webkit-transform: scale(.1);
+    opacity: .1;
+}
+50% {
+    -webkit-transform: scale(.5);
+    opacity: .3;
+}
+75% {
+    -webkit-transform: scale(.8);
+    opacity: .5;
+}
+100% {
+    -webkit-transform: scale(1);
+    opacity: 0;
+}}
+.el-message{z-index: 9999!important}
+.avatar-uploader .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .avatar-uploader .el-upload:hover {
+    border-color: #409EFF;
+  }
+  .avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    line-height: 178px;
+    text-align: center;
+  }
+  .avatar {
+    width: 178px;
+    height: 178px;
+    display: block;
+  }
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@import url("./button/css/button.css");
