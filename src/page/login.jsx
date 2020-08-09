@@ -11,8 +11,8 @@ export default class Log extends React.Component {
     this.state = {
       google:'t-10000',
       form:{
-        email: 'HLJ@163.com',
-        pass: 'long10000',
+        email: 'admin',
+        pass: '123456',
       },
     };
   }
@@ -39,6 +39,8 @@ export default class Log extends React.Component {
         
         axios.post('good/google.php',data).then((res) => {
           if(res.data.retType==='success'){
+            localStorage.token = res.data.token;
+            localStorage.login =true;
             window.location.href="log";
           }
         })
@@ -59,7 +61,7 @@ export default class Log extends React.Component {
             <td>
              <div className="position-r">
               <i className="fa fa-user font-size-18 position-a top-12 left-15 color-default"></i> 
-             <Input placeholder="请输入用户名" value={ this.state.form.email }  onChange={this.onChange.bind(this,'email')} />
+             <Input placeholder="账号 / 邮箱登录" value={ this.state.form.email }  onChange={this.onChange.bind(this,'email')} />
 
 
              </div></td>

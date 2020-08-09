@@ -98,7 +98,7 @@ export default class Log extends React.Component {
     axios.post('good/google.php',data)
       .then((res) => {
          this.setState({
-           keywords:res.data.data,
+           keywords:res.data,
          });
          console.log(res.data.data)
          console.log(this.state.keywords)
@@ -271,24 +271,34 @@ export default class Log extends React.Component {
           >
             <Dialog.Body>
               <div class="table-default">
-                <table class="width-max">
-                  <tr>
-                    <td>
-                      <div style={{height:'400px',overflow:'auto'}}>
+                <div className="border-bottom-1 border-eee padding-bottom-20 margin-bottom-20" style={{overflow:'auto'}}>
                      
-                      {
+                    {
                         
-                        bbbb && bbbb.map((item,index) => {
+                        keywords && keywords.map(item => {
                           return (
-                          <Tag key={item.id} type="primary" className="margin-right-10 margin-bottom-10">{item.name}</Tag>
-                         
+                          <Tag type="gray" className="margin-right-10">{item}</Tag>
+                          /*<Tag
+                            key={0}
+                            closable={true}
+                            type="primary"
+                            onClose={this.handleClose.bind(this,item)} className="margin-right-10">{item}</Tag>*/
                           )
                         })
                       }
-                      </div>
-                    </td>
-                  </tr>
-                </table> 
+                    </div>
+                <div style={{height:'400px',overflow:'auto'}}>
+                     
+                    {
+                      
+                      bbbb.data && bbbb.data.map((item,index) => {
+                        return (
+                        <Tag key={item.id} type="gray" className="margin-right-10 margin-bottom-10">{item.name}</Tag>
+                       
+                        )
+                      })
+                    }
+                    </div>
                 <GoodPagination data={total2}  currentPage={this.getPage.bind(this)}></GoodPagination>
               </div>
             </Dialog.Body>

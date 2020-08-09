@@ -13,10 +13,11 @@ export default class Breadbar extends React.Component {
 
   render() {
     let status=this.props.item.status==0?false:true;
+    console.log(this.props.disabled)
     return (
     	<Switch
         value={status}
-        onColor="#13ce66"
+        onColor="#13ce66" disabled={this.props.disabled}
         offColor="#e6effb" onChange={this.changeStatus}
         >
       </Switch>

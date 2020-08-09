@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dialog,Button,Input,Radio,DateRangePicker,Tag,Switch } from 'element-react';
+import { Dialog,Button,Input,Radio,DateRangePicker,Tag,Switch,MessageBox,Message } from 'element-react';
 import GoodPagination from '../good-ui/good-pagination.jsx';
 import Pagination2 from './pagination.jsx';
 import GoodBreadbar from '../good-ui/good-breadbar.jsx';
@@ -120,15 +120,21 @@ constructor(props) {
   }
 
 
+  // 删除数据
   remove=(item,value)=>{
-    const data={
+    MessageBox.confirm('此操作将永久删除该文件, 是否继续?', '提示', {type: 'warning'}).then(() => {
+
+      const data={
         google: this.state.google,
         operating: 'delete',
         id:item.id,
       }
-    axios.post('good/google.php',data).then((res) => {
-       this.loadList();
-    })
+      axios.post('good/google.php',data).then((res) => {
+        if(res.data.retType==='success'){
+          this.loadList();
+        }
+      })
+    }).catch(() => {});
   }
 
   updateImage=(item)=>{
@@ -183,7 +189,7 @@ constructor(props) {
         let status=item.status==0?false:true;
         return (
           <tr key={index} style={{background: item.status==0 ? "#f5f7fa" : "#fff"}}>
-            <td><img src={url} className="width-30" /></td>
+            <td><img src={url} className="width-80" /></td>
             <td>{ item.title }</td>
             <td>{ item.url }</td>
             <td>{
@@ -253,7 +259,7 @@ constructor(props) {
               <div className="table-default">
                 <table className="width-max">
                   <tr>
-                    <GoodTds title='图片标题'></GoodTds>
+                    <GoodTds title='图片标题' required></GoodTds>
                     <td><Input placeholder="请输入内容" value={ this.state.form.title }  onChange={this.onChange.bind(this,'title')} /></td>
                   </tr>
                   <tr>
@@ -281,7 +287,7 @@ constructor(props) {
                     </td>
                   </tr>
                   <tr>
-                    <GoodTds title='上传图片'></GoodTds>
+                    <GoodTds title='上传图片' required></GoodTds>
                     <td><GoodUpload data={ this }></GoodUpload></td>
                   </tr>
                 </table> 

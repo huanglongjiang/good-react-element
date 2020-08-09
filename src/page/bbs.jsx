@@ -164,7 +164,7 @@ export default class Log extends React.Component {
               <div className="table-default">
                 <table className="width-max">
                   <tr>
-                    <GoodTds title='留言内容'></GoodTds>
+                    <GoodTds title='留言内容' required></GoodTds>
                     <td><Input className="width-400 padding-top-5 padding-bottom-5" type="textarea" rows={8} value={ this.state.form.text } onChange={this.onChange.bind(this,'text')}></Input></td>
                   </tr>
                 </table> 

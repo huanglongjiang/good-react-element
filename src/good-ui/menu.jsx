@@ -1,4 +1,5 @@
 import React from 'react';
+import GoodInfo from '../good-ui/good-info.jsx';
 export default class Menu extends React.Component {
 	/*constructor(props) {
 	    super(props);
@@ -51,7 +52,14 @@ export default class Menu extends React.Component {
 
 	function Children(props){
 		const element2=props.children.map((item,index)=>{
-			return <li className="line-height-36 padding-left-30 color-333" key={index}><a className=" color-333 none-line" href={item.url}>{item.title}</a></li>
+			return (
+			<li className="line-height-36 padding-left-30 color-999" key={index}><a className=" color-999 font-size-14 none-line margin-right-10" href={item.url}>{item.title}</a>
+				{
+					item.url=='bbs'?<GoodInfo data="123"></GoodInfo>:
+					item.url=='log'?<GoodInfo data="7516"></GoodInfo>:null
+				}
+			</li>
+			)
 		})
 		
 		return (
@@ -61,10 +69,10 @@ export default class Menu extends React.Component {
 
 	const element=data.map((item,index)=>{
 		return (
-			<ul key={index}>
+			<ul key={index} className="border-bottom-1 border-eee">
 				<li className="line-height-36">
-					<i className={`padding-right-10 color-999 ${ item.icon}`}></i>
-					{item.title}
+					<i className={`padding-right-13 color-999 ${ item.icon}`}></i>
+					<span className='bold color-999'>{item.title}</span>
 				</li>
 				<Children children={item.children}></Children>
 			</ul>

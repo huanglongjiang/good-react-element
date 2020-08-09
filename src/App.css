@@ -20,7 +20,7 @@ body{background: #f6f8f9}
 }
 
 .button-success,.button-success:hover{
-  -webkit-box-shadow:none;
+  box-shadow:none;
   box-shadow:none;
 }
 .tag-primary{background:#20a0ff!important}
@@ -60,8 +60,8 @@ body{background: #f6f8f9}
  -moz-animation-iteration-count: infinite;
 -o-animation: ring 1s ease-in;
 -o-animation-iteration-count: infinite;
--webkit-animation: ring 1s ease-in;
--webkit-animation-iteration-count: infinite;
+animation: ring 1s ease-in;
+animation-iteration-count: infinite;
 animation-iteration-count: infinite;  
 }
 
@@ -74,27 +74,27 @@ animation-iteration-count: infinite;
 right: -6px;
 top: -10px; */
 }
-@-webkit-keyframes ring {
+@keyframes ring {
  
 
 0% {
-    -webkit-transform: scale(0);
+    transform: scale(0);
     opacity: 0;
 }
 25% {
-    -webkit-transform: scale(.1);
+    transform: scale(.1);
     opacity: .1;
 }
 50% {
-    -webkit-transform: scale(.5);
+    transform: scale(.5);
     opacity: .3;
 }
 75% {
-    -webkit-transform: scale(.8);
+    transform: scale(.8);
     opacity: .5;
 }
 100% {
-    -webkit-transform: scale(1);
+    transform: scale(1);
     opacity: 0;
 }}
 .el-message{z-index: 9999!important}

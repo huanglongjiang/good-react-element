@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dialog,Button,Input,Radio,Tag,Switch } from 'element-react';
+import { Dialog,Button,Input,Radio,Tag,Switch,MessageBox,Message } from 'element-react';
 import GoodPagination from '../good-ui/good-pagination.jsx';
 import GoodBreadbar from '../good-ui/good-breadbar.jsx';
 import GoodTotal from '../good-ui/good-total.jsx';
@@ -61,6 +61,7 @@ export default class Log extends React.Component {
   openDialog=(data)=>{
     this.setState({
         dialogVisible: true,
+        disabled: false,
         isEdit: false,
         form:{
           id:'',
@@ -113,16 +114,23 @@ export default class Log extends React.Component {
       });
   }
 
+  // 删除数据
   remove=(item,value)=>{
-    const data={
+    MessageBox.confirm('此操作将永久删除该文件, 是否继续?', '提示', {type: 'warning'}).then(() => {
+
+      const data={
         google: this.state.google,
         operating: 'delete',
         id:item.id,
       }
-    axios.post('good/google.php',data).then((res) => {
-       this.loadList();
-    })
+      axios.post('good/google.php',data).then((res) => {
+        if(res.data.retType==='success'){
+          this.loadList();
+        }
+      })
+    }).catch(() => {});
   }
+  
   // 状态改变方法
   getStatus=(item)=>{
 
@@ -167,24 +175,38 @@ export default class Log extends React.Component {
             url=`good/server/images/user/${item.image}`
         }
 
-     
+        let role=0;
         return (
           <tr key={index} style={{background: item.status==0 ? "#f5f7fa" : "#fff"}}>
             <td>{item.name}</td>
             <td>{item.email}</td>
             <td><img src={url} className="width-30" /></td>
             <td>{item.time}</td>
-            <td>{
-              item.role==0?<Tag type="primary">普通用户</Tag>:item.role==1?<Tag type="success">管理员</Tag>:<Tag type="warning">超级管理员</Tag>
+            <td>
+              {
+                item.role==0?<Tag type="primary">普通用户</Tag>:
+                item.role==1?<Tag type="success">管理员</Tag>:
+                <Tag type="warning">超级管理员</Tag>
+              }
+            </td>
+            <td>
+              {
+                item.role==2? null:
+                role==2? 
+                <GoodSwitch item={item} status={props.datas.getStatus.bind(this)}></GoodSwitch>:
+                <GoodSwitch item={item} disabled  status={props.datas.getStatus.bind(this)}></GoodSwitch>
+              }
+            </td>
+            <td>
+            {
+              item.role==2?null:
+              <div>
+                <span className="a-link pointer margin-right-10" onClick={props.datas.openDialog2.bind(this,item)}>密码重置</span>
+                <span className="a-link pointer margin-right-10" onClick={props.datas.openDialog2.bind(this,item)}>编辑</span>
+                <span className="a-link pointer" onClick={props.datas.remove.bind(this,item)}>删除</span>
+              </div>
             }
-              
-            </td>
-            <td>
-              <GoodSwitch item={item}  status={props.datas.getStatus.bind(this)}></GoodSwitch>
-            </td>
-            <td>
-              <span className="a-link pointer margin-right-10" onClick={props.datas.openDialog2.bind(this,item)}>编辑</span>
-              <span className="a-link pointer" onClick={props.datas.remove.bind(this,item)}>删除</span>
+
             </td>
           </tr>
         )
@@ -245,11 +267,11 @@ export default class Log extends React.Component {
               <div className="table-default">
                 <table className="width-max">
                   <tr>
-                    <GoodTds title='用户名'></GoodTds>
+                    <GoodTds title='用户名' required></GoodTds>
                     <td><Input placeholder="请输入内容" disabled={ this.state.disabled } value={ this.state.form.name }  onChange={this.onChange.bind(this,'name')} /></td>
                   </tr>
                   <tr>
-                    <GoodTds title='用户邮箱'></GoodTds>
+                    <GoodTds title='用户邮箱' required></GoodTds>
                     <td><Input placeholder="请输入内容" disabled={ this.state.disabled } value={ this.state.form.email }  onChange={this.onChange.bind(this,'email')} /></td>
                   </tr>
                   <tr>
@@ -258,7 +280,7 @@ export default class Log extends React.Component {
                       <div>
                         <Radio value="0" checked={this.state.form.role == 0} onChange={this.onChange.bind(this,'role')}>普通用户</Radio>
                         <Radio value="1" checked={this.state.form.role == 1} onChange={this.onChange.bind(this,'role')}>管理员</Radio>
-                        <Radio value="2" checked={this.state.form.role == 2} onChange={this.onChange.bind(this,'role')}>超级管理员</Radio>
+                        <Radio value="2" checked={this.state.form.role == 2} disabled onChange={this.onChange.bind(this,'role')}>超级管理员</Radio>
                       </div>
                     </td>
                   </tr>

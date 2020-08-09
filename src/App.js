@@ -1,20 +1,18 @@
 import React from 'react';
+import axios from 'axios';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 import { Button,Radio,Loading,Message } from 'element-react';
-
 import 'element-theme-default';
-import axios            from 'axios';
-import GoodScroll from './good-ui/good-scroll.jsx';
-
-// import logo from './logo.svg';
 import './App.css';
+import GoodScroll from './good-ui/good-scroll.jsx';
 import Header from './good-ui/header.jsx';
+import Footer from './good-ui/footer.jsx';
 import Menu from './good-ui/menu.jsx';
 import Main from './main.jsx';
 import Login from './page/login.jsx';
 
-
+let aa=77
 
 axios.interceptors.request.use(config => {
 	// 列表接口弹出loading图层
@@ -40,8 +38,23 @@ axios.interceptors.response.use(res => {
 		{operating:'update'},
 		{operating:'updatePass'},
 		{operating:'delete'},
+		{operating:'status'},
 	]
 	console.log(res.data.retType)
+
+	if(res.data.retType==='failed'){
+		localStorage.login =false;
+		Message({
+		    message:res.data.message,
+		    type: 'success',
+		});
+		setTimeout(()=>{
+			window.location.href='/login';
+			return
+		},2000)
+      	
+	}
+
 	requestApi.forEach((item,index)=>{
 		if(JSON.parse(res.config.data).operating===item.operating){
 			Message({
@@ -71,23 +84,29 @@ error => {
 
 function App() {
   // const data=[1,2,3,4,5,6,7,8,9]
-  const [token]=[false];
+  const token=localStorage.getItem("login");
+  console.log(localStorage.getItem("login"))
   return (
   	<Router>
 	    <div className="App">
+	    {console.log(typeof(token))}
 	    {
-	    	token?<Login></Login>:
+
+	    	token==='true'?
 	    	<div>
 				{
-
 					/*<Header></Header>
 		    		<Menu></Menu>*/
 				}
 				<GoodScroll></GoodScroll>
-		
-		    		<Menu></Menu>
-		      	<Main></Main>
-	    	</div>
+				<div style={{minHeight:'800px'}}>
+					<Header></Header>
+			    	<Menu></Menu>
+			      	<Main></Main>
+		      	</div>
+		      	<Footer></Footer>
+	    	</div>:
+	    	<Login></Login>
 	    }
 	    	
 	    </div>

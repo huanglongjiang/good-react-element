@@ -34,10 +34,12 @@ export default class Header extends React.Component {
     }
     
     axios.post('good/google.php',data).then((res) => {
-      console.log(res)
-       this.setState({
-         form:res.data.data,
-       });
+
+       if(res.data.retType==='success'){
+         this.setState({
+           form:res.data.data,
+         });
+        }
     })
   }
 
@@ -90,15 +92,19 @@ export default class Header extends React.Component {
               <div class="table-default">
                 <table class="width-max">
                   <tr>
+                    <GoodTds title='用户账号'></GoodTds>
+                    <td><Input value={ this.state.form.account } disabled /></td>
+                  </tr>
+                  <tr>
                     <GoodTds title='用户邮箱'></GoodTds>
-                    <td><Input value={ this.state.form.email } disabled placeholder="请输入内容" /></td>
+                    <td><Input value={ this.state.form.email } disabled /></td>
                   </tr>
                   <tr>
                     <GoodTds title='用户角色'></GoodTds>
-                    <td><Input value={ role } disabled placeholder="请输入内容" /></td>
+                    <td><Input value={ role } disabled /></td>
                   </tr>
                   <tr>
-                    <GoodTds title='用户名称'></GoodTds>
+                    <GoodTds title='用户名称' required></GoodTds>
                     <td><Input value={ this.state.form.name } onChange={this.onChange.bind(this,'name')} placeholder="请输入内容" /></td>
                   </tr>
                   <tr>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dialog,Button,Input,Radio,Tag,Switch } from 'element-react';
+import { Dialog,Button,Input,Radio,Tag,Switch,MessageBox,Message } from 'element-react';
 import GoodPagination from '../good-ui/good-pagination.jsx';
 import GoodBreadbar from '../good-ui/good-breadbar.jsx';
 import GoodTotal from '../good-ui/good-total.jsx';
@@ -15,7 +15,6 @@ export default class Log extends React.Component {
     super(props);
     this.state = {
       dialogVisible: false,
-      disabled:false,
       isEdit:false,
       google:'t-10011',
       list: [],
@@ -60,7 +59,6 @@ export default class Log extends React.Component {
   openDialog=(data)=>{
     this.setState({
         dialogVisible: true,
-        disabled: false,
         isEdit: false,
         form:{
           id:'',
@@ -81,7 +79,7 @@ export default class Log extends React.Component {
         id: item.id,
         status:item.status,
       }
-      this.setState({dialogVisible: true,disabled: true,isEdit: true},()=> {
+      this.setState({dialogVisible: true,isEdit: true},()=> {
 
         axios.post('good/google.php',data)
         .then((res) => {
@@ -121,14 +119,19 @@ export default class Log extends React.Component {
 
   // 删除数据
   remove=(item,value)=>{
-    const data={
+    MessageBox.confirm('此操作将永久删除该文件, 是否继续?', '提示', {type: 'warning'}).then(() => {
+
+      const data={
         google: this.state.google,
         operating: 'delete',
         id:item.id,
       }
-    axios.post('good/google.php',data).then((res) => {
-       this.loadList();
-    })
+      axios.post('good/google.php',data).then((res) => {
+        if(res.data.retType==='success'){
+          this.loadList();
+        }
+      })
+    }).catch(() => {});
   }
 
   // 状态改变方法
@@ -248,16 +251,16 @@ export default class Log extends React.Component {
               <div className="table-default">
                 <table className="width-max">
                   <tr>
-                    <GoodTds title='用户名'></GoodTds>
-                    <td><Input placeholder="请输入内容" disabled={ this.state.disabled } value={ this.state.form.name }  onChange={this.onChange.bind(this,'name')} /></td>
+                    <GoodTds title='用户名' required></GoodTds>
+                    <td><Input placeholder="请输入内容" value={ this.state.form.name }  onChange={this.onChange.bind(this,'name')} /></td>
                   </tr>
                   <tr>
-                    <GoodTds title='QQ'></GoodTds>
-                    <td><Input placeholder="请输入内容" disabled={ this.state.disabled } value={ this.state.form.qq }  onChange={this.onChange.bind(this,'qq')} /></td>
+                    <GoodTds title='QQ' required></GoodTds>
+                    <td><Input placeholder="请输入内容" value={ this.state.form.qq }  onChange={this.onChange.bind(this,'qq')} /></td>
                   </tr>
                   <tr>
                     <GoodTds title='代码标签'></GoodTds>
-                    <td><Input placeholder="请输入内容" disabled={ this.state.disabled } value={ this.state.form.email }  onChange={this.onChange.bind(this,'email')} /></td>
+                    <td><Input placeholder="请输入内容" value={ this.state.form.email }  onChange={this.onChange.bind(this,'email')} /></td>
                   </tr>
                   <tr>
                     <GoodTds title='用户类型'></GoodTds>

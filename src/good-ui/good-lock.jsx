@@ -31,7 +31,7 @@ export default class Header extends React.Component {
         form:this.state.form,
       }
      
-      axios.post('vue/google.php',data).then((res) => {
+      axios.post('good/google.php',data).then((res) => {
         if(res.data.retType==='success'){
           this.props.data.closeDialog2(false)
         }
@@ -71,11 +71,11 @@ export default class Header extends React.Component {
               <div class="table-default">
                 <table class="width-max">
                   <tr>
-                    <GoodTds title='旧密码'></GoodTds>
+                    <GoodTds title='旧密码' required></GoodTds>
                     <td><Input value={ this.state.form.passOld } onChange={this.onChange.bind(this,'passOld')} placeholder="请输入内容" /></td>
                   </tr>
                   <tr>
-                    <GoodTds title='新密码'></GoodTds>
+                    <GoodTds title='新密码' required></GoodTds>
                     <td><Input value={ this.state.form.passNew } onChange={this.onChange.bind(this,'passNew')} placeholder="请输入内容" /></td>
                   </tr>
                 </table> 

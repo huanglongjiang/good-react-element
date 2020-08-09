@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dialog,Button,Input,Radio,DateRangePicker,Tag,Switch } from 'element-react';
+import { Dialog,Button,Input,Radio,DateRangePicker,Tag,Switch,MessageBox,Message } from 'element-react';
 import GoodPagination from '../good-ui/good-pagination.jsx';
 import Pagination2 from './pagination.jsx';
 import GoodBreadbar from '../good-ui/good-breadbar.jsx';
@@ -135,15 +135,21 @@ constructor(props) {
   }
 
 
+  // 删除数据
   remove=(item,value)=>{
-    const data={
+    MessageBox.confirm('此操作将永久删除该文件, 是否继续?', '提示', {type: 'warning'}).then(() => {
+
+      const data={
         google: this.state.google,
         operating: 'delete',
         id:item.id,
       }
-    axios.post('good/google.php',data).then((res) => {
-       this.loadList();
-    })
+      axios.post('good/google.php',data).then((res) => {
+        if(res.data.retType==='success'){
+          this.loadList();
+        }
+      })
+    }).catch(() => {});
   }
 
   updateImage=(item)=>{
@@ -279,11 +285,11 @@ constructor(props) {
               <div className="table-default">
                 <table className="width-max">
                   <tr>
-                    <GoodTds title='用户邮箱'></GoodTds>
+                    <GoodTds title='用户邮箱' required></GoodTds>
                     <td><Input placeholder="请输入内容" value={ this.state.form.email }  onChange={this.onChange.bind(this,'email')} /></td>
                   </tr>
                   <tr>
-                    <GoodTds title='广告名称'></GoodTds>
+                    <GoodTds title='广告名称' required></GoodTds>
                     <td><Input placeholder="请输入内容" value={ this.state.form.name }  onChange={this.onChange.bind(this,'name')} /></td>
                   </tr>
                   <tr>
