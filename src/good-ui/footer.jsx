@@ -14,7 +14,9 @@ export default class Search extends React.Component {
     			<span className="padding-left-10 padding-right-10 color-ccc">|</span>
     			<span>good系统-react(1)</span>
     			<span className="padding-left-10 padding-right-10 color-ccc">|</span>
-    			<span>关于good1230.com个人博客网站</span>
+                <span>关于good1230.com个人博客网站</span>
+                <span className="padding-left-10 padding-right-10 color-ccc">|</span>
+                <span>github</span>
     		</div>
     		<div className=" margin-top-10">
 	    		Copyright © 2018-2020 Good1230.com. All Rights Reserved.

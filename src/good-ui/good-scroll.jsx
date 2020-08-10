@@ -18,7 +18,6 @@ export default class Search extends React.Component {
         let fullWindowHeightInPercentage = Math.round(
             (scrollNow / scrollHeight) * 100 
         );
-        console.log(fullWindowHeightInPercentage)
        	let percentage = document.getElementById('percentage');
        	percentage.style.width = fullWindowHeightInPercentage + '%';
   	}

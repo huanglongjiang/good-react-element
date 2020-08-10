@@ -70,7 +70,7 @@ export default class Log extends React.Component {
             <td>
              <div className="position-r">
               <i className="fa fa-lock font-size-18 position-a top-12 left-15 color-default"></i> 
-              <Input placeholder="请输入密码" value={ this.state.form.pass }  onChange={this.onChange.bind(this,'pass')} />
+              <Input type="password" placeholder="请输入密码" value={ this.state.form.pass }  onChange={this.onChange.bind(this,'pass')} />
              </div></td>
            </tr> 
            <tr style={{height: 80}}>

@@ -100,7 +100,7 @@ export default class Log extends React.Component {
                 <th>账号(匿名)</th>
                 <th>邮箱</th>
                 <th>登录账号</th>
-                <th>登录日期</th>
+                <th>登录时间</th>
                 <th>用户角色</th>
                 <th>来源IP</th>
                 <th>操作类型</th>
