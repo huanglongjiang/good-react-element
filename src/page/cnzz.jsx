@@ -1,4 +1,5 @@
 import React            from 'react';
+import axios from 'axios';
 import {Select } from 'element-react';
 import GoodPagination   from '../good-ui/good-pagination.jsx';
 import GoodBreadbar     from '../good-ui/good-breadbar.jsx';
@@ -8,7 +9,6 @@ import GoodSearch       from '../good-ui/good-search.jsx';
 import GoodButton       from '../good-ui/good-button.jsx';
 import GoodInput       from '../good-ui/good-input.jsx';
 import GoodTextarea       from '../good-ui/good-textarea.jsx';
-import axios from 'axios';
 
 import GoodTds       from '../good-ui/good-tds.jsx';
 import GoodSwitch     from '../good-ui/good-switch.jsx';

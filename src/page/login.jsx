@@ -1,8 +1,8 @@
 import React            from 'react';
+import logo             from '../logo.svg';
 import { Dialog,Button,Input,Radio } from 'element-react';
 import GoodButton       from '../good-ui/good-button.jsx';
 import axios            from 'axios';
-import logo            from '../logo.svg';
 
 export default class Log extends React.Component {
   constructor(props) {

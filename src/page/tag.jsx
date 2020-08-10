@@ -1,9 +1,9 @@
 import React from 'react';
+import axios from 'axios';
 import { Dialog,Button,Input,Radio,DateRangePicker,Tag } from 'element-react';
 import Pagination2 from '../good-ui/good-pagination.jsx';
 import GoodBreadbar from '../good-ui/good-breadbar.jsx';
 import GoodTotal from '../good-ui/good-total.jsx';
-import axios from 'axios';
 import GoodTds       from '../good-ui/good-tds.jsx';
 import GoodUpload from '../good-ui/good-upload-root.jsx';
 export default class Log extends React.Component {

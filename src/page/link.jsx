@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { Dialog,Button,Input,Radio,DateRangePicker,Tag,Switch,MessageBox,Message } from 'element-react';
 import GoodPagination from '../good-ui/good-pagination.jsx';
 import Pagination2 from './pagination.jsx';
@@ -7,7 +8,6 @@ import GoodTotal from '../good-ui/good-total.jsx';
 import GoodTag from '../good-ui/good-tag.jsx';
 import GoodSearch from '../good-ui/good-search.jsx';
 import GoodTds       from '../good-ui/good-tds.jsx';
-import axios from 'axios';
 import GoodSwitch     from '../good-ui/good-switch.jsx';
 import GoodButton from '../good-ui/good-button.jsx';
 export default class Log extends React.Component {

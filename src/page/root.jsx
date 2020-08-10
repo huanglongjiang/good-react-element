@@ -5,7 +5,7 @@ import GoodBreadbar from '../good-ui/good-breadbar.jsx';
 import GoodTotal from '../good-ui/good-total.jsx';
 import axios from 'axios';
 import GoodTds       from '../good-ui/good-tds.jsx';
-import GoodUpload from '../good-ui/good-upload-root.jsx';
+import GoodUpload from '../good-ui/good-uploads.jsx';
 export default class Log extends React.Component {
   constructor(props) {
     super(props);
@@ -249,7 +249,9 @@ export default class Log extends React.Component {
                   </tr>
                   <tr>
                     <GoodTds title='缩 略 图'></GoodTds>
-                    <td><GoodUpload image={ this.updateImage } url={ this.state.form.image }></GoodUpload></td>
+                    <td>
+                        {/*<GoodUpload image={ this.updateImage } url={ this.state.form.image }></GoodUpload>*/}
+                    </td>
                   </tr>
                 </table> 
               </div>

@@ -1,11 +1,11 @@
 import React from 'react';
+import axios from 'axios';
 import { Dialog,Button,Input,Radio,Tag,Switch,MessageBox,Message } from 'element-react';
 import GoodPagination from '../good-ui/good-pagination.jsx';
 import GoodBreadbar from '../good-ui/good-breadbar.jsx';
 import GoodTotal from '../good-ui/good-total.jsx';
 import GoodTag from '../good-ui/good-tag.jsx';
 import GoodSearch from '../good-ui/good-search.jsx';
-import axios from 'axios';
 import GoodInput       from '../good-ui/good-input.jsx';
 import GoodTextarea       from '../good-ui/good-textarea.jsx';
 import GoodButton from '../good-ui/good-button.jsx';
