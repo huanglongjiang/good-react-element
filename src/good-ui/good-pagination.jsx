@@ -21,9 +21,10 @@ export default class Pagination2 extends React.Component {
 
 	render() {
 		let currentPage=this.state.currentPage;
+		let pageSize=this.props.pageSize==undefined?10:this.props.pageSize;
 	    return (
 	    	<div className="block align-right margin-top-20">
-		      <Pagination layout="total, prev, pager, next, jumper" total={Number.parseInt(this.props.data)} pageSize={10} currentPage={currentPage} onSizeChange={this.onSizeChange}   onCurrentChange={this.onCurrentChange}/>
+		      <Pagination layout="total, prev, pager, next, jumper" total={Number.parseInt(this.props.data)} pageSizes={[100, 200, 300, 400]} pageSize={pageSize} currentPage={currentPage} onSizeChange={this.onSizeChange}   onCurrentChange={this.onCurrentChange}/>
 		    </div>
 	    );
 	}

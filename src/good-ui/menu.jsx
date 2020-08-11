@@ -53,7 +53,7 @@ export default class Menu extends React.Component {
 	function Children(props){
 		const element2=props.children.map((item,index)=>{
 			return (
-			<li className="line-height-36 padding-left-30 color-999" key={index}><a className=" color-999 font-size-14 none-line margin-right-10" href={item.url}>{item.title}</a>
+			<li className="line-height-36 padding-left-30 color-333" key={index}><a className=" color-333 font-size-14 none-line margin-right-10" href={item.url}>{item.title}</a>
 				{
 					item.url=='bbs'?<GoodInfo data="123"></GoodInfo>:
 					item.url=='log'?<GoodInfo data="7516"></GoodInfo>:null
@@ -72,7 +72,7 @@ export default class Menu extends React.Component {
 			<ul key={index} className="border-bottom-1 border-eee">
 				<li className="line-height-36">
 					<i className={`padding-right-13 color-999 ${ item.icon}`}></i>
-					<span className='bold color-999'>{item.title}</span>
+					<span className='color-333'>{item.title}</span>
 				</li>
 				<Children children={item.children}></Children>
 			</ul>

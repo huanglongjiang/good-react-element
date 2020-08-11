@@ -1,16 +1,26 @@
 import React from 'react';
 import axios from 'axios';
 import { Dialog,Button,Input,Radio,DateRangePicker,Tag } from 'element-react';
-import Pagination2 from '../good-ui/good-pagination.jsx';
+import GoodPagination from '../good-ui/good-pagination.jsx';
 import GoodBreadbar from '../good-ui/good-breadbar.jsx';
 import GoodTotal from '../good-ui/good-total.jsx';
 import GoodTds       from '../good-ui/good-tds.jsx';
-import GoodUpload from '../good-ui/good-upload-root.jsx';
+import GoodUpload from '../good-ui/good-uploads.jsx';
+import GoodKey from '../good-ui/good-key.jsx';
 export default class Log extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      imgType:'u7',
+      fileType:'article_title',
+      dialogVisible: false,
+      dialogVisible2: false,
+      isEdit: false,
+      google:'t-20001',
+      title:'',
       list: [],
+      keywords:[],
+      tag:[],
       form:{
         id:'',
         name:'',
@@ -19,6 +29,10 @@ export default class Log extends React.Component {
         url:'',
         type:0,
         time:'',
+      },
+      page: {
+          currentPage: 0,
+          pageSize: 100,
       },
     };
   }
@@ -29,7 +43,7 @@ export default class Log extends React.Component {
   // 数据初始化
   loadList(){
     const data={
-      google: "t-20001",
+      google: this.state.google,
       operating: "lists",
       name: ""
     }
@@ -59,9 +73,26 @@ export default class Log extends React.Component {
         isEdit:false,
       })
   }
-  editData=(item)=>{
+
+  openDialog=(data)=>{
+    this.setState({
+        dialogVisible: true,
+        disabled: false,
+        isEdit: false,
+        form:{
+          id:'',
+          name:'',
+          image:'',
+          keywords:'',
+          url:'',
+          type:0,
+          time:'',
+        },
+      })
+  }
+  openDialog2=(item)=>{
     const data={
-      google: "t-20001",
+      google: this.state.google,
       operating: "select",
       id: item.id,
       status:item.status,
@@ -75,6 +106,21 @@ export default class Log extends React.Component {
          });
       })
     })
+  }
+
+  keys=(item)=>{
+     let tag=item.keywords==''?[]:item.keywords.split(',')
+     this.setState({
+         dialogVisible2: true,
+         tag:tag,
+         form:item
+      })
+
+  }
+
+  closeDialog=(item)=>{
+    console.log(this.state.tag)
+    this.setState({ dialogVisible2: item })
   }
   handleChange=(item,value)=>{
     const data={};
@@ -93,28 +139,40 @@ export default class Log extends React.Component {
     console.log(this.state.form)
   }
 
-  handleClose(item) {
-    const keys=this.state.form.keywords.split(',');
-    const keys2=[]
-    console.log(this.state.form.keywords)
-          keys.map((item2,index)=>{
-         
-            console.log(index)
-            if(item==item2)
-              keys.splice(index,1)
-
-          })
-          console.log(keys)
-          Object.assign(this.state.form,{keywords:keys.join(',')});
-          this.setState({form:this.state.form})
-          console.log(this.state.form.keywords)
-          
-    /*const { item } = this.state;
-
-    tags.splice(tags.map(el => el.key).indexOf(item.key), 1);
-
-    this.setState({ item });*/
+   getPage=(data)=>{
+    console.log(data)
+      this.setState({
+          page:{currentPage: data, pageSize: 10  }
+      },()=> {
+        this.keys();
+      });
+      
   }
+
+
+
+  upData=(type,item)=>{
+     console.log(type)
+     console.log(item)
+    
+        const data={
+          google: this.state.google,
+          operating: type,
+          form:this.state.form,
+        }
+        if(item===false){
+          data.form.keywords=this.state.tag.join(',');
+          this.setState({ dialogVisible2: item })
+        }
+       
+        axios.post('good/google.php',data).then((res) => {
+          if(res.data.retType==='success'){
+            this.loadList();
+            this.setState({dialogVisible: false})
+          }
+        })
+  }
+
   render() {
 
     function Tbody(props){
@@ -124,13 +182,14 @@ export default class Log extends React.Component {
         let url=`http://www.good1230.com/dist2/static/RandomUser/${item.image}`
         return (
           <tr key={index}>
-            <td><div  onClick={props.editData.bind(this,item)}>{index+1}、{item.name}</div></td>
+            <td><div className="pointer"  onClick={props.datas.openDialog2.bind(this,item)}>{index+1}、{item.name}</div></td>
             <td>
               {
                 item.keywords!=''?item.keywords.split(',').map((item2,index2)=>{
-                  return <Tag type="gray" className="margin-2">{item2}</Tag>
+                  return <Tag type="gray" className="margin-right-10">{item2}</Tag>
                 }):null
               }
+               <Button className="button-new-tag" size="small" onClick={props.datas.keys.bind(this,item)}>+ 新增</Button>
             </td>
           </tr>
         )
@@ -139,6 +198,9 @@ export default class Log extends React.Component {
     }
     const { data }=this.state.list;
     const { total }=this.state.list;
+    const total2=this.state.keywords.total;
+
+    console.log(this)
     let keywords=[];
       if(this.state.form.keywords==''){
         keywords=[];
@@ -146,11 +208,19 @@ export default class Log extends React.Component {
         keywords=this.state.form.keywords.split(',');
       }
       console.log(keywords)
+
+
+      let bbbb=this.state.keywords;
+      console.log(bbbb)
+
+      const keyList=['数组','json数组','js数组数组','合并string数组'];
+      let title=this.state.isEdit?'编辑标签':'新增标签';
     return (
       <div>
    
-        <GoodBreadbar title="标签中心"></GoodBreadbar>
+        <GoodBreadbar title="栏目中心"></GoodBreadbar>
         <div className="margin-bottom-10 clearfix">
+          <Button className="float-right margin-left-20" type="primary" icon="plus" onClick={ this.openDialog }>新增标签</Button>
           <GoodTotal total={ total }></GoodTotal>
         </div>
         
@@ -162,13 +232,13 @@ export default class Log extends React.Component {
                 <th>关键词</th>
               </tr>
             </thead>
-              <Tbody data={data} editData={this.editData} remove={this.remove} />
+              <Tbody data={data} datas={ this } remove={this.remove} />
           </table> 
         </div>
 
         <Dialog
           className="width-600"
-          title="新增标签"
+          title={ title }
           size="tiny"
           visible={ this.state.dialogVisible }
           onCancel={ () => this.setState({ dialogVisible: false }) }
@@ -182,38 +252,26 @@ export default class Log extends React.Component {
                     <td><Input placeholder="请输入内容" value={ this.state.form.name }  onChange={this.handleChange.bind(this,'name')} /></td>
                   </tr>
                   <tr>
-                    <GoodTds title='关键词'></GoodTds>
-                    <td>
-                      <div>
-                      {
-                        
-                        keywords && keywords.map(item => {
-                          return (
-                          <Tag type="primary" className="margin-right-10">{item}</Tag>
-                          /*<Tag
-                            key={0}
-                            closable={true}
-                            type="primary"
-                            onClose={this.handleClose.bind(this,item)} className="margin-right-10">{item}</Tag>*/
-                          )
-                        })
-                      }
-                      <span className="el-tag el-tag--primary margin-right-10 pointer">+</span>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
                     <GoodTds title='缩 略 图'></GoodTds>
-                    <td><GoodUpload image={ this.updateImage } url={ this.state.form.image }></GoodUpload></td>
+                    <td>
+                        <td><GoodUpload data={ this }></GoodUpload></td>
+                    </td>
                   </tr>
                 </table> 
               </div>
             </Dialog.Body>
             <Dialog.Footer className="dialog-footer">
               <Button onClick={ () => this.setState({ dialogVisible: false }) }>取消</Button>
-              <Button type="primary" onClick={ () => this.setState({ dialogVisible: false }) }>确定</Button>
+              {
+                this.state.isEdit?
+                <Button type="primary" onClick={ this.upData.bind(this,'update') }>确定</Button>:
+                <Button type="primary" onClick={ this.upData.bind(this,'insert') }>确定</Button>
+              }
             </Dialog.Footer>
           </Dialog>
+          <GoodKey data={ this }></GoodKey>
+
+          
       </div>
     );
   }
