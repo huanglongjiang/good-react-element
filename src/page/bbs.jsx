@@ -16,7 +16,6 @@ export default class Log extends React.Component {
     this.state = {
       dialogVisible: false,
       disabled:false,
-      isEdit:false,
       list: [],
       form:{
         id:'',
@@ -54,7 +53,6 @@ export default class Log extends React.Component {
     this.setState({
         dialogVisible: true,
         disabled: false,
-        isEdit: false,
         form:{
           id:'',
           text:'',
@@ -172,11 +170,7 @@ export default class Log extends React.Component {
             </Dialog.Body>
             <Dialog.Footer className="dialog-footer">
               <Button onClick={ () => this.setState({ dialogVisible: false }) }>取消</Button>
-              {
-                this.state.isEdit?
-                <Button type="primary" onClick={ this.upData.bind(this,'update') }>确定-编辑</Button>:
-                <Button type="primary" onClick={ this.upData.bind(this,'insert') }>确定-新增</Button>
-              }
+              <Button type="primary" onClick={ this.upData.bind(this,'insert') }>确定</Button>
             </Dialog.Footer>
           </Dialog>
       </div>

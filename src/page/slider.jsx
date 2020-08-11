@@ -217,6 +217,8 @@ constructor(props) {
     const statusList={title:'服务类型',type:'status',list:['关闭','开启']};
     const { data }=this.state.list;
     const { total }=this.state.list;
+    let title=this.state.isEdit?'编辑轮播图':'新增轮播图';
+    
     return (
       <div>
         <GoodBreadbar title="图片轮播"></GoodBreadbar> 
@@ -249,7 +251,7 @@ constructor(props) {
         <GoodPagination data={total}  currentPage={this.getPage.bind(this)}></GoodPagination>
         <Dialog
           className="width-600" style={{width:800}}
-          title="新增轮播图"
+          title={ title }
           size="tiny"
           visible={ this.state.dialogVisible }
           onCancel={ () => this.setState({ dialogVisible: false }) }
@@ -297,8 +299,8 @@ constructor(props) {
               <Button onClick={ () => this.setState({ dialogVisible: false }) }>取消</Button>
               {
                 this.state.isEdit?
-                <Button type="primary" onClick={ this.upData.bind(this,'update') }>确定-编辑</Button>:
-                <Button type="primary" onClick={ this.upData.bind(this,'insert') }>确定-新增</Button>
+                <Button type="primary" onClick={ this.upData.bind(this,'update') }>确定</Button>:
+                <Button type="primary" onClick={ this.upData.bind(this,'insert') }>确定</Button>
               }
             </Dialog.Footer>
           </Dialog>

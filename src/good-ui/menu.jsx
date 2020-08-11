@@ -26,6 +26,7 @@ export default class Menu extends React.Component {
 		  		{title:'友情链接',url:'link'},
 		  		{title:'广告管理',url:'adsense'},
 		  		{title:'图片轮播',url:'slider'},
+		  		{title:'新功能开发中',url:null},
 	  		]
 	  	},
 	  	{
@@ -52,14 +53,26 @@ export default class Menu extends React.Component {
 
 	function Children(props){
 		const element2=props.children.map((item,index)=>{
-			return (
-			<li className="line-height-36 padding-left-30 color-333" key={index}><a className=" color-333 font-size-14 none-line margin-right-10" href={item.url}>{item.title}</a>
-				{
-					item.url=='bbs'?<GoodInfo data="123"></GoodInfo>:
-					item.url=='log'?<GoodInfo data="7516"></GoodInfo>:null
-				}
-			</li>
-			)
+			console.log(item.url)
+			if(item.url==null){
+				return (
+					<li className="line-height-36 padding-left-45 color-333 margin-10 margin-bottom-20" key={index}>
+						<div className=" padding-left-10 menu2">
+						<i className="el-icon-plus color-ccc padding-right-5"></i>
+						{item.title}</div>
+					</li>
+				)
+			}else{
+				return (
+					<li className="line-height-36 padding-left-70 color-333 menu" key={index}><a className=" color-333 font-size-14 none-line margin-right-10" href={item.url}>{item.title}</a>
+						{
+							item.url=='bbs'?<GoodInfo data="123"></GoodInfo>:
+							item.url=='log'?<GoodInfo data="7516"></GoodInfo>:null
+						}
+					</li>
+				)
+			}
+
 		})
 		
 		return (
@@ -70,7 +83,7 @@ export default class Menu extends React.Component {
 	const element=data.map((item,index)=>{
 		return (
 			<ul key={index} className="border-bottom-1 border-eee">
-				<li className="line-height-36">
+				<li className="line-height-36 padding-left-40">
 					<i className={`padding-right-13 color-999 ${ item.icon}`}></i>
 					<span className='color-333'>{item.title}</span>
 				</li>
@@ -80,7 +93,7 @@ export default class Menu extends React.Component {
 	})
 
     return (
-      <div className="width-200 color-333 padding-10 align-left position-a left-0 top-60 padding-left-30">{element}</div>
+      <div className="width-210 color-333 align-left position-a left-0 top-60">{element}</div>
     );
   }
 }

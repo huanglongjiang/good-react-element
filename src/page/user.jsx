@@ -130,6 +130,23 @@ export default class Log extends React.Component {
       })
     }).catch(() => {});
   }
+
+    // 重置密码
+  resetPassword=(item,value)=>{
+    MessageBox.confirm('是否确认重新设置初始密码！', '提示', {type: 'warning'}).then(() => {
+
+      const data={
+        google: this.state.google,
+        operating: 'resetPassword',
+        id:item.id,
+      }
+      axios.post('good/google.php',data).then((res) => {
+        if(res.data.retType==='success'){
+          this.loadList();
+        }
+      })
+    }).catch(() => {});
+  }
   
   // 状态改变方法
   getStatus=(item)=>{
@@ -201,7 +218,7 @@ export default class Log extends React.Component {
             {
               item.role==2?null:
               <div>
-                <span className="a-link pointer margin-right-10" onClick={props.datas.openDialog2.bind(this,item)}>密码重置</span>
+                <span className="a-link pointer margin-right-10" onClick={props.datas.resetPassword.bind(this,item)}>密码重置</span>
                 <span className="a-link pointer margin-right-10" onClick={props.datas.openDialog2.bind(this,item)}>编辑</span>
                 <span className="a-link pointer" onClick={props.datas.remove.bind(this,item)}>删除</span>
               </div>
@@ -218,6 +235,7 @@ export default class Log extends React.Component {
     const statusList={title:'服务类型',type:'status',list:['冻结','正常']};
     const { data }=this.state.list;
     const { total }=this.state.list;
+    let title=this.state.isEdit?'编辑用户':'新增用户';
 
     return (
       <div>
@@ -257,7 +275,7 @@ export default class Log extends React.Component {
 
         <Dialog
           className="width-600"
-          title="新增用户"
+          title={ title }
           size="tiny"
           visible={ this.state.dialogVisible }
           onCancel={ () => this.setState({ dialogVisible: false }) }
@@ -300,8 +318,8 @@ export default class Log extends React.Component {
               <Button onClick={ () => this.setState({ dialogVisible: false }) }>取消</Button>
               {
                 this.state.isEdit?
-                <Button type="primary" onClick={ this.upData.bind(this,'update') }>确定-编辑</Button>:
-                <Button type="primary" onClick={ this.upData.bind(this,'insert') }>确定-新增</Button>
+                <Button type="primary" onClick={ this.upData.bind(this,'update') }>确定</Button>:
+                <Button type="primary" onClick={ this.upData.bind(this,'insert') }>确定</Button>
               }
             </Dialog.Footer>
           </Dialog>

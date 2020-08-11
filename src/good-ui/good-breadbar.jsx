@@ -4,7 +4,7 @@ export default class Breadbar extends React.Component {
     return (
     	<div className="margin-top-10 margin-bottom-10">
 			<ol className="breadbar">
-			  <li><a>个人博客记录生活</a></li>
+			  <li><a>个人博客记录生活点点滴滴</a></li>
 			  <li><a>{this.props.title}</a></li>
 			</ol>
     	</div>

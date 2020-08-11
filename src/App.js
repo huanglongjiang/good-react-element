@@ -39,6 +39,7 @@ axios.interceptors.response.use(res => {
 		{operating:'updatePass'},
 		{operating:'delete'},
 		{operating:'status'},
+		{operating:'resetPassword'},
 	]
 	console.log(res.data.retType)
 

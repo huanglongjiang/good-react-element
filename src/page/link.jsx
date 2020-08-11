@@ -242,6 +242,7 @@ constructor(props) {
     const { data }=this.state.list;
     const { total }=this.state.list;
     const {value1, value2} = this.state;
+    let title=this.state.isEdit?'编辑友情链接':'新增友情链接';
 
     return (
       <div>
@@ -292,7 +293,7 @@ constructor(props) {
         <GoodPagination data={total}  currentPage={this.getPage.bind(this)}></GoodPagination>
         <Dialog
           className="width-600" style={{width:800}}
-          title="新增友情链接"
+          title={ title }
           size="tiny"
           visible={ this.state.dialogVisible }
           onCancel={ () => this.setState({ dialogVisible: false }) }
@@ -364,8 +365,8 @@ constructor(props) {
               <Button onClick={ () => this.setState({ dialogVisible: false }) }>取消</Button>
               {
                 this.state.isEdit?
-                <Button type="primary" onClick={ this.upData.bind(this,'update') }>确定-编辑</Button>:
-                <Button type="primary" onClick={ this.upData.bind(this,'insert') }>确定-新增</Button>
+                <Button type="primary" onClick={ this.upData.bind(this,'update') }>确定</Button>:
+                <Button type="primary" onClick={ this.upData.bind(this,'insert') }>确定</Button>
               }
             </Dialog.Footer>
           </Dialog>

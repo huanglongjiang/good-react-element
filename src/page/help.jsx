@@ -209,16 +209,17 @@ export default class Log extends React.Component {
     const statusList={title:'服务类型',type:'status',list:['关闭','开启']};
     const { data }=this.state.list;
     const { total }=this.state.list;
+    let title=this.state.isEdit?'编辑客服':'新增客服';
 
     return (
       <div>
-        <GoodBreadbar title="用户管理"></GoodBreadbar>
+        <GoodBreadbar title="客服信息"></GoodBreadbar>
         <div className="background-white padding-10" style={{'boxShadow':' rgba(0, 0, 0, 0.25) 0px 0px 1px'}}>
           <GoodTag data={ typeList }  type={this.getTag.bind(this)}></GoodTag>
           <GoodTag data={ statusList }  type={this.getTag.bind(this)}></GoodTag>
         </div>
         <div className="padding-10 clearfix">
-          <Button className="float-right margin-left-20" type="primary" icon="plus" onClick={ this.openDialog }>新增用户</Button>
+          <Button className="float-right margin-left-20" type="primary" icon="plus" onClick={ this.openDialog }>新增客服</Button>
           <GoodTotal total={ total }></GoodTotal>
         </div>
         <div className="table-data padding-20 background-white" style={{'box-shadow':'rgba(0, 0, 0, 0.25) 0px 0px 1px'}}>
@@ -241,7 +242,7 @@ export default class Log extends React.Component {
 
         <Dialog
           className="width-600"
-          title="新增用户"
+          title={ title }
           size="tiny"
           visible={ this.state.dialogVisible }
           onCancel={ () => this.setState({ dialogVisible: false }) }
@@ -260,7 +261,7 @@ export default class Log extends React.Component {
                   </tr>
                   <tr>
                     <GoodTds title='代码标签'></GoodTds>
-                    <td><Input placeholder="请输入内容" value={ this.state.form.email }  onChange={this.onChange.bind(this,'email')} /></td>
+                    <td><Input placeholder="请输入内容" value={`{$qq.${this.state.form.id}}`} disabled /></td>
                   </tr>
                   <tr>
                     <GoodTds title='用户类型'></GoodTds>
@@ -288,8 +289,8 @@ export default class Log extends React.Component {
               <Button onClick={ () => this.setState({ dialogVisible: false }) }>取消</Button>
               {
                 this.state.isEdit?
-                <Button type="primary" onClick={ this.upData.bind(this,'update') }>确定-编辑</Button>:
-                <Button type="primary" onClick={ this.upData.bind(this,'insert') }>确定-新增</Button>
+                <Button type="primary" onClick={ this.upData.bind(this,'update') }>确定</Button>:
+                <Button type="primary" onClick={ this.upData.bind(this,'insert') }>确定</Button>
               }
             </Dialog.Footer>
           </Dialog>

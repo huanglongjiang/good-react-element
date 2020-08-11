@@ -32,8 +32,9 @@ body{background: #f6f8f9}
 .el-loading-spinner{
   position: fixed!important;
 }
-
-
+.menu:hover{background-color: rgba(0, 0, 0, 0.03);}
+.menu2{border:2px dashed #D9DADC}
+.menu2:hover{border:2px dashed #B2B2B2}
 #percentage {
       display: block;
       width: 0;
