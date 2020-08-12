@@ -50,8 +50,10 @@ export default class Header extends React.Component {
   openDialog=()=>{
   	this.setState({ dialog: true })
   }
-  closeDialog=(item)=>{
-    this.loadList();
+  closeDialog=(item,type)=>{
+    if(type){
+      this.loadList();
+    }
   	this.setState({ dialog: item })
   }
 
@@ -65,7 +67,7 @@ export default class Header extends React.Component {
   render() {
   	console.log(this.state.data.image)
     let img='http://www.good1230.com/dist2/static/images/tianmao.jpg'
-        if(this.state.data.image!==''){
+        if(this.state.data.image!==''&&this.state.data.image!==undefined){
             img=`good/server/images/${this.state.fileType}/${this.state.data.image}`;
         }
     return (

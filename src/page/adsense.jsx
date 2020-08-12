@@ -2,15 +2,12 @@ import React from 'react';
 import axios from 'axios';
 import { Dialog,Button,Input,Radio,DateRangePicker,Tag,Switch,MessageBox,Message } from 'element-react';
 import GoodPagination from '../good-ui/good-pagination.jsx';
-import Pagination2 from './pagination.jsx';
 import GoodBreadbar from '../good-ui/good-breadbar.jsx';
 import GoodTotal from '../good-ui/good-total.jsx';
 import GoodTag from '../good-ui/good-tag.jsx';
-import GoodSearch from '../good-ui/good-search.jsx';
 import GoodTds       from '../good-ui/good-tds.jsx';
 import GoodUpload from '../good-ui/good-uploads.jsx';
 import GoodSwitch     from '../good-ui/good-switch.jsx';
-import GoodButton from '../good-ui/good-button.jsx';
 export default class Log extends React.Component {
 constructor(props) {
     super(props);
@@ -93,21 +90,12 @@ constructor(props) {
       })
   }
   openDialog2=(item)=>{
-    const data={
-      google: this.state.google,
-      operating: "select",
-      id: item.id,
-      status:item.status,
-    }
-    this.setState({dialogVisible: true,disabled: true,isEdit: true},()=> {
-
-      axios.post('good/google.php',data)
-      .then((res) => {
-         this.setState({
-           form:res.data.data,
-         });
-      })
-    })
+    this.setState({
+      dialogVisible: true,
+      disabled: true,
+      isEdit: true,
+      form: {...item},
+    });
   }
   
   upData=(item)=>{

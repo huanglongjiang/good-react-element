@@ -1,18 +1,10 @@
 import React            from 'react';
 import axios from 'axios';
-import {Select } from 'element-react';
-import GoodPagination   from '../good-ui/good-pagination.jsx';
+import { Dialog,Button,Input,Radio,Switch } from 'element-react';
 import GoodBreadbar     from '../good-ui/good-breadbar.jsx';
 import GoodTotal        from '../good-ui/good-total.jsx';
-import GoodTag          from '../good-ui/good-tag.jsx';
-import GoodSearch       from '../good-ui/good-search.jsx';
-import GoodButton       from '../good-ui/good-button.jsx';
-import GoodInput       from '../good-ui/good-input.jsx';
-import GoodTextarea       from '../good-ui/good-textarea.jsx';
-
 import GoodTds       from '../good-ui/good-tds.jsx';
 import GoodSwitch     from '../good-ui/good-switch.jsx';
-import { Dialog,Button,Input,Radio,Switch } from 'element-react';
 
 export default class Log extends React.Component {
   constructor(props) {
@@ -49,21 +41,12 @@ export default class Log extends React.Component {
 
   // 编辑查询数据
   openDialog=(item)=>{
-      const data={
-        google: this.state.google,
-        operating: "select",
-        id: item.id,
-        status:item.status,
-      }
-      this.setState({dialogVisible: true,disabled: true},()=> {
-
-        axios.post('good/google.php',data)
-        .then((res) => {
-           this.setState({
-             form:res.data.data,
-           });
-        })
-      })
+    this.setState({
+      dialogVisible: true,
+      disabled: true,
+      isEdit: true,
+      form: {...item},
+    });
   }
 
   // 新增编辑数据

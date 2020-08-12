@@ -51,7 +51,7 @@ export default class Header extends React.Component {
     }
     axios.post('good/google.php',data).then((res) => {
       if(res.data.retType==='success'){
-        this.props.data.closeDialog(false)
+        this.props.data.closeDialog(false,'submit')
       }
     })
     

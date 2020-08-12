@@ -7,7 +7,7 @@ export default class Search extends React.Component {
 			
 			{
 				this.props.required?
-				<span className="color-star">{ this.props.title }{ console.log(this.props.required) }</span>:
+				<span className="color-star">{ this.props.title }</span>:
 				<span>{ this.props.title }</span>
 			}
 		</td>

@@ -5,11 +5,7 @@ import GoodPagination from '../good-ui/good-pagination.jsx';
 import GoodBreadbar from '../good-ui/good-breadbar.jsx';
 import GoodTotal from '../good-ui/good-total.jsx';
 import GoodTag from '../good-ui/good-tag.jsx';
-import GoodSearch from '../good-ui/good-search.jsx';
-import GoodInput       from '../good-ui/good-input.jsx';
-import GoodTextarea       from '../good-ui/good-textarea.jsx';
 import GoodSwitch     from '../good-ui/good-switch.jsx';
-import GoodTds       from '../good-ui/good-tds.jsx';
 export default class Log extends React.Component {
   constructor(props) {
     super(props);

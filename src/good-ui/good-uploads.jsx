@@ -32,7 +32,12 @@ export default class Upload2 extends React.Component {
 	render() {
 		let imageUrl='';
 		if(this.state.imageUrl==''){
-			imageUrl =`good/server/images/${this.props.data.state.fileType}/${this.props.data.state.form.image}`
+			console.log(this.props.data.state.form.image)
+			if(this.props.data.state.form.image!=undefined&&this.props.data.state.form.image!=''){
+				imageUrl =`good/server/images/${this.props.data.state.fileType}/${this.props.data.state.form.image}`
+			}else{
+				imageUrl =`http://www.good1230.com/dist2/static/images/tianmao.jpg`
+			}
 		}else{
 			imageUrl= this.state.imageUrl;
 		}

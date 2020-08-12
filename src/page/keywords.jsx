@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Dialog,Button,Input,Radio,DateRangePicker,Tag } from 'element-react';
-import Pagination2 from '../good-ui/good-pagination.jsx';
+import GoodPagination from '../good-ui/good-pagination.jsx';
 import GoodBreadbar from '../good-ui/good-breadbar.jsx';
 import GoodTotal from '../good-ui/good-total.jsx';
 import GoodTds       from '../good-ui/good-tds.jsx';
@@ -11,6 +11,10 @@ export default class Log extends React.Component {
     this.state = {
       google:'t-20006',
       list: [],
+      page: {
+          currentPage: 0,
+          pageSize: 250,
+      },
       form:{
         id:'',
         name:'',
@@ -22,19 +26,29 @@ export default class Log extends React.Component {
   componentDidMount() {
     this.loadList()
   }
-  // 数据初始化
   loadList(){
     const data={
       google: "t-20006",
       operating: "lists",
-      name: ""
+      name: "",
+      page: this.state.page.currentPage,
+      pagesize: this.state.page.pageSize,
     }
     axios.post('good/google.php',data)
       .then((res) => {
          this.setState({
            list:res.data,
          });
+         
       })
+  }
+  getPage=(data)=>{
+    this.setState({
+      page:{currentPage: data, pageSize: 250  }
+    },()=> {
+      this.loadList();
+    });
+
   }
   openDialog=(data)=>{
     this.setState({
@@ -48,22 +62,13 @@ export default class Log extends React.Component {
         },
       })
   }
-  openDialog2=(item)=>{
-    const data={
-      google: "t-20006",
-      operating: "select",
-      id: item.id,
-      status:item.status,
-    }
-    this.setState({dialogVisible: true,isEdit: true},()=> {
 
-      axios.post('good/google.php',data)
-      .then((res) => {
-         this.setState({
-           form:res.data.data,
-         });
-      })
-    })
+  openDialog2=(item)=>{
+    this.setState({
+      dialogVisible: true,
+      isEdit: true,
+      form: {...item},
+    });
   }
   onChange=(item,value)=>{
     const data={};
@@ -99,19 +104,23 @@ export default class Log extends React.Component {
             <td><div  onClick={props.editData.bind(this,item)}>{item.name}</div></td>
           </tr>
         )*/
-        return (<div type="gray" className="margin-2" onClick={props.datas.openDialog2.bind(this,item)}>{item.name}</div>)
+        return (
+          <span class="el-tag el-tag--gray margin-right-10 margin-bottom-10 pointer" onClick={props.datas.openDialog2.bind(this,item)}>{item.name}</span>
+
+          )
       })
       return <tbody list="this.props.state.list">{dataTable}</tbody>
     }
     const { data }=this.state.list;
     const { total }=this.state.list;
+    let title=this.state.isEdit?'编辑关键词':'新增关键词';
 
     return (
       <div>
    
-        <GoodBreadbar title="标签中心"></GoodBreadbar>
+        <GoodBreadbar title="关键词库"></GoodBreadbar>
         <div className="margin-bottom-10 clearfix">
-          <Button className="float-right margin-left-20" type="primary" icon="plus" onClick={ this.openDialog }>新增友情链接</Button>
+          <Button className="float-right margin-left-20" type="primary" icon="plus" onClick={ this.openDialog }>新增关键词</Button>
           <GoodTotal total={ total }></GoodTotal>
         </div>
         
@@ -119,7 +128,7 @@ export default class Log extends React.Component {
           <table className="table-group">
             <thead className="block-header">
               <tr>
-                <th>标签名称</th>
+                <th>关键词库</th>
               </tr>
             </thead>
               <tr>
@@ -128,10 +137,11 @@ export default class Log extends React.Component {
               
           </table> 
         </div>
+        <GoodPagination data={total}  pageSize={250}  currentPage={this.getPage.bind(this)}></GoodPagination>
 
         <Dialog
           className="width-600"
-          title="新增标签"
+          title={ title }
           size="tiny"
           visible={ this.state.dialogVisible }
           onCancel={ () => this.setState({ dialogVisible: false }) }
@@ -141,7 +151,7 @@ export default class Log extends React.Component {
               <div class="table-default">
                 <table class="width-max">
                   <tr>
-                    <GoodTds title='名称'></GoodTds>
+                    <GoodTds title='名称' required></GoodTds>
                     <td><Input placeholder="请输入内容" value={ this.state.form.name }  onChange={this.onChange.bind(this,'name')} /></td>
                   </tr>
                 </table> 
@@ -151,8 +161,8 @@ export default class Log extends React.Component {
               <Button onClick={ () => this.setState({ dialogVisible: false }) }>取消</Button>
               {
                 this.state.isEdit?
-                <Button type="primary" onClick={ this.upData.bind(this,'update') }>确定-编辑</Button>:
-                <Button type="primary" onClick={ this.upData.bind(this,'insert') }>确定-新增</Button>
+                <Button type="primary" onClick={ this.upData.bind(this,'update') }>确定</Button>:
+                <Button type="primary" onClick={ this.upData.bind(this,'insert') }>确定</Button>
               }
             </Dialog.Footer>
           </Dialog>

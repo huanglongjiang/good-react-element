@@ -5,9 +5,6 @@ import GoodPagination from '../good-ui/good-pagination.jsx';
 import GoodBreadbar from '../good-ui/good-breadbar.jsx';
 import GoodTotal from '../good-ui/good-total.jsx';
 import GoodTag from '../good-ui/good-tag.jsx';
-import GoodSearch from '../good-ui/good-search.jsx';
-import GoodInput       from '../good-ui/good-input.jsx';
-import GoodTextarea       from '../good-ui/good-textarea.jsx';
 import GoodSwitch     from '../good-ui/good-switch.jsx';
 import GoodTds       from '../good-ui/good-tds.jsx';
 export default class Log extends React.Component {
@@ -73,21 +70,12 @@ export default class Log extends React.Component {
 
   // 编辑查询数据
   openDialog2=(item)=>{
-      const data={
-        google: this.state.google,
-        operating: "select",
-        id: item.id,
-        status:item.status,
-      }
-      this.setState({dialogVisible: true,isEdit: true},()=> {
-
-        axios.post('good/google.php',data)
-        .then((res) => {
-           this.setState({
-             form:res.data.data,
-           });
-        })
-      })
+    this.setState({
+      dialogVisible: true,
+      disabled: true,
+      isEdit: true,
+      form: {...item},
+    });
   }
   
   // 新增编辑数据
