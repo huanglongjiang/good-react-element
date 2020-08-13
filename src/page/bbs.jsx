@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import global from '../global';
 import { Dialog,Button,Input,Radio,Tag,Switch } from 'element-react';
 import GoodPagination from '../good-ui/good-pagination.jsx';
 import GoodBreadbar from '../good-ui/good-breadbar.jsx';
@@ -35,7 +36,7 @@ export default class Log extends React.Component {
       page: this.state.page.currentPage,
       pagesize: this.state.page.pageSize,
     }
-    axios.post('good/google.php',data)
+    axios.post(global.APIPATH,data)
       .then((res) => {
          this.setState({
            list:res.data,
@@ -63,7 +64,7 @@ export default class Log extends React.Component {
           form:this.state.form,
         }
         console.log(data)
-        axios.post('good/google.php',data).then((res) => {
+        axios.post(global.APIPATH,data).then((res) => {
           if(res.data.retType==='success'){
             this.loadList();
             this.setState({dialogVisible: false})
@@ -83,13 +84,11 @@ export default class Log extends React.Component {
 
   // 分页方法
   getPage=(data)=>{
-    console.log(data)
       this.setState({
-          page:{currentPage: data, pageSize: 10  }
+          page:{currentPage: data.currentPage, pageSize: data.pageSize  }
       },()=> {
         this.loadList();
       });
-      
   }
 
   render() {
@@ -143,7 +142,7 @@ export default class Log extends React.Component {
         </div>
 
         {/*分页*/}
-        <GoodPagination data={total}  currentPage={this.getPage.bind(this)}></GoodPagination>
+        <GoodPagination data={[this,total]}  currentPage={this.getPage.bind(this)}></GoodPagination>
 
         <Dialog
           className="width-600"

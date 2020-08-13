@@ -53,7 +53,6 @@ export default class Menu extends React.Component {
 
 	function Children(props){
 		const element2=props.children.map((item,index)=>{
-			console.log(item.url)
 			if(item.url==null){
 				return (
 					<li className="line-height-36 padding-left-45 color-333 margin-10 margin-bottom-20" key={index}>

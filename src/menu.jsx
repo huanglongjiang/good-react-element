@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 export default class Menu extends React.Component {
 	/*constructor(props) {
 	    super(props);
@@ -52,6 +53,7 @@ export default class Menu extends React.Component {
 	function Children(props){
 		const element2=props.children.map((item,index)=>{
 			return <li className="line-height-36 padding-left-30 color-333" key={index}><a className=" color-333 none-line" href={item.url}>{item.title}</a></li>
+			/*return <li className="line-height-36 padding-left-30 color-333" key={index}><Link to={item.url} className=" color-333 none-line">{item.title}</Link></li>*/
 		})
 		
 		return (

@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import global  from '../global';
 import { Tag } from 'element-react';
 import GoodPagination from '../good-ui/good-pagination.jsx';
 import GoodBreadbar from '../good-ui/good-breadbar.jsx';
@@ -28,7 +29,7 @@ export default class Log extends React.Component {
       page: this.state.page.currentPage,
       pagesize: this.state.page.pageSize,
     }
-    axios.post('good/google.php',data)
+    axios.post(global.APIPATH,data)
       .then((res) => {
          this.setState({
            list:res.data,
@@ -38,13 +39,11 @@ export default class Log extends React.Component {
   
   // 分页方法
   getPage=(data)=>{
-    console.log(data)
       this.setState({
-          page:{currentPage: data, pageSize: 10  }
+          page:{currentPage: data.currentPage, pageSize: data.pageSize  }
       },()=> {
         this.loadList();
       });
-      
   }
 
   render() {
@@ -53,13 +52,24 @@ export default class Log extends React.Component {
       const { data }=props;
 
       let dataTable=data && data.map((item,index)=>{
-        //let url=`http://www.good1230.com/good/RandomUser/${item.image}`
-        let url=`good/server/images/user/${item.image}`
+        let url=item.image==null?`http://www.good1230.com/dist2/static/images/tianmao.jpg`:`good/server/images/user/${item.image}`;
+
         return (
           <tr key={index} style={{background: item.status==0 ? "#f5f7fa" : "#fff"}}>
-            <td><img src={url} alt="" className="width-30"/></td>
-            <td>{item.account} <span className="color-999">({item.name})</span></td>
-            <td>{item.email}</td>
+            <td>{ item.id }<img src={url} alt="" className="width-30"/></td>
+            <td>
+            {
+              item.account?
+              <div>{ item.account }<span className="color-999">({ item.name })</span></div>:
+              <span className="color-999">该账号已删除</span>
+            }
+            </td>
+            <td>
+            {
+              item.email?item.email:
+              <span className="color-999">-</span>
+            }
+            </td>
             <td>{item.loginType}</td>
             <td>{item.time}</td>
             <td>
@@ -77,6 +87,8 @@ export default class Log extends React.Component {
       })
       return <tbody list="this.props.state.list">{dataTable}</tbody>
     }
+
+    
     const { data }=this.state.list;
     const { total }=this.state.list;
     const { total2 }=this.state.list;
@@ -110,7 +122,7 @@ export default class Log extends React.Component {
               <Tbody data={data}/>
           </table> 
         </div>
-        <GoodPagination data={total}  currentPage={this.getPage.bind(this)}></GoodPagination>
+        <GoodPagination data={[this,total]}  currentPage={this.getPage.bind(this)}></GoodPagination>
       </div>
     );
   }

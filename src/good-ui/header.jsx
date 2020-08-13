@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import global from '../global';
 import { Dialog,Button,Input,Radio } from 'element-react';
 import GoodTds       from '../good-ui/good-tds.jsx';
 import GoodUpload from '../good-ui/good-uploads.jsx';
@@ -28,7 +29,7 @@ export default class Header extends React.Component {
       operating: "select",
     }
     
-    axios.post('good/google.php',data).then((res) => {
+    axios.post(global.APIPATH,data).then((res) => {
       if(res.data.retType==='success'){
        this.setState({
          data:res.data.data,
@@ -42,7 +43,7 @@ export default class Header extends React.Component {
       operating: "select",
     }
     
-    axios.post('good/return.php',data).then((res) => {
+    axios.post(global.APIPATH,data).then((res) => {
       console.log(res)
     })
   }
@@ -65,7 +66,7 @@ export default class Header extends React.Component {
   }
  
   render() {
-  	console.log(this.state.data.image)
+  	
     let img='http://www.good1230.com/dist2/static/images/tianmao.jpg'
         if(this.state.data.image!==''&&this.state.data.image!==undefined){
             img=`good/server/images/${this.state.fileType}/${this.state.data.image}`;
@@ -102,7 +103,7 @@ export default class Header extends React.Component {
 		        <li className="width-30 height-30 line-height-30 align-center inline-block padding-bottom-5 margin-left-10 margin-right-20 radius-4 float-right position-r radius-20" style={{'color':'rgb(173, 181, 189); top: -3px'}}>
 		          <a href="http://good1230.com" target="_blank">
 		            <i className="fa fa-bell-o font-size-18" style={{'color': 'rgb(173, 181, 189)'}}></i> 
-		            <div class="notify  position-a top-0 right-0">
+		            <div className="notify  position-a top-0 right-0">
 		              <span className="ring  position-a top-0 right-0"></span> 
 		              <span className="ring-point background-danger position-a top-0 right-0 color-white radius-20"></span>
 		            </div>

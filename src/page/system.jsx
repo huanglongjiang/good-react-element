@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import global from '../global';
 import { Radio,Select,Input,Button } from 'element-react';
 import GoodBreadbar from '../good-ui/good-breadbar.jsx';
 import GoodTds from '../good-ui/good-tds.jsx';
@@ -25,7 +26,7 @@ export default class Log extends React.Component {
       google: this.state.google,
       operating: "select",
     }
-    axios.post('good/google.php',data).then((res) => {
+    axios.post(global.APIPATH,data).then((res) => {
         this.setState({
            form:res.data.data,
         });
@@ -38,7 +39,7 @@ export default class Log extends React.Component {
       operating: "update",
       form:this.state.form,
     }
-    axios.post('good/google.php',data).then((res) => {
+    axios.post(global.APIPATH,data).then((res) => {
         console.info(res.data.result)
     })
     
@@ -68,29 +69,31 @@ export default class Log extends React.Component {
           <GoodBreadbar title="常规选项"></GoodBreadbar>
           <div className="table-default">
             <table className="width-max"> 
-              <tr>
-                <GoodTds title='标题'></GoodTds>
-                <td><Input className="width-400 padding-top-5 padding-bottom-5" type="textarea" rows={4} value={ data.title } onChange={this.onChange.bind(this,'title')}></Input></td>
-              </tr>
-              <tr>
-                <GoodTds title='副标题'></GoodTds>
-                <td><Input className="width-400 padding-top-5 padding-bottom-5" type="textarea" rows={2} value={ data.title2 } onChange={this.onChange.bind(this,'title2')}></Input></td>
-              </tr>
-              <tr>
-                <GoodTds title='站点地址'></GoodTds>
-                <td><Input className="width-400" value={ data.url } onChange={this.onChange.bind(this,'url')}></Input></td>
-              </tr>
-              <tr>
-                <GoodTds title='前台LOGO'></GoodTds>
-                <td><GoodUpload data={ this }></GoodUpload></td>
-              </tr>
-              
-              <tr>
-                <td></td>
-                <td>
-                  <Button type="primary" onClick={ this.submit }>保存修改</Button>
-                </td>
-              </tr>
+              <tbody>
+                <tr>
+                  <GoodTds title='标题'></GoodTds>
+                  <td><Input className="width-400 padding-top-5 padding-bottom-5" type="textarea" rows={4} value={ data.title } onChange={this.onChange.bind(this,'title')}></Input></td>
+                </tr>
+                <tr>
+                  <GoodTds title='副标题'></GoodTds>
+                  <td><Input className="width-400 padding-top-5 padding-bottom-5" type="textarea" rows={2} value={ data.title2 } onChange={this.onChange.bind(this,'title2')}></Input></td>
+                </tr>
+                <tr>
+                  <GoodTds title='站点地址'></GoodTds>
+                  <td><Input className="width-400" value={ data.url } onChange={this.onChange.bind(this,'url')}></Input></td>
+                </tr>
+                <tr>
+                  <GoodTds title='前台LOGO'></GoodTds>
+                  <td><GoodUpload data={ this }></GoodUpload></td>
+                </tr>
+                
+                <tr>
+                  <td></td>
+                  <td>
+                    <Button type="primary" onClick={ this.submit }>保存修改</Button>
+                  </td>
+                </tr>
+              </tbody>
             </table> 
           </div>
         </div>

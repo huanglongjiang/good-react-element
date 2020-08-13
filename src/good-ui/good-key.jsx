@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import global from '../global';
 import { Dialog,Button,Input,Radio,DateRangePicker,Tag,Message } from 'element-react';
 import GoodPagination from '../good-ui/good-pagination.jsx';
 export default class Search extends React.Component {
@@ -27,7 +28,7 @@ export default class Search extends React.Component {
       page: this.state.page.currentPage,
       pagesize: this.state.page.pageSize,
     }
-    axios.post('good/google.php',data)
+    axios.post(global.APIPATH,data)
       .then((res) => {
          this.setState({
            keywords:res.data,
@@ -36,15 +37,14 @@ export default class Search extends React.Component {
       })
   	}
 
-	getPage=(data)=>{
-		this.setState({
-		  page:{currentPage: data, pageSize: 100  }
-		},()=> {
-			this.loadList();
-		});
-
-	}
-
+  // 分页方法
+  getPage=(data)=>{
+      this.setState({
+          page:{currentPage: data.currentPage, pageSize: data.pageSize  }
+      },()=> {
+        this.loadList();
+      });
+  }
 
 
   	// 关键词处理
@@ -189,7 +189,7 @@ export default class Search extends React.Component {
 	                      })
 	                    }
 	                </div>
-	                <GoodPagination data={total}  pageSize={100}  currentPage={this.getPage.bind(this)}></GoodPagination>
+	                <GoodPagination data={[this,total]}  pageSize={100}  currentPage={this.getPage.bind(this)}></GoodPagination>
 	              </div>
 	            </Dialog.Body>
 	            <Dialog.Footer className="dialog-footer">

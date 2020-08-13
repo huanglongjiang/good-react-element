@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import global from '../global';
 import { Dialog,Button,Input } from 'element-react';
 import GoodTds from '../good-ui/good-tds.jsx';
 import GoodUpload from '../good-ui/good-uploads.jsx';
@@ -31,7 +32,7 @@ export default class Header extends React.Component {
         form:this.state.form,
       }
      
-      axios.post('good/google.php',data).then((res) => {
+      axios.post(global.APIPATH,data).then((res) => {
         if(res.data.retType==='success'){
           this.props.data.closeDialog2(false)
         }
@@ -68,16 +69,18 @@ export default class Header extends React.Component {
           lockScroll={ false }
           >
             <Dialog.Body>
-              <div class="table-default">
-                <table class="width-max">
-                  <tr>
-                    <GoodTds title='旧密码' required></GoodTds>
-                    <td><Input value={ this.state.form.passOld } onChange={this.onChange.bind(this,'passOld')} placeholder="请输入内容" /></td>
-                  </tr>
-                  <tr>
-                    <GoodTds title='新密码' required></GoodTds>
-                    <td><Input value={ this.state.form.passNew } onChange={this.onChange.bind(this,'passNew')} placeholder="请输入内容" /></td>
-                  </tr>
+              <div className="table-default">
+                <table className="width-max">
+                  <tbody>
+                    <tr>
+                      <GoodTds title='旧密码' required></GoodTds>
+                      <td><Input value={ this.state.form.passOld } onChange={this.onChange.bind(this,'passOld')} placeholder="请输入内容" /></td>
+                    </tr>
+                    <tr>
+                      <GoodTds title='新密码' required></GoodTds>
+                      <td><Input value={ this.state.form.passNew } onChange={this.onChange.bind(this,'passNew')} placeholder="请输入内容" /></td>
+                    </tr>
+                  </tbody>
                 </table> 
               </div>
             </Dialog.Body>

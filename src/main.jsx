@@ -16,7 +16,7 @@ import Help from './page/help.jsx';
 import Bbs from './page/bbs.jsx';
 import Keywords from './page/keywords.jsx';
 import Article from './page/article.jsx';
-//import ArticleAction from './page/article_action.jsx';
+import ArticleAction from './page/article_action.jsx';
 import Root from './page/root.jsx';
 import Slider from './page/slider.jsx';
 import Adsense from './page/adsense.jsx';
@@ -46,7 +46,7 @@ export default class Main extends React.Component {
         {/*<System></System>*/}
         {/*<Log></Log>*/}
         {/*<Route exact path="/article_action" component={ArticleAction} />*/}
-
+        <Route exact path="/article_action" component={ArticleAction} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/log" component={Log} />
         <Route exact path="/root" component={Root} />

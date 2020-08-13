@@ -41,7 +41,6 @@ axios.interceptors.response.use(res => {
 		{operating:'status'},
 		{operating:'resetPassword'},
 	]
-	console.log(res.data.retType)
 
 	if(res.data.retType==='failed'){
 		localStorage.login =false;
@@ -86,11 +85,9 @@ error => {
 function App() {
   // const data=[1,2,3,4,5,6,7,8,9]
   const token=localStorage.getItem("login");
-  console.log(localStorage.getItem("login"))
   return (
   	<Router>
 	    <div className="App">
-	    {console.log(typeof(token))}
 	    {
 
 	    	token==='true'?
@@ -102,7 +99,7 @@ function App() {
 				<GoodScroll></GoodScroll>
 				<div style={{minHeight:'800px'}}>
 					<Header></Header>
-			    	<Menu></Menu>
+		    		<Menu></Menu>
 			      	<Main></Main>
 		      	</div>
 		      	<Footer></Footer>

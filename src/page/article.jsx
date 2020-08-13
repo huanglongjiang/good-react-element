@@ -1,20 +1,24 @@
 import React from 'react';
 import axios from 'axios';
+import global from '../global';
 import { Dialog,Button,Input,Radio,Tag,Switch } from 'element-react';
 import GoodPagination from '../good-ui/good-pagination.jsx';
 import GoodBreadbar from '../good-ui/good-breadbar.jsx';
 import GoodTotal from '../good-ui/good-total.jsx';
 import GoodTag from '../good-ui/good-tag.jsx';
+import {Link} from 'react-router-dom'
 import GoodSwitch     from '../good-ui/good-switch.jsx';
 export default class Log extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      value:'',
       dialogVisible: false,
       disabled:false,
       isEdit:false,
       google:'t-10008',
       list: [],
+      list2: [],
       form:{
         id:'',
         name:'',
@@ -26,12 +30,14 @@ export default class Log extends React.Component {
           currentPage: 0,
           pageSize: 10,
       },
-      role: "",
+      fid: "",
+      type: "",
       status: "",
     };
   }
   componentDidMount() {
     this.loadList()
+    this.loadList2()
   }
   // 数据初始化
   loadList(){
@@ -39,15 +45,30 @@ export default class Log extends React.Component {
       google: this.state.google,
       operating: "lists",
       name: "",
-      role: this.state.role,
+      fid: this.state.fid,
+      type: this.state.type,
       status: this.state.status,
       page: this.state.page.currentPage,
       pagesize: this.state.page.pageSize,
     }
-    axios.post('good/google.php',data)
+    axios.post(global.APIPATH,data)
       .then((res) => {
          this.setState({
            list:res.data,
+         });
+      })
+  }
+
+  loadList2(){
+    const data={
+      google: "t-10016",
+      operating: "lists",
+      type: 2,
+    }
+    axios.post(global.APIPATH,data)
+      .then((res) => {
+         this.setState({
+           list2:res.data,
          });
       })
   }
@@ -59,7 +80,7 @@ export default class Log extends React.Component {
         operating: 'delete',
         id:item.id,
       }
-    axios.post('good/google.php',data).then((res) => {
+    axios.post(global.APIPATH,data).then((res) => {
        this.loadList();
     })
   }
@@ -72,7 +93,7 @@ export default class Log extends React.Component {
           id:item.id,
           status:item.status,
         }
-      axios.post('good/google.php',data).then((res) => {
+      axios.post(global.APIPATH,data).then((res) => {
          this.loadList();
       })
       
@@ -97,7 +118,12 @@ export default class Log extends React.Component {
       });
       
   }
-  
+  onTag=(item)=>{
+     // this.props.type(item,this.props.data.type);
+      this.setState({fid:item},()=> {
+        this.loadList();
+      });
+  }
 
   render() {
     function Tbody(props){
@@ -106,10 +132,11 @@ export default class Log extends React.Component {
       let dataTable=data && data.map((item,index)=>{
         let url='http://www.good1230.com/dist2/static/images/tianmao.jpg'
         if(item.image!==''){
-            url=`http://www.good1230.com/dist/server/images/article/${item.image}`
+            url=`good/server/images/article/${item.image}`
         }
 
         let status=item.status==0?false:true;
+        let url2=`article_action?id=${item.id}`;
         return (
           <tr key={index} style={{background: item.status==0 ? "#f5f7fa" : "#fff"}}>
             <td><img src={url} className="width-30" /></td>
@@ -122,7 +149,7 @@ export default class Log extends React.Component {
               <GoodSwitch item={item}  status={props.datas.getStatus.bind(this)}></GoodSwitch>
             </td>
             <td>
-              <span className="a-link pointer margin-right-10">编辑</span>
+              <Link to={ url2 } className="none-line"><span className="a-link pointer margin-right-10">编辑</span></Link>
               <span className="a-link pointer" onClick={props.datas.remove.bind(this,item)}>删除</span>
             </td>
           </tr>
@@ -131,20 +158,38 @@ export default class Log extends React.Component {
       return <tbody>{dataTable}</tbody>
     }
      
-    const typeList={title:'服务类型',type:'role',list:['普通用户','管理员','超级管理员']};
-    const statusList={title:'服务类型',type:'status',list:['冻结','正常']};
+    const statusList={title:'自定义属性',type:'type',list:['默认','优质','热门','推荐']};
     const { data }=this.state.list;
     const { total }=this.state.list;
+    let dataValue=this.state.fid;
+
+    const data2=this.state.list2.data;
 
     return (
       <div>
         <GoodBreadbar title="用户管理"></GoodBreadbar>
         <div className="background-white padding-10" style={{'boxShadow':' rgba(0, 0, 0, 0.25) 0px 0px 1px'}}>
-          <GoodTag data={ typeList }  type={this.getTag.bind(this)}></GoodTag>
+
+
+        <div className="layout">
+          <div className="tag-group border-0 tag-group-type">
+          <span className="tag-type inline-block width-100 align-right">栏目：</span> 
+          <a className={`tag-block ${dataValue===''?'tag-primary':''}`} onClick={this.onTag.bind(this,'')}>全部</a> 
+          {
+            data2 && data2.map((item,index)=>{
+              return <a key={ index } className={`tag-block ${dataValue===item.id?'tag-primary':''}`} onClick={this.onTag.bind(this,item.id)}>{ item.name }</a>
+            })
+          }
+        </div>
+        </div>
+
+
+
+
           <GoodTag data={ statusList }  type={this.getTag.bind(this)}></GoodTag>
         </div>
         <div className="padding-10 clearfix">
-          <Button className="float-right margin-left-20" type="primary" icon="plus">新增文章</Button>
+          <Link to="article_action"><Button className="float-right margin-left-20" type="primary" icon="plus">新增文章</Button></Link>
           <GoodTotal total={ total }></GoodTotal>
         </div>
         <div className="table-data padding-20 background-white" style={{'box-shadow':'rgba(0, 0, 0, 0.25) 0px 0px 1px'}}>
@@ -165,7 +210,7 @@ export default class Log extends React.Component {
         </div>
 
         {/*分页*/}
-        <GoodPagination data={total}  currentPage={this.getPage.bind(this)}></GoodPagination>
+        <GoodPagination data={[this,total]}  currentPage={this.getPage.bind(this)}></GoodPagination>
       </div>
     );
   }

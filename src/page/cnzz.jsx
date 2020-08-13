@@ -1,5 +1,6 @@
-import React            from 'react';
+import React from 'react';
 import axios from 'axios';
+import global from '../global';
 import { Dialog,Button,Input,Radio,Switch } from 'element-react';
 import GoodBreadbar     from '../good-ui/good-breadbar.jsx';
 import GoodTotal        from '../good-ui/good-total.jsx';
@@ -31,7 +32,7 @@ export default class Log extends React.Component {
       google: this.state.google,
       operating: "lists",
     }
-    axios.post('good/google.php',data)
+    axios.post(global.APIPATH,data)
       .then((res) => {
          this.setState({
            list:res.data,
@@ -57,7 +58,7 @@ export default class Log extends React.Component {
           form:this.state.form,
         }
         
-        axios.post('good/google.php',data).then((res) => {
+        axios.post(global.APIPATH,data).then((res) => {
           if(res.data.retType==='success'){
             this.loadList();
             this.setState({dialogVisible: false})
@@ -85,7 +86,7 @@ export default class Log extends React.Component {
           id:item.id,
           status:item.status,
         }
-      axios.post('good/google.php',data).then((res) => {
+      axios.post(global.APIPATH,data).then((res) => {
          this.loadList();
       })
       
@@ -142,25 +143,27 @@ export default class Log extends React.Component {
           lockScroll={ false }
           >
             <Dialog.Body>
-              <div class="table-default">
-                <table class="width-max">
-                  <tr>
-                    <GoodTds title='统计类型'></GoodTds>
-                    <td><Input placeholder="请输入内容" disabled={ this.state.disabled } value={ this.state.form.type }  onChange={this.onChange.bind(this,'type')} /></td>
-                  </tr>
-                  <tr>
-                    <GoodTds title='服务状态'></GoodTds>
-                    <td>
-                      <div>
-                        <Radio value="0" checked={this.state.form.status == 0} onChange={this.onChange.bind(this,'status')}>关闭</Radio>
-                        <Radio value="1" checked={this.state.form.status == 1} onChange={this.onChange.bind(this,'status')}>开启</Radio>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <GoodTds title='统计代码'></GoodTds>
-                    <td><Input className="width-400 padding-top-5 padding-bottom-5" type="textarea" rows={8} value={ this.state.form.code } onChange={this.onChange.bind(this,'code')}></Input></td>
-                  </tr>
+              <div className="table-default">
+                <table className="width-max">
+                  <tbody>
+                    <tr>
+                      <GoodTds title='统计类型'></GoodTds>
+                      <td><Input placeholder="请输入内容" disabled={ this.state.disabled } value={ this.state.form.type }  onChange={this.onChange.bind(this,'type')} /></td>
+                    </tr>
+                    <tr>
+                      <GoodTds title='服务状态'></GoodTds>
+                      <td>
+                        <div>
+                          <Radio value="0" checked={this.state.form.status == 0} onChange={this.onChange.bind(this,'status')}>关闭</Radio>
+                          <Radio value="1" checked={this.state.form.status == 1} onChange={this.onChange.bind(this,'status')}>开启</Radio>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <GoodTds title='统计代码'></GoodTds>
+                      <td><Input className="width-400 padding-top-5 padding-bottom-5" type="textarea" rows={8} value={ this.state.form.code } onChange={this.onChange.bind(this,'code')}></Input></td>
+                    </tr>
+                  </tbody>
                 </table> 
               </div>
             </Dialog.Body>

@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import global from '../global';
 import { Dialog,Button,Input,Radio,DateRangePicker,Tag,Switch,MessageBox,Message } from 'element-react';
 import GoodPagination from '../good-ui/good-pagination.jsx';
 import GoodBreadbar from '../good-ui/good-breadbar.jsx';
@@ -59,7 +60,7 @@ constructor(props) {
       data.starttime=this.state.value2[0];
       data.endtime=this.state.value2[1];
     }
-    axios.post('good/google.php',data)
+    axios.post(global.APIPATH,data)
       .then((res) => {
          this.setState({
            list:res.data,
@@ -74,15 +75,7 @@ constructor(props) {
       this.loadList();
     })
   }
-  getPage=(data)=>{
-    console.log(data)
-      this.setState({
-          page:{currentPage: data, pageSize: 10  }
-      },()=> {
-        this.loadList();
-      });
-      
-  }
+
 
   openDialog=(data)=>{
     this.setState({
@@ -119,7 +112,7 @@ constructor(props) {
           operating: item,
           form:this.state.form,
         }
-        axios.post('good/google.php',data).then((res) => {
+        axios.post(global.APIPATH,data).then((res) => {
           if(res.data.retType==='success'){
             this.loadList();
             this.setState({dialogVisible: false})
@@ -144,7 +137,7 @@ constructor(props) {
         operating: 'delete',
         id:item.id,
       }
-      axios.post('good/google.php',data).then((res) => {
+      axios.post(global.APIPATH,data).then((res) => {
         if(res.data.retType==='success'){
           this.loadList();
         }
@@ -161,7 +154,7 @@ constructor(props) {
           id:item.id,
           status:item.status,
         }
-      axios.post('good/google.php',data).then((res) => {
+      axios.post(global.APIPATH,data).then((res) => {
          this.loadList();
       })
       
@@ -178,14 +171,13 @@ constructor(props) {
 
   // 分页方法
   getPage=(data)=>{
-    console.log(data)
       this.setState({
-          page:{currentPage: data, pageSize: 10  }
+          page:{currentPage: data.currentPage, pageSize: data.pageSize  }
       },()=> {
         this.loadList();
       });
-      
   }
+  
   render() {
     function Tbody(props){
       const { data }=props;
@@ -278,7 +270,7 @@ constructor(props) {
         </div>
 
         {/*分页*/}
-        <GoodPagination data={total}  currentPage={this.getPage.bind(this)}></GoodPagination>
+        <GoodPagination data={[this,total]}  currentPage={this.getPage.bind(this)}></GoodPagination>
         <Dialog
           className="width-600" style={{width:800}}
           title={ title }

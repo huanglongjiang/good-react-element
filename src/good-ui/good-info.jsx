@@ -13,7 +13,7 @@ export default class Total extends React.Component {
   render() {
   	let dataValue=this.state.value;
     return (
-    	<span class="padding-1 padding-left-5 padding-right-5 radius-30 background-danger font-size-12" style={{color:'white'}}>{this.props.data}</span>
+    	<span className="padding-1 padding-left-5 padding-right-5 radius-30 background-danger font-size-12" style={{color:'white'}}>{this.props.data}</span>
     );
   }
 }

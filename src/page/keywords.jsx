@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import global from '../global';
 import { Dialog,Button,Input,Radio,DateRangePicker,Tag } from 'element-react';
 import GoodPagination from '../good-ui/good-pagination.jsx';
 import GoodBreadbar from '../good-ui/good-breadbar.jsx';
@@ -34,7 +35,7 @@ export default class Log extends React.Component {
       page: this.state.page.currentPage,
       pagesize: this.state.page.pageSize,
     }
-    axios.post('good/google.php',data)
+    axios.post(global.APIPATH,data)
       .then((res) => {
          this.setState({
            list:res.data,
@@ -42,14 +43,16 @@ export default class Log extends React.Component {
          
       })
   }
-  getPage=(data)=>{
-    this.setState({
-      page:{currentPage: data, pageSize: 250  }
-    },()=> {
-      this.loadList();
-    });
 
+  // 分页方法
+  getPage=(data)=>{
+      this.setState({
+          page:{currentPage: data.currentPage, pageSize: data.pageSize  }
+      },()=> {
+        this.loadList();
+      });
   }
+
   openDialog=(data)=>{
     this.setState({
         dialogVisible: true,
@@ -85,7 +88,7 @@ export default class Log extends React.Component {
           operating: item,
           form:this.state.form,
         }
-        axios.post('good/google.php',data).then((res) => {
+        axios.post(global.APIPATH,data).then((res) => {
           if(res.data.retType==='success'){
             this.loadList();
             this.setState({dialogVisible: false})
@@ -94,23 +97,6 @@ export default class Log extends React.Component {
   }
   render() {
 
-    function Tbody(props){
-      const { data }=props;
-
-      let dataTable=data && data.map((item,index)=>{
-        let url=`http://www.good1230.com/dist2/static/RandomUser/${item.image}`
-        /*return (
-          <tr key={index}>
-            <td><div  onClick={props.editData.bind(this,item)}>{item.name}</div></td>
-          </tr>
-        )*/
-        return (
-          <span class="el-tag el-tag--gray margin-right-10 margin-bottom-10 pointer" onClick={props.datas.openDialog2.bind(this,item)}>{item.name}</span>
-
-          )
-      })
-      return <tbody list="this.props.state.list">{dataTable}</tbody>
-    }
     const { data }=this.state.list;
     const { total }=this.state.list;
     let title=this.state.isEdit?'编辑关键词':'新增关键词';
@@ -131,13 +117,24 @@ export default class Log extends React.Component {
                 <th>关键词库</th>
               </tr>
             </thead>
+            <tbody>
               <tr>
-                <td><Tbody data={data} datas={this} /></td>
+                <td>
+                    {
+                        data && data.map((item,index)=>{
+                        let url=`http://www.good1230.com/dist2/static/RandomUser/${item.image}`
+                          return (
+                            <span className="el-tag el-tag--gray margin-right-10 margin-bottom-10 pointer" key={ index } onClick={this.openDialog2.bind(this,item)}>{item.name}</span>
+
+                            )
+                        })
+                    }
+                </td>
               </tr>
-              
+            </tbody>
           </table> 
         </div>
-        <GoodPagination data={total}  pageSize={250}  currentPage={this.getPage.bind(this)}></GoodPagination>
+        <GoodPagination data={[this,total]}  pageSize={250}  currentPage={this.getPage.bind(this)}></GoodPagination>
 
         <Dialog
           className="width-600"
@@ -148,12 +145,14 @@ export default class Log extends React.Component {
           lockScroll={ false }
           >
             <Dialog.Body>
-              <div class="table-default">
-                <table class="width-max">
-                  <tr>
-                    <GoodTds title='名称' required></GoodTds>
-                    <td><Input placeholder="请输入内容" value={ this.state.form.name }  onChange={this.onChange.bind(this,'name')} /></td>
-                  </tr>
+              <div className="table-default">
+                <table className="width-max">
+                  <tbody>
+                    <tr>
+                      <GoodTds title='名称' required></GoodTds>
+                      <td><Input placeholder="请输入内容" value={ this.state.form.name }  onChange={this.onChange.bind(this,'name')} /></td>
+                    </tr>
+                  </tbody>
                 </table> 
               </div>
             </Dialog.Body>

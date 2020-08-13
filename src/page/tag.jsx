@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import global from '../global';
 import { Dialog,Button,Input,Radio,DateRangePicker,Tag } from 'element-react';
 import GoodBreadbar from '../good-ui/good-breadbar.jsx';
 import GoodTotal from '../good-ui/good-total.jsx';
@@ -46,7 +47,7 @@ export default class Log extends React.Component {
       operating: "lists",
       name: ""
     }
-    axios.post('good/google.php',data)
+    axios.post(global.APIPATH,data)
       .then((res) => {
          this.setState({
            list:res.data,
@@ -55,7 +56,6 @@ export default class Log extends React.Component {
   }
 
   getDatas=(data)=>{
-    console.log(data)
       this.setState({
           page:{currentPage: data, pageSize: 10  }
       },()=> {
@@ -65,7 +65,6 @@ export default class Log extends React.Component {
   }
 
   handleClick=(data)=>{
-    console.log(66)
     this.setState({
         dialogVisible: true,
         disabled:false,
@@ -109,28 +108,23 @@ export default class Log extends React.Component {
   }
 
   closeDialog=(item)=>{
-    console.log(this.state.tag)
     this.setState({ dialogVisible2: item })
   }
   handleChange=(item,value)=>{
     const data={};
           data[item]=value;
     let newForm=Object.assign(this.state.form,data);
-    console.log(this.state.form)
     this.setState({
         form:this.state.form,
       });
-    console.log(this.state.form)
   }
   updateImage=(item)=>{
     const data={};
           data['image']=item;
     Object.assign(this.state.form,data);
-    console.log(this.state.form)
   }
 
    getPage=(data)=>{
-    console.log(data)
       this.setState({
           page:{currentPage: data, pageSize: 10  }
       },()=> {
@@ -142,9 +136,6 @@ export default class Log extends React.Component {
 
 
   upData=(type,item)=>{
-     console.log(type)
-     console.log(item)
-    
         const data={
           google: this.state.google,
           operating: type,
@@ -155,7 +146,7 @@ export default class Log extends React.Component {
           this.setState({ dialogVisible2: item })
         }
        
-        axios.post('good/google.php',data).then((res) => {
+        axios.post(global.APIPATH,data).then((res) => {
           if(res.data.retType==='success'){
             this.loadList();
             this.setState({dialogVisible: false})
@@ -190,19 +181,14 @@ export default class Log extends React.Component {
     const { total }=this.state.list;
     const total2=this.state.keywords.total;
 
-    console.log(this)
     let keywords=[];
       if(this.state.form.keywords==''){
         keywords=[];
       }else{
         keywords=this.state.form.keywords.split(',');
       }
-      console.log(keywords)
-
-
       let bbbb=this.state.keywords;
-      console.log(bbbb)
-
+      
       const keyList=['数组','json数组','js数组数组','合并string数组'];
       let title=this.state.isEdit?'编辑标签':'新增标签';
     return (

@@ -14,12 +14,12 @@ export default class Total extends React.Component {
   	let dataValue=this.state.value;
     return (
     	<div className="layout">
-    		<div class="tag-group border-0 tag-group-type">
+    		<div className="tag-group border-0 tag-group-type">
 				<span className="tag-type inline-block width-100 align-right">{this.props.data.title}：</span> 
 				<a className={`tag-block ${dataValue===''?'tag-primary':''}`} onClick={this.onTag.bind(this,'')}>全部</a> 
 				{
 					this.props.data.list.map((item,index)=>{
-						return <a className={`tag-block ${dataValue===index?'tag-primary':''}`} onClick={this.onTag.bind(this,index)}>{ item }</a>
+						return <a key={ index } className={`tag-block ${dataValue===index?'tag-primary':''}`} onClick={this.onTag.bind(this,index)}>{ item }</a>
 					})
 				}
 			</div>

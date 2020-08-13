@@ -1,5 +1,6 @@
 import React            from 'react';
 import logo             from '../logo.svg';
+import global           from '../global';
 import { Dialog,Button,Input,Radio } from 'element-react';
 import GoodButton       from '../good-ui/good-button.jsx';
 import axios            from 'axios';
@@ -36,8 +37,9 @@ export default class Log extends React.Component {
           operating: 'login',
           form:this.state.form,
         }
-        
-        axios.post('good/google.php',data).then((res) => {
+        console.log(global)
+       // axios.post('good/google.php',data).then((res) => {
+         axios.post(global.APIPATH,data).then((res) => {
           if(res.data.retType==='success'){
             localStorage.token = res.data.token;
             localStorage.login =true;
