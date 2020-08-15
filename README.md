@@ -1,3 +1,27 @@
+### `项目演示demo`
+
+[good1230.com/react/#/](good1230.com/react/#/)
+
+
+### `项目本地运行调整说明`
+
+
+1、package.json新增 "proxy":'http://good1230.com'
+
+2、src下global.js文件将
+
+APIPATH:'http://www.good1230.com/good/google.php',
+apiReturn:'http://www.good1230.com/good/return.php',
+apiUpdata:'http://www.good1230.com/good/server',
+
+改成
+
+APIPATH:'good/google.php',
+apiReturn:'good/return.php',
+apiUpdata:'good/server',
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
