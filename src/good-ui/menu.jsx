@@ -1,4 +1,13 @@
 import React from 'react';
+import axios from 'axios';
+import global from '../global';
+import { Dialog,Button,Input,Radio,Tag,Switch } from 'element-react';
+import GoodPagination from '../good-ui/good-pagination.jsx';
+import GoodBreadbar from '../good-ui/good-breadbar.jsx';
+import GoodTotal from '../good-ui/good-total.jsx';
+import GoodTag from '../good-ui/good-tag.jsx';
+import { HashRouter as Router, Route, Link,NavLink } from "react-router-dom"
+import GoodSwitch     from '../good-ui/good-switch.jsx';
 import GoodInfo from '../good-ui/good-info.jsx';
 export default class Menu extends React.Component {
 	/*constructor(props) {
@@ -11,6 +20,7 @@ export default class Menu extends React.Component {
 	  		title:'统计',
 	  		icon:'fa fa-tachometer',
 	  		children:[
+		  		{title:'首页',url:'index'},
 		  		{title:'登录日志',url:'log'},
 	  		]
 	  	},
@@ -43,7 +53,7 @@ export default class Menu extends React.Component {
 	  		title:'设置',
 	  		icon:'fa fa-cogs',
 	  		children:[
-		  		{title:'首页SEO',url:'index'},
+		  		{title:'首页SEO',url:'soe_index'},
 		  		{title:'版权信息',url:'copyright'},
 		  		{title:'常规选项',url:'system'},
 		  		// {title:'用户管理权限'},
@@ -63,7 +73,9 @@ export default class Menu extends React.Component {
 				)
 			}else{
 				return (
-					<li className="line-height-36 padding-left-70 color-333 menu" key={index}><a className=" color-333 font-size-14 none-line margin-right-10" href={item.url}>{item.title}</a>
+					<li className="line-height-36 padding-left-70 color-333 menu" key={index}>
+
+					<NavLink exact to={ item.url } activeClassName="a-link"  className=" color-333 font-size-14 none-line margin-right-10">{ item.title }</NavLink>
 						{
 							item.url=='bbs'?<GoodInfo data="123"></GoodInfo>:
 							item.url=='log'?<GoodInfo data="7516"></GoodInfo>:null
@@ -92,7 +104,9 @@ export default class Menu extends React.Component {
 	})
 
     return (
-      <div className="width-210 color-333 align-left position-a left-0 top-60">{element}</div>
+      <div className="width-210 color-333 align-left position-a left-0 top-70">
+      <Router>{element}</Router>
+      </div>
     );
   }
 }

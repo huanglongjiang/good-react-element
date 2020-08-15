@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom"
+/*import { BrowserRouter as Router, Route, Link,Switch } from "react-router-dom"*/
+import { HashRouter as Router, Route, Link,Switch } from "react-router-dom"
 /*import Log from './page/log.jsx';
 import Slider from './page/slider.jsx';
 import Adsense from './page/adsense.jsx';
@@ -9,7 +10,7 @@ import Cnzz from './page/cnzz.jsx';
 import Index from './page/index.jsx';
 
 import System from './page/system.jsx';*/
-import Login from './page/login.jsx';
+import Index from './page/index.jsx';
 import Log from './page/log.jsx';
 import Tag from './page/tag.jsx';
 import Help from './page/help.jsx';
@@ -23,9 +24,10 @@ import Adsense from './page/adsense.jsx';
 import Link2 from './page/link.jsx';
 import User from './page/user.jsx';
 import Cnzz from './page/cnzz.jsx';
-import Index from './page/index.jsx';
+import seoIndex from './page/seo_index.jsx';
 import System from './page/system.jsx';
 import Copyright from './page/copyright.jsx';
+
 export default class Main extends React.Component {
 /*	constructor(props) {
 	    super(props);
@@ -34,8 +36,8 @@ export default class Main extends React.Component {
 
   render() {
     return (
-      <Router>
       <div className="width-max padding-bottom-60" style={{paddingLeft:220,paddingRight:20}}>
+      <Router>
         {/*<Slider></Slider>*/}
         {/*<Adsense></Adsense>*/}
         {/*<Link></Link>*/}
@@ -46,9 +48,11 @@ export default class Main extends React.Component {
         {/*<System></System>*/}
         {/*<Log></Log>*/}
         {/*<Route exact path="/article_action" component={ArticleAction} />*/}
-        <Route exact path="/article_action" component={ArticleAction} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/log" component={Log} />
+        {/*<Route strict exact path="/article_action" component={ArticleAction} />*/}
+        <Switch>
+        <Route strict exact path="/article_action" component={ArticleAction} />
+        <Route strict exact path="/index" component={Index} />
+        <Route strict exact path="/log" component={Log} />
         <Route exact path="/root" component={Root} />
         <Route exact path="/tag" component={Tag} />
         <Route exact path="/help" component={Help} />
@@ -60,12 +64,14 @@ export default class Main extends React.Component {
         <Route exact path="/link" component={Link2} />
         <Route exact path="/user" component={User} />
         <Route exact path="/cnzz" component={Cnzz} />
-        <Route exact path="/index" component={Index} />
+        <Route exact path="/soe_index" component={seoIndex} />
         <Route exact path="/system" component={System} />
         <Route exact path="/copyright" component={Copyright} />
+        <Route component={Index} />
+        </Switch>
 
-      </div>
       </Router>
+      </div>
     );
   }
 }

@@ -239,7 +239,7 @@ export default class Log extends React.Component {
               <div class="table-default">
                 <table class="width-max">
                   <tr>
-                    <GoodTds title='名称'></GoodTds>
+                    <GoodTds title='名称' required></GoodTds>
                     <td><Input placeholder="请输入内容" value={ this.state.form.name }  onChange={this.handleChange.bind(this,'name')} /></td>
                   </tr>
                   <tr>

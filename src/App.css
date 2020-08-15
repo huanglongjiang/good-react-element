@@ -3,6 +3,16 @@ body{background: #f6f8f9}
 /*   text-align: center; */
   
 }
+
+ #login{
+  background: url('http://www.good1230.com/dist2/static/images/bg.jpg') 0% 0% / 100%;
+   /*  background: #50a3a2;
+   background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+   background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%); */
+} 
+
+
+
 .tag-group{
   background: none;margin: 0px;
 }

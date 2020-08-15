@@ -192,7 +192,7 @@ constructor(props) {
             <td>{ item.position }</td>
             <td>{ item.price }</td>
             <td>{ item.size }</td>
-            <td>adsense{ item.id }</td>
+            <td>{`{$adsense.${item.id}}`}</td>
             <td>{ item.starttime }</td>
             <td>{ item.endtime }</td>
             <td>
@@ -225,7 +225,7 @@ constructor(props) {
               <Input placeholder="请输入内容" icon="search"  onChange={ (item) => this.setState({ searchName: item }) } />
             </div>
             <div className="float-left">
-            <span>时间：</span>
+            <span className="padding-20 padding-right-10">时间</span>
             <DateRangePicker
             value={value2}
             placeholder="选择日期范围"
@@ -295,7 +295,7 @@ constructor(props) {
                   </tr>
                   <tr>
                     <GoodTds title='代码标签'></GoodTds>
-                    <td><Input placeholder="请输入内容" value={ this.state.form.label }  onChange={this.onChange.bind(this,'label')} /></td>
+                    <td><Input placeholder="请输入内容" value={`{$adsense.${this.state.form.id}}`} disabled /></td>
                   </tr>
                   <tr>
                     <GoodTds title='服务状态'></GoodTds>

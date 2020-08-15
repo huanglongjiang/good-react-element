@@ -192,10 +192,8 @@ constructor(props) {
             <td>{ item.starttime }</td>
             <td>{ item.endtime }</td>
             <td>{
-              item.type==0?<Tag type="primary">友情链接</Tag>:
-              item.type==1?<Tag type="success">友情链接2</Tag>:
-              item.type==2?<Tag type="warning">全站链接</Tag>:
-              item.type==3?<Tag type="warning">合作伙伴</Tag>:
+              item.type==0?<Tag type="primary">首页链接</Tag>:
+              item.type==1?<Tag type="warning">全站链接</Tag>:
               <Tag type="danger">服务结束</Tag>
             }
               
@@ -215,7 +213,7 @@ constructor(props) {
     
     
 
-    const typeList={title:'服务类型',type:'type',list:['友情链接','友情链接2','全站链接','合作伙伴','服务结束']};
+    const typeList={title:'服务类型',type:'type',list:['首页链接','全站链接','服务结束']};
     const statusList={title:'服务类型',type:'status',list:['关闭','开启']};
 
 
@@ -236,7 +234,7 @@ constructor(props) {
               <Input placeholder="请输入内容" icon="search"  onChange={ (item) => this.setState({ searchName: item }) } />
             </div>
             <div className="float-left">
-            <span>时间：</span>
+            <span className="padding-20 padding-right-10">时间</span>
             <DateRangePicker
             value={value2}
             placeholder="选择日期范围"
@@ -298,11 +296,9 @@ constructor(props) {
                     <GoodTds title='服务类型'></GoodTds>
                     <td>
                       <div>
-                        <Radio value="0" checked={this.state.form.type == 0} onChange={this.onChange.bind(this,'type')}>友情链接</Radio>
-                        <Radio value="1" checked={this.state.form.type == 1} onChange={this.onChange.bind(this,'type')}>友情链接2</Radio>
-                        <Radio value="2" checked={this.state.form.type == 2} onChange={this.onChange.bind(this,'type')}>全站链接</Radio>
-                        <Radio value="3" checked={this.state.form.type == 3} onChange={this.onChange.bind(this,'type')}>合作伙伴</Radio>
-                        <Radio value="4" checked={this.state.form.type == 4} onChange={this.onChange.bind(this,'type')}>服务结束</Radio>
+                        <Radio value="0" checked={this.state.form.type == 0} onChange={this.onChange.bind(this,'type')}>首页链接</Radio>
+                        <Radio value="2" checked={this.state.form.type == 1} onChange={this.onChange.bind(this,'type')}>全站链接</Radio>
+                        <Radio value="4" checked={this.state.form.type == 2} onChange={this.onChange.bind(this,'type')}>服务结束</Radio>
                       </div>
                     </td>
                   </tr>

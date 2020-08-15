@@ -52,11 +52,11 @@ export default class Log extends React.Component {
       const { data }=props;
 
       let dataTable=data && data.map((item,index)=>{
-        let url=item.image==null?`http://www.good1230.com/dist2/static/images/tianmao.jpg`:`good/server/images/user/${item.image}`;
+        let url=item.image==null?`http://www.good1230.com/dist2/static/images/tianmao.jpg`:`${global.apiUpdata}/images/user/${item.image}`;
 
         return (
           <tr key={index} style={{background: item.status==0 ? "#f5f7fa" : "#fff"}}>
-            <td>{ item.id }<img src={url} alt="" className="width-30"/></td>
+            <td><img src={url} alt="" className="width-30"/></td>
             <td>
             {
               item.account?
@@ -71,7 +71,6 @@ export default class Log extends React.Component {
             }
             </td>
             <td>{item.loginType}</td>
-            <td>{item.time}</td>
             <td>
               {
                 item.role==0?<Tag type="primary">普通用户</Tag>:
@@ -81,6 +80,7 @@ export default class Log extends React.Component {
             </td>
             <td>{item.ip}</td>
             <td>{item.type}</td>
+            <td>{item.time}</td>
             <td>{item.result}</td>
           </tr>
         )
@@ -112,10 +112,10 @@ export default class Log extends React.Component {
                 <th>账号(匿名)</th>
                 <th>邮箱</th>
                 <th>登录账号</th>
-                <th>登录时间</th>
                 <th>用户角色</th>
                 <th>来源IP</th>
                 <th>操作类型</th>
+                <th>登录时间</th>
                 <th>操作结果</th>
               </tr>
             </thead>

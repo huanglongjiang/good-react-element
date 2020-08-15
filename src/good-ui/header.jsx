@@ -43,7 +43,7 @@ export default class Header extends React.Component {
       operating: "select",
     }
     
-    axios.post(global.APIPATH,data).then((res) => {
+    axios.post(global.apiReturn,data).then((res) => {
       console.log(res)
     })
   }
@@ -69,18 +69,18 @@ export default class Header extends React.Component {
   	
     let img='http://www.good1230.com/dist2/static/images/tianmao.jpg'
         if(this.state.data.image!==''&&this.state.data.image!==undefined){
-            img=`good/server/images/${this.state.fileType}/${this.state.data.image}`;
+            img=`${global.apiUpdata}/images/${this.state.fileType}/${this.state.data.image}`;
         }
     return (
-      <div className="width-max height-60 background-white" style={{'boxShadow':'0 0 1px rgba(0,0,0,0.25)'}}>
+      <div className="width-max height-60 background-333" style={{'boxShadow':'0 0 1px rgba(0,0,0,0.25)',background:'#20232a'}}>
 		<div className="width-max position-a clearfix line-height-60">
 
-			<span className="color-success float-left font-size-24 bold padding-left-30 padding-right-30" style={{color:'#0084ff'}}><i className="fa fa-yelp"></i>Good1230.com</span>
-			<a target="_blank" className="none-line float-left color-333">
+			<span className="color-success float-left font-size-24 bold padding-left-30 padding-right-30" style={{color:'#999'}}><i className="fa fa-yelp"></i>good1230.com</span>
+			<a target="_blank" className="none-line float-left color-999">
 				<img src={ img } 
 			className="width-30 height-30 margin-top-15 radius-20 float-left" />
 				<span className=" margin-left-10">{ this.state.data.name }</span>
-        <span className=" margin-left-10 color-ddd font-size-12">({ this.state.data.role==0?'普通用戶':this.state.data.role==1?'管理員':'超級管理员' })</span>
+        <span className=" margin-left-10 color-999 font-size-12">({ this.state.data.role==0?'普通用戶':this.state.data.role==1?'管理员':'超級管理员' })</span>
 			</a>
 			
 

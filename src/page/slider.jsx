@@ -171,7 +171,7 @@ constructor(props) {
       let dataTable=data && data.map((item,index)=>{
         let url='http://www.good1230.com/dist2/static/images/tianmao.jpg'
         if(item.image!==''){
-            url=`good/server/images/slider/${item.image}`
+            url=`${global.apiUpdata}/images/slider/${item.image}`
         }
         let status=item.status==0?false:true;
         return (

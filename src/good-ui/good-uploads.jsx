@@ -1,5 +1,5 @@
 import React from 'react';
-import VueAxios from "vue-axios";
+import global from '../global';
 import { Upload,Message } from 'element-react';
 export default class Upload2 extends React.Component {
 	constructor(props) {
@@ -33,7 +33,7 @@ export default class Upload2 extends React.Component {
 		let imageUrl='';
 		if(this.state.imageUrl==''){
 			if(this.props.data.state.form.image!=undefined&&this.props.data.state.form.image!=''){
-				imageUrl =`good/server/images/${this.props.data.state.fileType}/${this.props.data.state.form.image}`
+				imageUrl =`${global.apiUpdata}/images/${this.props.data.state.fileType}/${this.props.data.state.form.image}`
 			}else{
 				imageUrl =`http://www.good1230.com/dist2/static/images/tianmao.jpg`
 			}
@@ -41,7 +41,7 @@ export default class Upload2 extends React.Component {
 			imageUrl= this.state.imageUrl;
 		}
 		
-		let fileupload=`good/server/fileupload.php?type=${this.props.data.state.imgType}`;
+		let fileupload=`${global.apiUpdata}/fileupload.php?type=${this.props.data.state.imgType}`;
 	  return (
 	    <Upload
 	      className="avatar-uploader"

@@ -46,10 +46,11 @@ axios.interceptors.response.use(res => {
 		localStorage.login =false;
 		Message({
 		    message:res.data.message,
-		    type: 'success',
+		    type: 'info',
 		});
 		setTimeout(()=>{
-			window.location.href='/login';
+			window.location.href='#/login';
+			window.location.reload();
 			return
 		},2000)
       	
@@ -97,7 +98,7 @@ function App() {
 		    		<Menu></Menu>*/
 				}
 				<GoodScroll></GoodScroll>
-				<div style={{minHeight:'800px'}}>
+				<div style={{minHeight:'820px'}}>
 					<Header></Header>
 		    		<Menu></Menu>
 			      	<Main></Main>

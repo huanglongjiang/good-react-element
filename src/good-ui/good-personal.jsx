@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import global from '../global';
-import { Dialog,Button,Input } from 'element-react';
+import { Dialog,Button,Input,Radio } from 'element-react';
 import GoodTds from '../good-ui/good-tds.jsx';
 import GoodUpload from '../good-ui/good-uploads.jsx';
 
@@ -92,7 +92,14 @@ export default class Header extends React.Component {
                     </tr>
                     <tr>
                       <GoodTds title='用户角色'></GoodTds>
-                      <td><Input value={ role } disabled /></td>
+                      <td>
+                      <div>
+                        <Radio value="0" checked={this.state.form.role == 0} disabled={ this.state.form.role==2 } onChange={this.onChange.bind(this,'role')}>普通用户</Radio>
+                        <Radio value="1" checked={this.state.form.role == 1} disabled={ this.state.form.role==2 } onChange={this.onChange.bind(this,'role')}>管理员</Radio>
+                        <Radio value="2" checked={this.state.form.role == 2} disabled onChange={this.onChange.bind(this,'role')}>超级管理员</Radio>
+
+                      </div>
+                    </td>
                     </tr>
                     <tr>
                       <GoodTds title='用户名称' required></GoodTds>

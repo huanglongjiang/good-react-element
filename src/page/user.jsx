@@ -84,7 +84,15 @@ export default class Log extends React.Component {
           operating: item,
           form:this.state.form,
         }
-        
+        const reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        if(!reg.test(this.state.form.email)){
+          Message({
+              message:'请输入正确邮箱',
+              type: 'info',
+          });
+          return
+        }
+
         axios.post(global.APIPATH,data).then((res) => {
           if(res.data.retType==='success'){
             this.loadList();
@@ -175,7 +183,7 @@ export default class Log extends React.Component {
       let dataTable=data && data.map((item,index)=>{
         let url='http://www.good1230.com/dist2/static/images/tianmao.jpg'
         if(item.image!==''){
-            url=`good/server/images/user/${item.image}`
+            url=`${global.apiUpdata}/images/user/${item.image}`
         }
 
         let role=0;
@@ -270,13 +278,14 @@ export default class Log extends React.Component {
             <Dialog.Body>
               <div className="table-default">
                 <table className="width-max">
-                  <tr>
-                    <GoodTds title='用户名' required></GoodTds>
-                    <td><Input placeholder="请输入内容" disabled={ this.state.disabled } value={ this.state.form.name }  onChange={this.onChange.bind(this,'name')} /></td>
-                  </tr>
+                  
                   <tr>
                     <GoodTds title='用户邮箱' required></GoodTds>
                     <td><Input placeholder="请输入内容" disabled={ this.state.disabled } value={ this.state.form.email }  onChange={this.onChange.bind(this,'email')} /></td>
+                  </tr>
+                  <tr>
+                    <GoodTds title='用户名' required></GoodTds>
+                    <td><Input placeholder="请输入内容" disabled={ this.state.disabled } value={ this.state.form.name }  onChange={this.onChange.bind(this,'name')} /></td>
                   </tr>
                   <tr>
                     <GoodTds title='用户类型'></GoodTds>
