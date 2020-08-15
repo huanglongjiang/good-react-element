@@ -1,6 +1,6 @@
 ### `项目演示demo`
 
-[good1230.com/react/#/](good1230.com/react/#/)
+[http://good1230.com/react/#/](http://good1230.com/react/#/)
 
 
 ### `项目本地运行调整说明`
@@ -10,17 +10,17 @@
 
 2、src下global.js文件将
 
-APIPATH:'http://www.good1230.com/good/google.php',
-apiReturn:'http://www.good1230.com/good/return.php',
-apiUpdata:'http://www.good1230.com/good/server',
+APIPATH:'http://www.good1230.com/good/google.php'<br />
+apiReturn:'http://www.good1230.com/good/return.php'<br />
+apiUpdata:'http://www.good1230.com/good/server'<br />
 
 改成
 
-APIPATH:'good/google.php',
-apiReturn:'good/return.php',
-apiUpdata:'good/server',
+APIPATH:'good/google.php'<br />
+apiReturn:'good/return.php'<br />
+apiUpdata:'good/server'<br />
 
-
+<br /><br /><br />
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
