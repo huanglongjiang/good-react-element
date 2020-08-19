@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import store from '../store/index.js'
+import { changeInputAction } from '../store/actionCreators'
 import global from '../global';
 import { Dialog,Button,Input,Radio,Tag,Switch } from 'element-react';
 import GoodPagination from '../good-ui/good-pagination.jsx';
@@ -9,11 +11,18 @@ import GoodTag from '../good-ui/good-tag.jsx';
 import { HashRouter as Router, Route, Link,NavLink } from "react-router-dom"
 import GoodSwitch     from '../good-ui/good-switch.jsx';
 import GoodInfo from '../good-ui/good-info.jsx';
-export default class Menu extends React.Component {
-	/*constructor(props) {
-	    super(props);
-	}*/
 
+export default class Menu extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userInfo:store.getState(),
+    };
+    store.subscribe(this.storeChange) //订阅Redux的状态
+  }
+	storeChange=()=>{
+       this.setState(store.getState())
+  	}
   render() {
   	const data=[
 	  	{
@@ -77,8 +86,8 @@ export default class Menu extends React.Component {
 
 					<NavLink exact to={ item.url } activeClassName="a-link"  className=" color-333 font-size-14 none-line margin-right-10">{ item.title }</NavLink>
 						{
-							item.url=='bbs'?<GoodInfo data="123"></GoodInfo>:
-							item.url=='log'?<GoodInfo data="7516"></GoodInfo>:null
+							item.url=='bbs'?<GoodInfo data={ props.data.userInfo.bbs_total }></GoodInfo>:
+							item.url=='log'?<GoodInfo data={ props.data.userInfo.log_total }></GoodInfo>:null
 						}
 					</li>
 				)
@@ -98,7 +107,7 @@ export default class Menu extends React.Component {
 					<i className={`padding-right-13 color-999 ${ item.icon}`}></i>
 					<span className='color-333'>{item.title}</span>
 				</li>
-				<Children children={item.children}></Children>
+				<Children data={this.state} children={item.children}></Children>
 			</ul>
 		)
 	})

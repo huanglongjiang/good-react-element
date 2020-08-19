@@ -248,7 +248,7 @@ constructor(props) {
           <Button className="float-right margin-left-20" type="primary" icon="plus" onClick={ this.openDialog }>新增友情链接</Button>
           <GoodTotal total={ total }></GoodTotal>
         </div>
-        <div className="table-data padding-20 background-white" style={{'box-shadow':'rgba(0, 0, 0, 0.25) 0px 0px 1px'}}>
+        <div className="table-data padding-20 background-white" style={{'boxShadow':'rgba(0, 0, 0, 0.25) 0px 0px 1px'}}>
           <table className="table-group">
             <thead className="block-header">
               <tr>
@@ -280,6 +280,7 @@ constructor(props) {
             <Dialog.Body>
               <div className="table-default">
                 <table className="width-max">
+                  <tbody>
                   <tr>
                     <GoodTds title='网站名称' required></GoodTds>
                     <td><Input placeholder="请输入内容" value={ this.state.form.name }  onChange={this.onChange.bind(this,'name')} /></td>
@@ -334,6 +335,7 @@ constructor(props) {
                     <GoodTds title='备注'></GoodTds>
                     <td><Input className="width-max" type="textarea" rows={6} placeholder="请输入内容" value={ this.state.form.text }  onChange={this.onChange.bind(this,'text')} /></td>
                   </tr>
+                  </tbody>
                 </table> 
               </div>
             </Dialog.Body>

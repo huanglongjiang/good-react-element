@@ -113,7 +113,7 @@ class Login extends React.Component {
              </div>
 
       </Tabs.Pane>
-      <Tabs.Pane label="新用户注册并登录" name="2">
+      <Tabs.Pane label="新用户登录" name="2">
 
 
             <div id="form">

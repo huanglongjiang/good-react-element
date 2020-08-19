@@ -192,7 +192,7 @@ export default class Log extends React.Component {
           <Link to="article_action"><Button className="float-right margin-left-20" type="primary" icon="plus">新增文章</Button></Link>
           <GoodTotal total={ total }></GoodTotal>
         </div>
-        <div className="table-data padding-20 background-white" style={{'box-shadow':'rgba(0, 0, 0, 0.25) 0px 0px 1px'}}>
+        <div className="table-data padding-20 background-white" style={{'boxShadow':'rgba(0, 0, 0, 0.25) 0px 0px 1px'}}>
           <table className="table-group">
             <thead className="block-header">
               <tr>

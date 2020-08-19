@@ -272,6 +272,7 @@ constructor(props) {
             <Dialog.Body>
               <div className="table-default">
                 <table className="width-max">
+                <tbody>
                   <tr>
                     <GoodTds title='用户邮箱' required></GoodTds>
                     <td><Input placeholder="请输入内容" value={ this.state.form.email }  onChange={this.onChange.bind(this,'email')} /></td>
@@ -329,6 +330,7 @@ constructor(props) {
                     <GoodTds title='投放代码'></GoodTds>
                     <td><Input className="width-max" type="textarea" rows={6} placeholder="请输入内容" value={ this.state.form.code }  onChange={this.onChange.bind(this,'code')} /></td>
                   </tr>
+                  </tbody>
                 </table> 
               </div>
             </Dialog.Body>

@@ -126,7 +126,7 @@ export default class Log extends React.Component {
           <Button className="float-right margin-left-20" type="primary" icon="plus" onClick={ this.openDialog }>留言</Button>
           <GoodTotal total={ total }></GoodTotal>
         </div>
-        <div className="table-data padding-20 background-white" style={{'box-shadow':'rgba(0, 0, 0, 0.25) 0px 0px 1px'}}>
+        <div className="table-data padding-20 background-white" style={{'boxShadow':'rgba(0, 0, 0, 0.25) 0px 0px 1px'}}>
           <table className="table-group">
             <thead className="block-header">
               <tr>
@@ -155,10 +155,12 @@ export default class Log extends React.Component {
             <Dialog.Body>
               <div className="table-default">
                 <table className="width-max">
+                <tbody>
                   <tr>
                     <GoodTds title='留言内容' required></GoodTds>
                     <td><Input className="width-400 padding-top-5 padding-bottom-5" type="textarea" rows={8} value={ this.state.form.text } onChange={this.onChange.bind(this,'text')}></Input></td>
                   </tr>
+                </tbody>
                 </table> 
               </div>
             </Dialog.Body>

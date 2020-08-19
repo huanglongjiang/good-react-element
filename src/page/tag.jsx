@@ -167,7 +167,7 @@ export default class Log extends React.Component {
             <td>
               {
                 item.keywords!=''?item.keywords.split(',').map((item2,index2)=>{
-                  return <Tag type="gray" className="margin-right-10">{item2}</Tag>
+                  return <Tag type="gray" className="margin-right-10" key={ index2 }>{item2}</Tag>
                 }):null
               }
                <Button className="button-new-tag" size="small" onClick={props.datas.keys.bind(this,item)}>+ 新增</Button>
@@ -187,8 +187,9 @@ export default class Log extends React.Component {
       }else{
         keywords=this.state.form.keywords.split(',');
       }
+
       let bbbb=this.state.keywords;
-      
+
       const keyList=['数组','json数组','js数组数组','合并string数组'];
       let title=this.state.isEdit?'编辑标签':'新增标签';
     return (
@@ -204,7 +205,7 @@ export default class Log extends React.Component {
           <table className="table-group">
             <thead className="block-header">
               <tr>
-                <th>标签名称</th>
+                <th>栏目名称</th>
                 <th>关键词</th>
               </tr>
             </thead>
@@ -221,18 +222,18 @@ export default class Log extends React.Component {
           lockScroll={ false }
           >
             <Dialog.Body>
-              <div class="table-default">
-                <table class="width-max">
+              <div className="table-default">
+                <table className="width-max">
+                <tbody>
                   <tr>
                     <GoodTds title='名称' required></GoodTds>
                     <td><Input placeholder="请输入内容" value={ this.state.form.name }  onChange={this.handleChange.bind(this,'name')} /></td>
                   </tr>
                   <tr>
                     <GoodTds title='缩 略 图'></GoodTds>
-                    <td>
-                        <td><GoodUpload data={ this }></GoodUpload></td>
-                    </td>
+                    <td><GoodUpload data={ this }></GoodUpload></td>
                   </tr>
+                  </tbody>
                 </table> 
               </div>
             </Dialog.Body>

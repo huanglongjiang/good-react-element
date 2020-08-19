@@ -56,7 +56,6 @@ export default class Log extends React.Component {
   }
 
   getDatas=(data)=>{
-    console.log(data)
       this.setState({
           page:{currentPage: data, pageSize: 10  }
       },()=> {
@@ -66,7 +65,6 @@ export default class Log extends React.Component {
   }
 
   handleClick=(data)=>{
-    console.log(66)
     this.setState({
         dialogVisible: true,
         disabled:false,
@@ -110,28 +108,23 @@ export default class Log extends React.Component {
   }
 
   closeDialog=(item)=>{
-    console.log(this.state.tag)
     this.setState({ dialogVisible2: item })
   }
   handleChange=(item,value)=>{
     const data={};
           data[item]=value;
     let newForm=Object.assign(this.state.form,data);
-    console.log(this.state.form)
     this.setState({
         form:this.state.form,
       });
-    console.log(this.state.form)
   }
   updateImage=(item)=>{
     const data={};
           data['image']=item;
     Object.assign(this.state.form,data);
-    console.log(this.state.form)
   }
 
    getPage=(data)=>{
-    console.log(data)
       this.setState({
           page:{currentPage: data, pageSize: 10  }
       },()=> {
@@ -143,9 +136,6 @@ export default class Log extends React.Component {
 
 
   upData=(type,item)=>{
-     console.log(type)
-     console.log(item)
-    
         const data={
           google: this.state.google,
           operating: type,
@@ -177,7 +167,7 @@ export default class Log extends React.Component {
             <td>
               {
                 item.keywords!=''?item.keywords.split(',').map((item2,index2)=>{
-                  return <Tag type="gray" className="margin-right-10">{item2}</Tag>
+                  return <Tag type="gray" className="margin-right-10" key={ index2 }>{item2}</Tag>
                 }):null
               }
                <Button className="button-new-tag" size="small" onClick={props.datas.keys.bind(this,item)}>+ 新增</Button>
@@ -191,18 +181,14 @@ export default class Log extends React.Component {
     const { total }=this.state.list;
     const total2=this.state.keywords.total;
 
-    console.log(this)
     let keywords=[];
       if(this.state.form.keywords==''){
         keywords=[];
       }else{
         keywords=this.state.form.keywords.split(',');
       }
-      console.log(keywords)
-
 
       let bbbb=this.state.keywords;
-      console.log(bbbb)
 
       const keyList=['数组','json数组','js数组数组','合并string数组'];
       let title=this.state.isEdit?'编辑栏目':'新增栏目';
@@ -236,18 +222,18 @@ export default class Log extends React.Component {
           lockScroll={ false }
           >
             <Dialog.Body>
-              <div class="table-default">
-                <table class="width-max">
+              <div className="table-default">
+                <table className="width-max">
+                <tbody>
                   <tr>
                     <GoodTds title='名称' required></GoodTds>
                     <td><Input placeholder="请输入内容" value={ this.state.form.name }  onChange={this.handleChange.bind(this,'name')} /></td>
                   </tr>
                   <tr>
                     <GoodTds title='缩 略 图'></GoodTds>
-                    <td>
-                        <td><GoodUpload data={ this }></GoodUpload></td>
-                    </td>
+                    <td><GoodUpload data={ this }></GoodUpload></td>
                   </tr>
+                  </tbody>
                 </table> 
               </div>
             </Dialog.Body>

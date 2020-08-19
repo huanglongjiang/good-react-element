@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import store from '../store/index.js'
+import { changeInputAction } from '../store/actionCreators'
 import global from '../global';
 import { Dialog,Button,Input,Radio } from 'element-react';
 import GoodTds       from '../good-ui/good-tds.jsx';
@@ -7,22 +9,27 @@ import GoodUpload from '../good-ui/good-uploads.jsx';
 import GoodPersonal from '../good-ui/good-personal.jsx';
 import GoodLock from '../good-ui/good-lock.jsx';
 import GoodInfo from '../good-ui/good-info.jsx';
+import { HashRouter as Router, Route, Link } from "react-router-dom"
 export default class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      userInfo:store.getState(),
     	data:{},
       fileType:'user',
     	google:'t-10014',
       	dialog: false,
       	dialog2: false,
     };
+    store.subscribe(this.storeChange) //订阅Redux的状态
   }
 
   componentDidMount() {
     this.loadList();
   }
-
+  storeChange=()=>{
+       this.setState(store.getState())
+  }
   loadList(){
     const data={
       google: this.state.google,
@@ -31,9 +38,13 @@ export default class Header extends React.Component {
     
     axios.post(global.APIPATH,data).then((res) => {
       if(res.data.retType==='success'){
-       this.setState({
-         data:res.data.data,
-       });
+
+        const action = changeInputAction(res.data)
+        store.dispatch(action)
+
+        this.setState({
+          data:res.data.data,
+        });
       }
     })
   }
@@ -95,10 +106,15 @@ export default class Header extends React.Component {
               <i className="fa fa-user font-size-18" style={{color:' rgb(173, 181, 189)'}} onClick={ this.openDialog }></i>
             </li>
             <li className="width-30 height-30 line-height-30 align-center inline-block padding-bottom-5 margin-left-10 margin-right-10 radius-4 float-right position-r radius-20" style={{'color':'rgb(173, 181, 189); top: -3px'}}>
+              <Router>
+              <Link to="bbs" className="margin-left-10">
               <i className="fa fa-envelope-o font-size-18" style={{color:' rgb(173, 181, 189)'}}></i>
+              
               <div className="position-a left-20" style={{top:'-18px'}}>
-                  <GoodInfo data='99+'></GoodInfo>
+                  <GoodInfo data={ this.state.userInfo.bbs_total }></GoodInfo>
               </div>
+              </Link>
+              </Router>
             </li>
 		        <li className="width-30 height-30 line-height-30 align-center inline-block padding-bottom-5 margin-left-10 margin-right-20 radius-4 float-right position-r radius-20" style={{'color':'rgb(173, 181, 189); top: -3px'}}>
 		          <a href="http://good1230.com" target="_blank">

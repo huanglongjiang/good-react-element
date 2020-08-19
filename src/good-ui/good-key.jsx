@@ -172,7 +172,7 @@ export default class Search extends React.Component {
 
 
 			  		{/*关键词列表*/}
-	              <div class="table-default">
+	              <div className="table-default">
 	                <div className="border-bottom-1 border-eee padding-bottom-20 margin-bottom-20" style={{overflow:'auto'}}></div>
 	                <div style={{height:'360px',overflow:'auto'}}>
 	                     
@@ -182,8 +182,8 @@ export default class Search extends React.Component {
 	                        return (
 
 	                        	tag && tag.includes(item.name)?
-	                        	<span class="el-tag el-tag--primary margin-right-10 margin-bottom-10 pointer" onClick={ this.addTag.bind(this,item) }>{item.name}</span>:
-	                        	<span class="el-tag el-tag--gray margin-right-10 margin-bottom-10 pointer" onClick={ this.addTag.bind(this,item) }>{item.name}</span>
+	                        	<span key={ index } className="el-tag el-tag--primary margin-right-10 margin-bottom-10 pointer" onClick={ this.addTag.bind(this,item) }>{item.name}</span>:
+	                        	<span key={ index } className="el-tag el-tag--gray margin-right-10 margin-bottom-10 pointer" onClick={ this.addTag.bind(this,item) }>{item.name}</span>
 	                       
 	                        )
 	                      })
