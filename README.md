@@ -1,6 +1,6 @@
 ### `项目演示demo`
 
-[http://good1230.com/react/#/](http://good1230.com/react/#/)
+[http://www.good1230.com/react/#/login](http://www.good1230.com/react/#/login)
 
 
 ### `项目本地运行调整说明`
