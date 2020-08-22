@@ -63,7 +63,8 @@ export default class Header extends React.Component {
 
   updateImage=(item)=>{
     const data={};
-          data['image']=item;
+          data['image']=item.name;
+          data['file']=item.file;
     Object.assign(this.state.form,data);
   }
   render() {

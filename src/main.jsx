@@ -27,12 +27,15 @@ import Cnzz from './page/cnzz.jsx';
 import seoIndex from './page/seo_index.jsx';
 import System from './page/system.jsx';
 import Copyright from './page/copyright.jsx';
+import Bookmark from './page/bookmark.jsx';
+import Document from './page/document.jsx';
+import DocumentInfo from './page/documentInfo.jsx';
 
 export default class Main extends React.Component {
-/*	constructor(props) {
-	    super(props);
-	    console.log(props)
-	}*/
+/*  constructor(props) {
+        super(props);
+        console.log(props)
+    }*/
 
   render() {
     return (
@@ -67,6 +70,9 @@ export default class Main extends React.Component {
         <Route exact path="/soe_index" component={seoIndex} />
         <Route exact path="/system" component={System} />
         <Route exact path="/copyright" component={Copyright} />
+        <Route exact path="/bookmark" component={Bookmark} />
+        <Route exact path="/document" component={Document} />
+        <Route exact path="/documentInfo" component={DocumentInfo} />
         <Route component={Index} />
         </Switch>
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import store from '../store/index.js'
 import global from '../global';
 import { Dialog,Button,Input,Radio,Tag,Switch,MessageBox,Message } from 'element-react';
 import GoodPagination from '../good-ui/good-pagination.jsx';
@@ -13,19 +12,18 @@ export default class Log extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userInfo:store.getState(),
       dialogVisible: false,
       disabled:false,
       isEdit:false,
-      google:'t-10010',
+      google:'t-20009',
       list: [],
       searchName:'',
       form:{
         id:'',
-        name:'',
-        email:'',
-        status:1,
-        role:0,
+        title:'',
+        url:'',
+        url2:'',
+        text:'',
       },
       page: {
           currentPage: 0,
@@ -34,23 +32,16 @@ export default class Log extends React.Component {
       role: "",
       status: "",
     };
-    store.subscribe(this.storeChange) //订阅Redux的状态
-  }
-  storeChange=()=>{
-     this.setState(store.getState())
   }
   componentDidMount() {
     this.loadList()
   }
-
   // 数据初始化
   loadList=()=>{
     const data={
       google: this.state.google,
       operating: "lists",
-      name: this.state.searchName,
-      role: this.state.role,
-      status: this.state.status,
+      title: this.state.searchName,
       page: this.state.page.currentPage,
       pagesize: this.state.page.pageSize,
     }
@@ -69,10 +60,10 @@ export default class Log extends React.Component {
         isEdit: false,
         form:{
           id:'',
-          name:'',
-          email:'',
-          status:1,
-          role:0,
+          title:'',
+          url:'',
+          url2:'',
+          text:'',
         },
       })
   }
@@ -91,15 +82,6 @@ export default class Log extends React.Component {
           operating: item,
           form:this.state.form,
         }
-        const reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        if(!reg.test(this.state.form.email)){
-          Message({
-              message:'请输入正确邮箱',
-              type: 'info',
-          });
-          return
-        }
-
         axios.post(global.APIPATH,data).then((res) => {
           if(res.data.retType==='success'){
             this.loadList();
@@ -187,42 +169,22 @@ export default class Log extends React.Component {
     function Tbody(props){
       const { data }=props;
 
-      const { role }=props.datas.state.userInfo.data?props.datas.state.userInfo.data:{role:1};
-       
-
       let dataTable=data && data.map((item,index)=>{
         let url='http://www.good1230.com/dist2/static/images/tianmao.jpg'
         if(item.image!==''){
             url=`${global.apiUpdata}/images/user/${item.image}`
         }
 
-
+        let role=0;
         return (
           <tr key={index} style={{background: item.status==0 ? "#f5f7fa" : "#fff"}}>
-            <td>{item.name}</td>
-            <td>{item.email}</td>
-            <td><img src={url} className="width-30" /></td>
-            <td>{item.time}</td>
-            <td>
-              {
-                item.role==0?<Tag type="primary">普通用户</Tag>:
-                item.role==1?<Tag type="success">管理员</Tag>:
-                <Tag type="warning">超级管理员</Tag>
-              }
-            </td>
-            <td>
-              {
-                item.role==2? null:
-                role==2? 
-                <GoodSwitch item={item} status={props.datas.getStatus.bind(this)}></GoodSwitch>:
-                <GoodSwitch item={item} disabled  status={props.datas.getStatus.bind(this)}></GoodSwitch>
-              }
-            </td>
+            <td>{item.title}</td>
+            <td><a className="a-link" target="_blank" href={item.url}>{item.url}</a></td>
+            <td>{ item.text }</td>
             <td>
             {
               item.role==2?null:
               <div>
-                <span className="a-link pointer margin-right-10" onClick={props.datas.resetPassword.bind(this,item)}>密码重置</span>
                 <span className="a-link pointer margin-right-10" onClick={props.datas.openDialog2.bind(this,item)}>编辑</span>
                 <span className="a-link pointer" onClick={props.datas.remove.bind(this,item)}>删除</span>
               </div>
@@ -239,34 +201,27 @@ export default class Log extends React.Component {
     const statusList={title:'服务类型',type:'status',list:['冻结','正常']};
     const { data }=this.state.list;
     const { total }=this.state.list;
-    let title=this.state.isEdit?'编辑用户':'新增用户';
+    let title=this.state.isEdit?'编辑书签':'添加书签';
 
     return (
       <div>
-        <GoodBreadbar title="用户管理"></GoodBreadbar>
-        <div className="background-white padding-10" style={{'boxShadow':' rgba(0, 0, 0, 0.25) 0px 0px 1px'}}>
-          <GoodTag data={ typeList }  type={this.getTag.bind(this)}></GoodTag>
-          <GoodTag data={ statusList }  type={this.getTag.bind(this)}></GoodTag>
-        </div>
+        <GoodBreadbar title="喜欢书签"></GoodBreadbar>
         
         <div className="padding-top-10 padding-bottom-10 clearfix">
             <div className="float-left">
             <Input placeholder="请输入内容" icon="search"  onChange={ (item) => this.setState({ searchName: item }) } />
             </div>
             <Button className="float-left margin-left-20" type="primary" onClick={ this.loadList }>搜索</Button>
-          <Button className="float-right margin-left-20" type="primary" icon="plus" onClick={ this.openDialog }>新增用户</Button>
+          <Button className="float-right margin-left-20" type="primary" icon="plus" onClick={ this.openDialog }>添加书签</Button>
           <GoodTotal total={ total }></GoodTotal>
         </div>
         <div className="table-data padding-20 background-white" style={{'boxShadow':'rgba(0, 0, 0, 0.25) 0px 0px 1px'}}>
-          <table className="table-group">
+          <table className="table-group panel-4">
             <thead className="block-header">
               <tr>
-                <th>用户名</th>
-                <th>用户邮箱</th>
-                <th>头像</th>
-                <th>注册时间</th>
-                <th>类型</th>
-                <th>状态</th>
+                <th>标题</th>
+                <th>网址/Git</th>
+                <th>备注</th>
                 <th>操作</th>
               </tr>
             </thead>
@@ -290,31 +245,22 @@ export default class Log extends React.Component {
                 <table className="width-max">
                   <tbody>
                   <tr>
-                    <GoodTds title='用户邮箱' required></GoodTds>
-                    <td><Input placeholder="请输入内容" disabled={ this.state.disabled } value={ this.state.form.email }  onChange={this.onChange.bind(this,'email')} /></td>
+                    <GoodTds title='书签名' required></GoodTds>
+                    <td><Input className="width-400 padding-top-5 padding-bottom-5"  placeholder="请输入内容" value={ this.state.form.title }  onChange={this.onChange.bind(this,'title')} /></td>
                   </tr>
                   <tr>
-                    <GoodTds title='用户名' required></GoodTds>
-                    <td><Input placeholder="请输入内容" disabled={ this.state.disabled } value={ this.state.form.name }  onChange={this.onChange.bind(this,'name')} /></td>
+                    <GoodTds title='书签地址' required></GoodTds>
+                    <td><Input className="width-400 padding-top-5 padding-bottom-5" type="textarea" rows={4} placeholder="请输入内容" value={ this.state.form.url }  onChange={this.onChange.bind(this,'url')} /></td>
                   </tr>
+                 {
+                   /*<tr>
+                    <GoodTds title='附加地址'></GoodTds>
+                    <td><Input className="width-400 padding-top-5 padding-bottom-5" type="textarea" rows={2} placeholder="请输入内容" value={ this.state.form.url2 }  onChange={this.onChange.bind(this,'url2')} /></td>
+                  </tr>*/
+                 }
                   <tr>
-                    <GoodTds title='用户类型'></GoodTds>
-                    <td>
-                      <div>
-                        <Radio value="0" checked={this.state.form.role == 0} onChange={this.onChange.bind(this,'role')}>普通用户</Radio>
-                        <Radio value="1" checked={this.state.form.role == 1} onChange={this.onChange.bind(this,'role')}>管理员</Radio>
-                        <Radio value="2" checked={this.state.form.role == 2} disabled onChange={this.onChange.bind(this,'role')}>超级管理员</Radio>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <GoodTds title='用户类型'></GoodTds>
-                    <td>
-                      <div>
-                        <Radio value="0" checked={this.state.form.status == 0} onChange={this.onChange.bind(this,'status')}>冻结</Radio>
-                        <Radio value="1" checked={this.state.form.status == 1} onChange={this.onChange.bind(this,'status')}>正常</Radio>
-                      </div>
-                    </td>
+                    <GoodTds title='备注'></GoodTds>
+                    <td><Input className="width-400 padding-top-5 padding-bottom-5" type="textarea" rows={4} placeholder="请输入内容" value={ this.state.form.text }  onChange={this.onChange.bind(this,'text')} /></td>
                   </tr>
                   </tbody>
                 </table> 

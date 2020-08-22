@@ -79,8 +79,8 @@ export default class Header extends React.Component {
   render() {
   	
     let img='http://www.good1230.com/dist2/static/images/tianmao.jpg'
-        if(this.state.data.image!==''&&this.state.data.image!==undefined){
-            img=`${global.apiUpdata}/images/${this.state.fileType}/${this.state.data.image}`;
+        if(this.state.data.file!==''&&this.state.data.file!==undefined){
+            img=`${global.filePath}/${this.state.data.file}`;
         }
     return (
       <div className="width-max height-60 background-333" style={{'boxShadow':'0 0 1px rgba(0,0,0,0.25)',background:'#20232a'}}>

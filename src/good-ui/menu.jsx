@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import store from '../store/index.js'
-import { changeInputAction } from '../store/actionCreators'
 import global from '../global';
 import { Dialog,Button,Input,Radio,Tag,Switch } from 'element-react';
 import GoodPagination from '../good-ui/good-pagination.jsx';
@@ -45,6 +44,8 @@ export default class Menu extends React.Component {
 		  		{title:'友情链接',url:'link'},
 		  		{title:'广告管理',url:'adsense'},
 		  		{title:'图片轮播',url:'slider'},
+		  		{title:'喜欢书签',url:'bookmark'},
+		  		// {title:'文档库',url:'document'},
 		  		{title:'新功能开发中',url:null},
 	  		]
 	  	},
@@ -68,6 +69,7 @@ export default class Menu extends React.Component {
 		  		// {title:'用户管理权限'},
 	  		]
 	  	},
+	  	
 	]
 
 	function Children(props){

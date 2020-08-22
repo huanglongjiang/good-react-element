@@ -4,6 +4,7 @@ const constants = {
     APIPATH:'http://www.good1230.com/good/google.php',
     apiReturn:'http://www.good1230.com/good/return.php',
     apiUpdata:'http://www.good1230.com/good/server',
+    filePath:'http://www.good1230.com/good',
 };
 
 // 开发环境
@@ -13,6 +14,7 @@ const constants = {
     APIPATH:'good/google.php',
     apiReturn:'good/return.php',
     apiUpdata:'good/server',
+    filePath:'good',
 };*/
 
 export default constants;

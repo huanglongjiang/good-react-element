@@ -11,6 +11,7 @@ export default class Upload2 extends React.Component {
 	}
 
 	handleAvatarScucess(res, file) {
+		console.log(file)
 	  this.setState({ imageUrl: URL.createObjectURL(file.raw) });
 	  this.props.data.updateImage(file.response);
 	}

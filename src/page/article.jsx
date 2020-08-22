@@ -132,7 +132,7 @@ export default class Log extends React.Component {
       let dataTable=data && data.map((item,index)=>{
         let url='http://www.good1230.com/dist2/static/images/tianmao.jpg'
         if(item.image!==''){
-            url=`${global.apiUpdata}/images/article/${item.image}`
+            url=`${global.filePath}/${item.file}`
         }
 
         let status=item.status==0?false:true;
@@ -167,7 +167,7 @@ export default class Log extends React.Component {
 
     return (
       <div>
-        <GoodBreadbar title="用户管理"></GoodBreadbar>
+        <GoodBreadbar title="文章中心"></GoodBreadbar>
         <div className="background-white padding-10" style={{'boxShadow':' rgba(0, 0, 0, 0.25) 0px 0px 1px'}}>
 
 

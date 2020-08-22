@@ -177,7 +177,8 @@ export default class Welcome extends Component {
 
   updateImage=(item)=>{
     const data={};
-          data['image']=item;
+          data['image']=item.name;
+          data['file']=item.file;
     Object.assign(this.state.form,data);
   }
     render() {
@@ -187,7 +188,7 @@ export default class Welcome extends Component {
 
         return (
             <div>
-                <GoodBreadbar title="友情链接"></GoodBreadbar>
+                <GoodBreadbar title="文章中心"></GoodBreadbar>
                 <div className="background-white padding-30 padding-bottom-120" style={{'boxShadow':' rgba(0, 0, 0, 0.25) 0px 0px 1px'}}>
                     <div className="margin-auto" style={{width:"900px"}}>
 
