@@ -85,12 +85,19 @@ export default class Menu extends React.Component {
 			}else{
 				return (
 					<li className="line-height-36 padding-left-70 color-333 menu" key={index}>
+					{
 
-					<NavLink exact to={ item.url } activeClassName="a-link"  className=" color-333 font-size-14 none-line margin-right-10">{ item.title }</NavLink>
-						{
-							item.url=='bbs'?<GoodInfo data={ props.data.userInfo.bbs_total }></GoodInfo>:
-							item.url=='log'?<GoodInfo data={ props.data.userInfo.log_total }></GoodInfo>:null
-						}
+						props.data.userInfo.data && 
+						props.data.userInfo.data.role==2?
+						<NavLink exact to={ item.url } activeClassName="a-link"  className=" color-333 font-size-14 none-line margin-right-10">{ item.title }</NavLink>:
+						item.url=='bookmark'?null:
+						<NavLink exact to={ item.url } activeClassName="a-link"  className=" color-333 font-size-14 none-line margin-right-10">{ item.title }</NavLink>
+						
+					}
+					{
+						item.url=='bbs'?<GoodInfo data={ props.data.userInfo.bbs_total }></GoodInfo>:
+						item.url=='log'?<GoodInfo data={ props.data.userInfo.log_total }></GoodInfo>:null
+					}
 					</li>
 				)
 			}

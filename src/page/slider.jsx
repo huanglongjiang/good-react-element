@@ -181,8 +181,8 @@ constructor(props) {
             <td>{ item.title }</td>
             <td>{ item.url }</td>
             <td>{
-              item.type==0?<Tag type="primary">首页</Tag>:
-              item.type==1?<Tag type="success">通用轮播图</Tag>:
+              item.type==0?<Tag type="success">通用轮播图</Tag>:
+              item.type==1?<Tag type="primary">首页轮播图</Tag>:
               item.type==2?<Tag type="warning">栏目页轮播图</Tag>:
               <Tag type="danger">内容页轮播图</Tag>
             }
@@ -201,7 +201,7 @@ constructor(props) {
       return <tbody>{dataTable}</tbody>
     }
 
-    const typeList={title:'服务类型',type:'type',list:['首页','通用轮播图','栏目页轮播图','内容页轮播图']};
+    const typeList={title:'服务类型',type:'type',list:['通用轮播图','首页轮播图','栏目页轮播图','内容页轮播图']};
     const statusList={title:'服务类型',type:'status',list:['关闭','开启']};
     const { data }=this.state.list;
     const { total }=this.state.list;
