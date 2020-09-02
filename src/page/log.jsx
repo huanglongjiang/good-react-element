@@ -52,7 +52,7 @@ export default class Log extends React.Component {
       const { data }=props;
 
       let dataTable=data && data.map((item,index)=>{
-        let url=item.image==null?`http://www.good1230.com/dist2/static/images/tianmao.jpg`:`${global.apiUpdata}/images/user/${item.image}`;
+        let url=item.image==null||item.image==''?`http://www.good1230.com/dist2/static/images/tianmao.jpg`:`${global.apiUpdata}/images/user/${item.image}`;
 
         return (
           <tr key={index} style={{background: item.status==0 ? "#f5f7fa" : "#fff"}}>

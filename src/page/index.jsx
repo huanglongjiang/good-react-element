@@ -63,11 +63,11 @@ export default class Log extends React.Component {
         <div className="table-data padding-20 background-white color-white clearfix" style={{'boxShadow':'rgba(0, 0, 0, 0.25) 0px 0px 1px'}}>
 
           
-          <div className=" height-210 align-center radius-5 padding-20 padding-20 float-left margin-right-20 margin-bottom-20" style={{background:'#54ad58',width:'48%',minWidth:'400px'}}>
+          <div className=" height-210 align-center radius-5 padding-20 padding-20 float-left margin-right-20 margin-bottom-20" style={{background:'#54ad58',width:'48%',minWidth:'400px',maxWidth:'500px'}}>
               <GoodChart data={ chartist } type="Line"/>
               <span>12日内访问量</span>
           </div>
-          <div className="width-600 height-210 align-center radius-5 padding-20 float-left margin-right-20 margin-bottom-20" style={{background:'#962eaf',width:'48%',minWidth:'400px'}}>
+          <div className="width-600 height-210 align-center radius-5 padding-20 float-left margin-right-20 margin-bottom-20" style={{background:'#962eaf',width:'48%',minWidth:'400px',maxWidth:'500px'}}>
               <GoodChart data={ chartist } type="Bar"/>
               <span>12日内访问量</span>
           </div>

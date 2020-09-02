@@ -98,7 +98,7 @@ export default class Log extends React.Component {
       let dataTable=data && data.map((item,index)=>{
         let url='http://www.good1230.com/dist2/static/images/tianmao.jpg'
         if(item.image!==''){
-            url=`good/RandomUser/${item.image}`
+            url=`${global.filePath}/RandomUser/${item.image}`
         }
 
         let status=item.status==0?false:true;

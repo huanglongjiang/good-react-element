@@ -5,13 +5,20 @@ body{background: #f6f8f9}
 }
 
  #login{
-  background: url('http://www.good1230.com/dist2/static/images/bg.jpg') 0% 0% / 100%;
+  /*background: url('http://www.good1230.com/dist2/static/images/bg.jpg') 0% 0% / 100%;*/
+  /*background: linear-gradient(87deg,#2dce89,#2dcecc)!important;*/
+  background-color: #20232a!important;
    /*  background: #50a3a2;
    background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
    background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%); */
 } 
-
-
+ #login .top{
+  /*background: linear-gradient(87deg,#2dce89,#2dcecc)!important;*/
+  background: #fff
+ }
+.fill-default {
+    fill: #20232a;
+}
 
 .tag-group{
   background: none;margin: 0px;

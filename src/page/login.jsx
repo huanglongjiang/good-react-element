@@ -2,6 +2,7 @@ import React            from 'react';
 import { Dialog,Button,Input,Radio,Tabs,Message } from 'element-react';
 import { withRouter,Router } from "react-router-dom"
 import logo             from '../logo.svg';
+import github             from '../github.svg';
 import global           from '../global';
 import GoodButton       from '../good-ui/good-button.jsx';
 import axios            from 'axios';
@@ -66,17 +67,37 @@ class Login extends React.Component {
     
     return (
       <div id="login" className="position-f width-max height-max left-0 top-0">
-      <div className="layout position-f background-white" style={{width: 660, height: 300, left: '50%',top: '50%', marginLeft: -330, marginTop: -180, opacity: 0.95,boxShadow:' 0 1px 6px 0 rgba(32, 33, 36, .28)'}}>
+     
+      <div className="width-max background-eee top position-r position-a top-0 left-0" style={{height:'50%'}}>
+        <div className="position-a bottom-0 width-max">
+
+          <svg className="position-a bottom-0 width-max" x="0" y="0" viewBox="0 0 2560 150" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg"><polygon points="2560 0 2560 150 0 150" class="fill-default"></polygon></svg>
+        </div>
+      </div>
+    
+      <div className="layout position-f background-white" style={{width: 660, height: 360, left: '50%',top: '50%', marginLeft: -330, marginTop: -180, opacity: 1.95,boxShadow:' 0 0 0 0 rgba(32, 33, 36, .28)',borderBottomRightRadius:'0px'}}>
         
        {/*<div className="layout  background-eee border-bottom-1 border-ddd">
         <h3 className="font-size-20 color-success font-size-45 padding-10 padding-left-20 bold clearfix"><i className="fa fa-yelp"></i></h3>
        </div> */}
-       <div className="float-left width-300 padding-top-30 height-max background-eee" style={{background:'#20232a'}}>
+       <div className="float-left width-300 padding-top-40 height-max background-eee" style={{background:'#20232a',borderTopLeftRadius:'0px'}}>
           <img src={logo} alt=""/>
        </div>
        <div className="float-left width-360 padding-20">
 
+       <div>
 
+      <div className="padding-bottom-36 line-height-20 align-center font-size-16">
+        <a className="inline-block none-line" href="https://github.com/huanglongjiang/good-react-element" target="_blank">
+          <img className="width-20  float-left"  src={github} />
+          <span className="padding-left-5 color-333">Github</span>
+        </a>
+        <a className="inline-block padding-left-30 none-line" href="http://good1230.com" target="_blank">
+          <i className="fa fa-home font-size-20  float-left color-333"></i>
+          <span className="padding-left-5 color-333">Home</span>
+        </a>
+      </div>
+       </div>
 
       <Tabs type="card" value="1">
       <Tabs.Pane label="登录" name="1">
@@ -111,7 +132,7 @@ class Login extends React.Component {
                </table>
               </div>
              </div>
-
+<span className="color-ccc font-size-14 inline-block align-center width-max">已登录过邮箱的初始密码为：123456</span>
       </Tabs.Pane>
       <Tabs.Pane label="新用户登录" name="2">
 
@@ -148,7 +169,7 @@ class Login extends React.Component {
 
       </Tabs.Pane>
       </Tabs>
-      <span className="a-link font-size-14">登录初始密码为：123456</span>
+      
  </div>
       </div>
       </div>
