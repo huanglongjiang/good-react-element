@@ -23,14 +23,19 @@ class Login extends React.Component {
 
 
 
-  onChange=(item,value)=>{
-    const data={};
-          data[item]=value;
+  onChange=(attr,event)=>{
+    if(event && event.target && event.target.value){
+
+       const data={};
+          data[attr]=event.target.value;
           Object.assign(this.state.form,data);
-          console.log(data)
-    this.setState({
+
+      this.setState({
         form:this.state.form,
       });
+
+    }
+   
   }
 
 
@@ -68,26 +73,37 @@ class Login extends React.Component {
     return (
       <div id="login" className="position-f width-max height-max left-0 top-0">
      
-      <div className="width-max background-eee top position-r position-a top-0 left-0" style={{height:'50%'}}>
+      <div className="width-max background-eee top position-r position-a top-0 left-0 " style={{height:'50%',borderBottom:'0px solid #61dafb'}}>
+        {
+          /*<div className="position-a bottom-0 width-max">
+
+          <svg className="position-a bottom-0 width-max" x="0" y="0" viewBox="0 0 2560 150" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg"><polygon points="2560 0 2560 150 0 150" class="fill-default"></polygon></svg>
+        </div>*/
+        }
         <div className="position-a bottom-0 width-max">
 
           <svg className="position-a bottom-0 width-max" x="0" y="0" viewBox="0 0 2560 150" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg"><polygon points="2560 0 2560 150 0 150" class="fill-default"></polygon></svg>
         </div>
+        
       </div>
     
-      <div className="layout position-f background-white" style={{width: 660, height: 360, left: '50%',top: '50%', marginLeft: -330, marginTop: -180, opacity: 1.95,boxShadow:' 0 0 0 0 rgba(32, 33, 36, .28)',borderBottomRightRadius:'0px'}}>
+      <div className="layout position-f" style={{width: 800, height: 400, left: '50%',top: '50%', marginLeft: -400, marginTop: -240, opacity: 1.95,boxShadow:' 0 0 0 0 rgba(32, 33, 36, .28)',borderBottomRightRadius:'0px'}}>
         
        {/*<div className="layout  background-eee border-bottom-1 border-ddd">
         <h3 className="font-size-20 color-success font-size-45 padding-10 padding-left-20 bold clearfix"><i className="fa fa-yelp"></i></h3>
        </div> */}
-       <div className="float-left width-300 padding-top-40 height-max background-eee" style={{background:'#20232a',borderTopLeftRadius:'0px'}}>
-          <img src={logo} alt=""/>
+       <div className="float-left width-400 height-400 padding-top-40 height-max background-eee position-r" style={{background:'#20232a',borderTopLeftRadius:'0px',borderTop:'0px solid #61dafb',borderRight:'0px solid #61dafb'}}>
+          <div className="height-195 width-max position-a top-0 align-center" style={{borderLeft:'0px solid #61dafb'}}></div>
+         {/*<img className="margin-30" src="http://good1230.com/templates/default/images/logo.png" alt=""/>*/}
+         <img src={logo} alt=""/>
+          
        </div>
-       <div className="float-left width-360 padding-20">
-
+       <div className="float-left width-400 height-400 padding-20 background-white position-r" style={{borderBottom:'0px solid #61dafb',borderBottomRightRadius:'0px'}}>
+<div className="height-200 width-max position-a bottom-0 left-0" style={{borderRight:'0px solid #61dafb'}}></div>
        <div>
 
-      <div className="padding-bottom-36 line-height-20 align-center font-size-16">
+      {
+        /*<div className="padding-bottom-36 line-height-20 align-center font-size-16">
         <a className="inline-block none-line" href="https://github.com/huanglongjiang/good-react-element" target="_blank">
           <img className="width-20  float-left"  src={github} />
           <span className="padding-left-5 color-333">Github</span>
@@ -96,7 +112,9 @@ class Login extends React.Component {
           <i className="fa fa-home font-size-20  float-left color-333"></i>
           <span className="padding-left-5 color-333">Home</span>
         </a>
-      </div>
+      </div>*/
+      }
+      <div className="align-center line-height-30 font-size-24 padding-bottom-60 bold" style={{color:'#8391a5'}}>网站后台管理系统</div>
        </div>
 
       <Tabs type="card" value="1">
@@ -110,8 +128,9 @@ class Login extends React.Component {
                  <tr style={{height: 50}}>
                   <td>
                    <div className="position-r">
-                    <i className="fa fa-user font-size-18 position-a top-12 left-15 color-default"></i> 
-                   <Input placeholder="账号 / 邮箱登录" value={ this.state.form.email }  onChange={this.onChange.bind(this,'email')} />
+                    <i className="fa fa-envelope font-size-14 position-a top-13 left-15 color-ccc"></i> 
+                   
+                    <input type="text" placeholder="账号 / 邮箱登录" value={ this.state.form.email }  onChange={this.onChange.bind(this,'email')} className="input-default height-40 line-height-40 font-size-16 width-max text-indent-25" />
 
 
                    </div></td>
@@ -119,20 +138,21 @@ class Login extends React.Component {
                  <tr style={{height: 50}}>
                   <td>
                    <div className="position-r">
-                    <i className="fa fa-lock font-size-18 position-a top-12 left-15 color-default"></i> 
-                    <Input type="password" placeholder="请输入密码" value={ this.state.form.pass }  onChange={this.onChange.bind(this,'pass')} />
+                    <i className="fa fa-lock font-size-18 position-a top-12 left-15 color-ccc"></i> 
+                    
+                     <input type="password" placeholder="请输入密码" value={ this.state.form.pass }  onChange={this.onChange.bind(this,'pass')} className="input-default height-40 line-height-40 font-size-16 width-max text-indent-25" />
                    </div></td>
                  </tr> 
-                 <tr style={{height: 60}}>
+                 <tr style={{height: 80}}>
                   <td>
-                  <Button className="width-max" type="primary" onClick={this.login.bind(this,'update')}>登录</Button>
+                  <button className="width-max button button-lg button-primary" onClick={this.login.bind(this,'update')}>登录</button>
                   </td>
                  </tr>
                 </tbody>
                </table>
               </div>
              </div>
-<span className="color-ccc font-size-14 inline-block align-center width-max">已登录过邮箱的初始密码为：123456</span>
+<span className="color-ccc font-size-14 inline-block align-center width-max">已登录过的邮箱的初始密码为：123456</span>
       </Tabs.Pane>
       <Tabs.Pane label="新用户登录" name="2">
 
@@ -144,20 +164,22 @@ class Login extends React.Component {
                  <tr style={{height: 50}}>
                   <td>
                    <div className="position-r">
-                    <i className="fa fa-user font-size-18 position-a top-12 left-15 color-default"></i> 
-                   <Input placeholder="请输入邮箱" value={ this.state.form.email }  onChange={this.onChange.bind(this,'email')} />
+                    <i className="fa fa-envelope font-size-14 position-a top-13 left-15 color-ccc"></i> 
+                   
+                   <input type="text" placeholder="请输入邮箱" value={ this.state.form.email }  onChange={this.onChange.bind(this,'email')} className="input-default height-40 line-height-40 font-size-16 width-max text-indent-25" />
                    </div></td>
                  </tr> 
                  <tr style={{height: 50}}>
                   <td>
                    <div className="position-r">
-                    <i className="fa fa-lock font-size-18 position-a top-12 left-15 color-default"></i> 
-                    <Input type="text" placeholder="请输入用户名" value={ this.state.form.name }  onChange={this.onChange.bind(this,'name')} />
+                    <i className="fa fa-user font-size-18 position-a top-12 left-15 color-ccc"></i> 
+                    <input type="text" placeholder="请输入用户名" value={ this.state.form.name }  onChange={this.onChange.bind(this,'name')} className="input-default height-40 line-height-40 font-size-16 width-max text-indent-25" />
+                    
                    </div></td>
                  </tr> 
-                 <tr style={{height: 60}}>
+                 <tr style={{height: 80}}>
                   <td>
-                  <Button className="width-max" type="primary" onClick={this.login.bind(this,'insert')}>登录</Button>
+                  <button className="width-max button button-lg button-primary" onClick={this.login.bind(this,'insert')}>登录</button>
                   </td>
                  </tr>
                 </tbody>
@@ -171,7 +193,21 @@ class Login extends React.Component {
       </Tabs>
       
  </div>
+ <div className="clear"></div>
+     <div className="padding-top-36 line-height-20 align-center font-size-16 margin-top-30">
+        
+        <a className="inline-block none-line" href="http://good1230.com" target="_blank">
+          <i className="fa fa-home font-size-20  float-left color-999"></i>
+          <span className="padding-left-5 color-999">Home</span>
+        </a>
+        <a className="inline-block margin-left-30 none-line" href="https://github.com/huanglongjiang/good-react-element" target="_blank">
+          {/*<img className="width-20  float-left"  src={github} />*/}
+          <i className="fa fa-github font-size-20  float-left color-999"></i>
+          <span className="padding-left-5 color-999">Github</span>
+        </a>
       </div>
+      </div>
+
       </div>
     );
   }

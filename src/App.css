@@ -3,6 +3,36 @@ body{background: #f6f8f9}
 /*   text-align: center; */
   
 }
+#login input{
+  font-size:14px;
+  background: rgb(255, 255, 255); font-family: georgia; border-width: 0px 0px 1px; border-top-style: initial; border-right-style: initial; border-bottom-style: solid; border-left-style: initial; border-top-color: initial; border-right-color: initial; border-bottom-color: rgb(238, 238, 238); border-left-color: initial; border-image: initial; box-shadow: none;
+}
+
+#login input::-webkit-input-placeholder{
+  color:#ccc;
+}
+#login input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+  color:#ccc;
+}
+#login input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+  color:#ccc;
+}
+#login input:-ms-input-placeholder{  /* Internet Explorer 10-11 */ 
+  color:#ccc;
+}
+.el-tabs__item.is-active {
+     color: #8391a5; 
+}
+.button-primary{
+  background: #20a0ff;
+  border: 0px;
+  box-shadow:none;
+}
+.button-primary:hover{
+  background: #1d90e6;
+  border: 0px;
+  box-shadow:none;
+}
 
  #login{
   /*background: url('http://www.good1230.com/dist2/static/images/bg.jpg') 0% 0% / 100%;*/
