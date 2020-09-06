@@ -91,6 +91,7 @@
       "last 1 safari version"
     ]
   },
+  "proxy": "http://localhost",
   "jest": {
     "roots": [
       "<rootDir>/src"

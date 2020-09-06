@@ -4,10 +4,15 @@ body{background: #f6f8f9}
   
 }
 #login input{
+  
+  padding-left: 20px;
   font-size:14px;
   background: rgb(255, 255, 255); font-family: georgia; border-width: 0px 0px 1px; border-top-style: initial; border-right-style: initial; border-bottom-style: solid; border-left-style: initial; border-top-color: initial; border-right-color: initial; border-bottom-color: rgb(238, 238, 238); border-left-color: initial; border-image: initial; box-shadow: none;
 }
-
+#login  .input-box{
+  border:1px solid #20a0ff;
+  box-shadow:0px 0px 2px #20a0ff;
+ }
 #login input::-webkit-input-placeholder{
   color:#ccc;
 }

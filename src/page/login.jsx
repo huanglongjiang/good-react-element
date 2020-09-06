@@ -24,12 +24,10 @@ class Login extends React.Component {
 
 
   onChange=(attr,event)=>{
-    if(event && event.target && event.target.value){
-
+    if(event){
        const data={};
           data[attr]=event.target.value;
           Object.assign(this.state.form,data);
-
       this.setState({
         form:this.state.form,
       });
@@ -127,24 +125,24 @@ class Login extends React.Component {
                 <tbody>
                  <tr style={{height: 50}}>
                   <td>
-                   <div className="position-r">
+                   <div className="position-r radius-3 input-box">
                     <i className="fa fa-envelope font-size-14 position-a top-13 left-15 color-ccc"></i> 
                    
-                    <input type="text" placeholder="账号 / 邮箱登录" value={ this.state.form.email }  onChange={this.onChange.bind(this,'email')} className="input-default height-40 line-height-40 font-size-16 width-max text-indent-25" />
+                    <input type="text" placeholder="账号 / 邮箱登录" defaultValue={ this.state.form.email }  onChange={this.onChange.bind(this,'email')} className="input-default height-40 line-height-40 font-size-16 width-max text-indent-25" />
 
 
                    </div></td>
                  </tr> 
-                 <tr style={{height: 50}}>
+                 <tr style={{height: 70}}>
                   <td>
-                   <div className="position-r">
+                   <div className="position-r radius-3 input-box">
                     <i className="fa fa-lock font-size-18 position-a top-12 left-15 color-ccc"></i> 
                     
-                     <input type="password" placeholder="请输入密码" value={ this.state.form.pass }  onChange={this.onChange.bind(this,'pass')} className="input-default height-40 line-height-40 font-size-16 width-max text-indent-25" />
+                     <input type="password" placeholder="请输入密码" defaultValue={ this.state.form.pass }  onChange={this.onChange.bind(this,'pass')} className="input-default height-40 line-height-40 font-size-16 width-max text-indent-25" />
                    </div></td>
                  </tr> 
-                 <tr style={{height: 80}}>
-                  <td>
+                 <tr style={{height: 60}}>
+                  <td className="align-center">
                   <button className="width-max button button-lg button-primary" onClick={this.login.bind(this,'update')}>登录</button>
                   </td>
                  </tr>
@@ -152,7 +150,7 @@ class Login extends React.Component {
                </table>
               </div>
              </div>
-<span className="color-ccc font-size-14 inline-block align-center width-max">已登录过的邮箱的初始密码为：123456</span>
+<span className="color-ccc font-size-14 inline-block width-max">已登录过的邮箱的初始密码为：123456</span>
       </Tabs.Pane>
       <Tabs.Pane label="新用户登录" name="2">
 
@@ -163,21 +161,21 @@ class Login extends React.Component {
                 <tbody>
                  <tr style={{height: 50}}>
                   <td>
-                   <div className="position-r">
+                   <div className="position-r  radius-3 input-box">
                     <i className="fa fa-envelope font-size-14 position-a top-13 left-15 color-ccc"></i> 
                    
-                   <input type="text" placeholder="请输入邮箱" value={ this.state.form.email }  onChange={this.onChange.bind(this,'email')} className="input-default height-40 line-height-40 font-size-16 width-max text-indent-25" />
+                   <input type="text" placeholder="请输入邮箱" defaultValue={ this.state.form.email }  onChange={this.onChange.bind(this,'email')} className="input-default height-40 line-height-40 font-size-16 width-max text-indent-25" />
                    </div></td>
                  </tr> 
-                 <tr style={{height: 50}}>
+                 <tr style={{height: 70}}>
                   <td>
-                   <div className="position-r">
+                   <div className="position-r  radius-3 input-box">
                     <i className="fa fa-user font-size-18 position-a top-12 left-15 color-ccc"></i> 
-                    <input type="text" placeholder="请输入用户名" value={ this.state.form.name }  onChange={this.onChange.bind(this,'name')} className="input-default height-40 line-height-40 font-size-16 width-max text-indent-25" />
+                    <input type="text" placeholder="请输入用户名" defaultValue={ this.state.form.name }  onChange={this.onChange.bind(this,'name')} className="input-default height-40 line-height-40 font-size-16 width-max text-indent-25" />
                     
                    </div></td>
                  </tr> 
-                 <tr style={{height: 80}}>
+                 <tr style={{height: 60}}>
                   <td>
                   <button className="width-max button button-lg button-primary" onClick={this.login.bind(this,'insert')}>登录</button>
                   </td>
