@@ -1,4 +1,5 @@
 import React            from 'react';
+import './css/login.css';
 import { Dialog,Button,Input,Radio,Tabs,Message } from 'element-react';
 import { withRouter,Router } from "react-router-dom"
 import logo             from '../logo.svg';
@@ -128,7 +129,7 @@ class Login extends React.Component {
                    <div className="position-r radius-3 input-box">
                     <i className="fa fa-envelope font-size-14 position-a top-13 left-15 color-ccc"></i> 
                    
-                    <input type="text" placeholder="账号 / 邮箱登录" defaultValue={ this.state.form.email }  onChange={this.onChange.bind(this,'email')} className="input-default height-40 line-height-40 font-size-16 width-max text-indent-25" />
+                    <input type="text" placeholder="账号 / 邮箱登录" defaultValue={ this.state.form.email }  onChange={this.onChange.bind(this,'email')} className="input-default height-40 line-height-40 font-size-16 width-max" />
 
 
                    </div></td>
@@ -138,7 +139,7 @@ class Login extends React.Component {
                    <div className="position-r radius-3 input-box">
                     <i className="fa fa-lock font-size-18 position-a top-12 left-15 color-ccc"></i> 
                     
-                     <input type="password" placeholder="请输入密码" defaultValue={ this.state.form.pass }  onChange={this.onChange.bind(this,'pass')} className="input-default height-40 line-height-40 font-size-16 width-max text-indent-25" />
+                     <input type="password" placeholder="请输入密码" defaultValue={ this.state.form.pass }  onChange={this.onChange.bind(this,'pass')} className="input-default height-40 line-height-40 font-size-16 width-max" />
                    </div></td>
                  </tr> 
                  <tr style={{height: 60}}>
@@ -164,14 +165,14 @@ class Login extends React.Component {
                    <div className="position-r  radius-3 input-box">
                     <i className="fa fa-envelope font-size-14 position-a top-13 left-15 color-ccc"></i> 
                    
-                   <input type="text" placeholder="请输入邮箱" defaultValue={ this.state.form.email }  onChange={this.onChange.bind(this,'email')} className="input-default height-40 line-height-40 font-size-16 width-max text-indent-25" />
+                   <input type="text" placeholder="请输入邮箱" defaultValue={ this.state.form.email }  onChange={this.onChange.bind(this,'email')} className="input-default height-40 line-height-40 font-size-16 width-max" />
                    </div></td>
                  </tr> 
                  <tr style={{height: 70}}>
                   <td>
                    <div className="position-r  radius-3 input-box">
                     <i className="fa fa-user font-size-18 position-a top-12 left-15 color-ccc"></i> 
-                    <input type="text" placeholder="请输入用户名" defaultValue={ this.state.form.name }  onChange={this.onChange.bind(this,'name')} className="input-default height-40 line-height-40 font-size-16 width-max text-indent-25" />
+                    <input type="text" placeholder="请输入用户名" defaultValue={ this.state.form.name }  onChange={this.onChange.bind(this,'name')} className="input-default height-40 line-height-40 font-size-16 width-max" />
                     
                    </div></td>
                  </tr> 

@@ -1,0 +1,48 @@
+#login input{
+  border: 0px!important;
+  padding-left: 40px;
+  font-size:14px;
+  background: rgb(255, 255, 255); font-family: georgia; border-width: 0px 0px 1px; border-top-style: initial; border-right-style: initial; border-bottom-style: solid; border-left-style: initial; border-top-color: initial; border-right-color: initial; border-bottom-color: rgb(238, 238, 238); border-left-color: initial; border-image: initial; box-shadow: none;
+}
+#login  .input-box{
+  border:1px solid #20a0ff;
+  box-shadow:0px 0px 2px #20a0ff;
+ }
+#login input::-webkit-input-placeholder{
+  color:#ccc;
+}
+#login input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+  color:#ccc;
+}
+#login input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+  color:#ccc;
+}
+#login input:-ms-input-placeholder{  /* Internet Explorer 10-11 */ 
+  color:#ccc;
+}
+.el-tabs__item.is-active {
+     color: #8391a5; 
+}
+.button-primary{
+  background: #20a0ff;
+  border: 0px;
+  box-shadow:none;
+}
+.button-primary:hover{
+  background: #1d90e6;
+  border: 0px;
+  box-shadow:none;
+}
+
+ #login{
+  /*background: url('http://www.good1230.com/dist2/static/images/bg.jpg') 0% 0% / 100%;*/
+  /*background: linear-gradient(87deg,#2dce89,#2dcecc)!important;*/
+  background-color: #20232a!important;
+   /*  background: #50a3a2;
+   background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+   background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%); */
+} 
+ #login .top{
+  /*background: linear-gradient(87deg,#2dce89,#2dcecc)!important;*/
+  background: #fff
+ }

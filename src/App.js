@@ -10,7 +10,7 @@ import Header from './good-ui/header.jsx';
 import Footer from './good-ui/footer.jsx';
 import Menu from './good-ui/menu.jsx';
 import Main from './main.jsx';
-import Login from './page/login.jsx';
+import Login from './login/login2.jsx';
 
 let aa=77
 

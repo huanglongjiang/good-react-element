@@ -1,0 +1,78 @@
+body{background: #fff}
+.el-tabs__item,.el-tabs__item:hover{
+  height: 60px; line-height: 60px; color: #f89c14;font-size: 18px;font-weight: bold!important;
+}
+.el-tabs__item.is-active,.el-tabs__item.is-active:hover{
+  color: #f89c14!important;
+}
+#login2{
+
+/*background-size: 75px;
+background:url("one.png") 0 0,
+           url("two.png") 200px 0,
+           url("three.png") 400px 201px;*/
+}
+#login input{
+  color: #5d6d81;
+  border: 0px!important;
+  padding-left: 30px;
+  font-size:14px;
+  background:#f1f3f5; font-family: georgia; border-width: 0px 0px 1px; border-top-style: initial; border-right-style: initial; border-bottom-style: solid; border-left-style: initial; border-top-color: initial; border-right-color: initial; border-bottom-color: rgb(238, 238, 238); border-left-color: initial; border-image: initial; box-shadow: none;
+}
+
+#login2 input{
+  color: #5d6d81;
+  border: 0px!important;
+  padding-left: 40px;
+  font-size:14px;
+  background:#f1f3f5; font-family: georgia; border-width: 0px 0px 1px; border-top-style: initial; border-right-style: initial; border-bottom-style: solid; border-left-style: initial; border-top-color: initial; border-right-color: initial; border-bottom-color: rgb(238, 238, 238); border-left-color: initial; border-image: initial; box-shadow: none;
+}
+#login2  .input-box{
+  border:1px solid #c5cdd7;
+  box-shadow:0px 0px 0px #c5cdd7;
+  background: #f1f3f5;
+  width: 398px;
+ }
+#login  .input-box{
+  border:1px solid #c5cdd7;
+  box-shadow:0px 0px 0px #c5cdd7;
+  background: #f1f3f5
+ }
+#login input::-webkit-input-placeholder{
+  color:#ccc;
+}
+#login input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+  color:#ccc;
+}
+#login input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+  color:#ccc;
+}
+#login input:-ms-input-placeholder{  /* Internet Explorer 10-11 */ 
+  color:#ccc;
+}
+.el-tabs__item.is-active {
+     color: #8391a5; 
+}
+.button-primary{
+  background: #f89c14;
+  border: 0px;
+  box-shadow:none;
+}
+.button-primary:hover{
+  background: #f89c14;
+  border: 0px;
+  box-shadow:none;
+}
+
+ #login{
+  /*background: url('http://www.good1230.com/dist2/static/images/bg.jpg') 0% 0% / 100%;*/
+  /*background: linear-gradient(87deg,#2dce89,#2dcecc)!important;*/
+  background-color: #20232a!important;
+   /*  background: #50a3a2;
+   background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+   background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%); */
+} 
+ #login .top{
+  /*background: linear-gradient(87deg,#2dce89,#2dcecc)!important;*/
+  background: #fff
+ }
