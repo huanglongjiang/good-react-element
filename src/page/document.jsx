@@ -207,8 +207,7 @@ export default class Log extends React.Component {
      
     const typeList={title:'服务类型',type:'role',list:['普通用户','管理员','超级管理员']};
     const statusList={title:'服务类型',type:'status',list:['冻结','正常']};
-    const { data }=this.state.list;
-    const { total }=this.state.list;
+    const { data,total }=this.state.list;
     let title=this.state.isEdit?'编辑书签':'添加书签';
 
     return (

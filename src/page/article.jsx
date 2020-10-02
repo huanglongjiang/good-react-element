@@ -1,13 +1,14 @@
 import React from 'react';
 import axios from 'axios';
-import global from '../global';
-import { Dialog,Button,Input,Radio,Tag,Switch } from 'element-react';
-import GoodPagination from '../good-ui/good-pagination.jsx';
-import GoodBreadbar from '../good-ui/good-breadbar.jsx';
-import GoodTotal from '../good-ui/good-total.jsx';
-import GoodTag from '../good-ui/good-tag.jsx';
 import {Link} from 'react-router-dom'
-import GoodSwitch     from '../good-ui/good-switch.jsx';
+import { Dialog,Button,Input,Radio,Tag,Switch } from 'element-react';
+import { 
+  global,
+  GoodPagination,
+  GoodBreadbar,
+  GoodTotal,
+  GoodTag,
+  GoodSwitch } from '../good-ui';
 export default class Log extends React.Component {
   constructor(props) {
     super(props);
@@ -159,8 +160,7 @@ export default class Log extends React.Component {
     }
      
     const statusList={title:'自定义属性',type:'type',list:['默认','优质','热门','推荐']};
-    const { data }=this.state.list;
-    const { total }=this.state.list;
+    const { data,total }=this.state.list;
     let dataValue=this.state.fid;
 
     const data2=this.state.list2.data;

@@ -1,14 +1,15 @@
 import React from 'react';
 import axios from 'axios';
-import global from '../global';
 import { Dialog,Button,Input,Radio,DateRangePicker,Tag,Switch,MessageBox,Message } from 'element-react';
-import GoodPagination from '../good-ui/good-pagination.jsx';
-import GoodBreadbar from '../good-ui/good-breadbar.jsx';
-import GoodTotal from '../good-ui/good-total.jsx';
-import GoodTag from '../good-ui/good-tag.jsx';
-import GoodTds       from '../good-ui/good-tds.jsx';
-import GoodUpload from '../good-ui/good-uploads.jsx';
-import GoodSwitch     from '../good-ui/good-switch.jsx';
+import { 
+  global,
+  GoodPagination,
+  GoodBreadbar,
+  GoodTotal,
+  GoodTag,
+  GoodTds,
+  GoodUpload,
+  GoodSwitch } from '../good-ui';
 export default class Log extends React.Component {
 constructor(props) {
     super(props);

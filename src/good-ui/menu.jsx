@@ -1,15 +1,16 @@
 import React from 'react';
 import axios from 'axios';
-import store from '../store/index.js'
-import global from '../global';
-import { Dialog,Button,Input,Radio,Tag,Switch } from 'element-react';
-import GoodPagination from '../good-ui/good-pagination.jsx';
-import GoodBreadbar from '../good-ui/good-breadbar.jsx';
-import GoodTotal from '../good-ui/good-total.jsx';
-import GoodTag from '../good-ui/good-tag.jsx';
 import { HashRouter as Router, Route, Link,NavLink } from "react-router-dom"
-import GoodSwitch     from '../good-ui/good-switch.jsx';
-import GoodInfo from '../good-ui/good-info.jsx';
+import { Dialog,Button,Input,Radio,Tag,Switch } from 'element-react';
+import { 
+  global,
+  store,
+  GoodPagination,
+  GoodBreadbar,
+  GoodTotal,
+  GoodTag,
+  GoodInfo,
+  GoodSwitch } from '../good-ui';
 
 export default class Menu extends React.Component {
   constructor(props) {

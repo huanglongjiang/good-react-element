@@ -1,11 +1,12 @@
 import React from 'react';
 import axios from 'axios';
-import global from '../global';
 import { Dialog,Button,Input,Radio,Switch } from 'element-react';
-import GoodBreadbar     from '../good-ui/good-breadbar.jsx';
-import GoodTotal        from '../good-ui/good-total.jsx';
-import GoodTds       from '../good-ui/good-tds.jsx';
-import GoodSwitch     from '../good-ui/good-switch.jsx';
+import { 
+  global,
+  GoodBreadbar,
+  GoodTotal,
+  GoodTds,
+  GoodSwitch } from '../good-ui';
 
 export default class Log extends React.Component {
   constructor(props) {
@@ -111,8 +112,7 @@ export default class Log extends React.Component {
       })
       return <tbody>{dataTable}</tbody>
     }
-    const { data }=this.state.list;
-    const { total }=this.state.list;
+    const { data,total }=this.state.list;
     return (
       <div>
         <GoodBreadbar title="站长统计"></GoodBreadbar>

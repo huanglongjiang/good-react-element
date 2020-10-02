@@ -1,14 +1,15 @@
 import React from 'react';
 import axios from 'axios';
-import global from '../global';
 import { Dialog,Button,Input,Radio,DateRangePicker,Tag,Switch,MessageBox,Message } from 'element-react';
-import GoodPagination from '../good-ui/good-pagination.jsx';
-import GoodBreadbar from '../good-ui/good-breadbar.jsx';
-import GoodTotal from '../good-ui/good-total.jsx';
-import GoodTag from '../good-ui/good-tag.jsx';
-import GoodTds       from '../good-ui/good-tds.jsx';
-import GoodUpload from '../good-ui/good-uploads.jsx';
-import GoodSwitch     from '../good-ui/good-switch.jsx';
+import { 
+  global,
+  GoodPagination,
+  GoodBreadbar,
+  GoodTotal,
+  GoodTag,
+  GoodTds,
+  GoodUpload,
+  GoodSwitch } from '../good-ui';
 export default class Log extends React.Component {
 constructor(props) {
     super(props);
@@ -203,8 +204,7 @@ constructor(props) {
 
     const typeList={title:'服务类型',type:'type',list:['通用轮播图','首页轮播图','栏目页轮播图','内容页轮播图']};
     const statusList={title:'服务类型',type:'status',list:['关闭','开启']};
-    const { data }=this.state.list;
-    const { total }=this.state.list;
+    const { data,total }=this.state.list;
     let title=this.state.isEdit?'编辑轮播图':'新增轮播图';
     
     return (

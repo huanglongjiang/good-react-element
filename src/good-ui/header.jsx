@@ -1,14 +1,13 @@
 import React from 'react';
 import axios from 'axios';
-import store from '../store/index.js'
 import { changeInputAction } from '../store/actionCreators'
-import global from '../global';
 import { Dialog,Button,Input,Radio } from 'element-react';
-import GoodTds       from '../good-ui/good-tds.jsx';
-import GoodUpload from '../good-ui/good-uploads.jsx';
-import GoodPersonal from '../good-ui/good-personal.jsx';
-import GoodLock from '../good-ui/good-lock.jsx';
-import GoodInfo from '../good-ui/good-info.jsx';
+import { 
+  global,
+  store,
+  GoodPersonal,
+  GoodLock,
+  GoodInfo } from '../good-ui';
 import { HashRouter as Router, Route, Link } from "react-router-dom"
 export default class Header extends React.Component {
   constructor(props) {

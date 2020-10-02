@@ -1,14 +1,15 @@
 import React from 'react';
 import axios from 'axios';
-import store from '../store/index.js'
-import global from '../global';
 import { Dialog,Button,Input,Radio,Tag,Switch,MessageBox,Message } from 'element-react';
-import GoodPagination from '../good-ui/good-pagination.jsx';
-import GoodBreadbar from '../good-ui/good-breadbar.jsx';
-import GoodTotal from '../good-ui/good-total.jsx';
-import GoodTag from '../good-ui/good-tag.jsx';
-import GoodTds       from '../good-ui/good-tds.jsx';
-import GoodSwitch     from '../good-ui/good-switch.jsx';
+import { 
+  global,
+  store,
+  GoodPagination,
+  GoodBreadbar,
+  GoodTotal,
+  GoodTag,
+  GoodTds,
+  GoodSwitch } from '../good-ui';
 export default class Log extends React.Component {
   constructor(props) {
     super(props);
@@ -237,8 +238,7 @@ export default class Log extends React.Component {
      
     const typeList={title:'服务类型',type:'role',list:['普通用户','管理员','超级管理员']};
     const statusList={title:'服务类型',type:'status',list:['冻结','正常']};
-    const { data }=this.state.list;
-    const { total }=this.state.list;
+    const { data,total }=this.state.list;
     let title=this.state.isEdit?'编辑用户':'新增用户';
 
     return (

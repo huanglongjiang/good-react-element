@@ -1,11 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-import global  from '../global';
-import { Tag } from 'element-react';
-import GoodBreadbar from '../good-ui/good-breadbar.jsx';
-import GoodTotal from '../good-ui/good-total.jsx';
-import GoodChart from '../good-ui/good-chart.jsx';
 import {Link} from 'react-router-dom'
+import { Tag } from 'element-react';
+import { global,GoodBreadbar,GoodTotal,GoodChart } from '../good-ui';
+
 export default class Log extends React.Component {
   constructor(props) {
     super(props);
@@ -45,7 +43,6 @@ export default class Log extends React.Component {
   }
 
   render() {
-    console.log(this.state.data.online?Math.max(...this.state.data.online):0)
     const { data }=this.state;
     const chartist = {
       labels:  this.state.data.online_date?this.state.data.online_date:['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7'],
@@ -93,7 +90,7 @@ export default class Log extends React.Component {
            
           </div>
 
-          <div className="width-400 height-180 background-red margin-bottom-20 float-left radius-5 padding-20" style={{background:'#f7ba2a',width:'28%',minWidth:'400px'}}>
+          <div className="width-400 height-180 background-red margin-right-20 margin-bottom-20 float-left radius-5 padding-20" style={{background:'#f7ba2a',width:'28%',minWidth:'400px'}}>
             <span>文章</span>
             <span className="block font-size-36 margin-top-30 align-center">
               <Link to="article" className="none-line color-white">{ data.article_total }</Link>

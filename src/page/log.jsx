@@ -1,10 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import global  from '../global';
 import { Tag } from 'element-react';
-import GoodPagination from '../good-ui/good-pagination.jsx';
-import GoodBreadbar from '../good-ui/good-breadbar.jsx';
-import GoodTotal from '../good-ui/good-total.jsx';
+import { global,GoodPagination,GoodBreadbar,GoodTotal } from '../good-ui';
 
 export default class Log extends React.Component {
   constructor(props) {
@@ -89,10 +86,7 @@ export default class Log extends React.Component {
     }
 
     
-    const { data }=this.state.list;
-    const { total }=this.state.list;
-    const { total2 }=this.state.list;
-    const { lastTime }=this.state.list;
+    const { data,total,total2,lastTime }=this.state.list;
     return (
       <div>
    

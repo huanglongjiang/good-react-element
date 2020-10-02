@@ -1,10 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import global from '../global';
 import { Radio,Select,Input,Button } from 'element-react';
-import GoodBreadbar from '../good-ui/good-breadbar.jsx';
-import GoodTds from '../good-ui/good-tds.jsx';
-import GoodUpload from '../good-ui/good-uploads.jsx';
+import { global,GoodBreadbar,GoodTds,GoodUpload } from '../good-ui';
 
 export default class Log extends React.Component {
   constructor(props) {

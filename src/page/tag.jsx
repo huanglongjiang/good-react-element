@@ -1,12 +1,13 @@
 import React from 'react';
 import axios from 'axios';
-import global from '../global';
 import { Dialog,Button,Input,Radio,DateRangePicker,Tag } from 'element-react';
-import GoodBreadbar from '../good-ui/good-breadbar.jsx';
-import GoodTotal from '../good-ui/good-total.jsx';
-import GoodTds       from '../good-ui/good-tds.jsx';
-import GoodUpload from '../good-ui/good-uploads.jsx';
-import GoodKey from '../good-ui/good-key.jsx';
+import { 
+  global,
+  GoodBreadbar,
+  GoodTotal,
+  GoodTds,
+  GoodUpload,
+  GoodKey } from '../good-ui';
 export default class Log extends React.Component {
   constructor(props) {
     super(props);
@@ -178,8 +179,7 @@ export default class Log extends React.Component {
       })
       return <tbody list="this.props.state.list">{dataTable}</tbody>
     }
-    const { data }=this.state.list;
-    const { total }=this.state.list;
+    const { data,total }=this.state.list;
     const total2=this.state.keywords.total;
 
     let keywords=[];

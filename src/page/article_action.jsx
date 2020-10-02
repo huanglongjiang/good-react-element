@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import global from '../global';
 import ReactQuill from 'react-quill'; 
 import 'react-quill/dist/quill.snow.css'; 
-import GoodBreadbar from '../good-ui/good-breadbar.jsx';
-import GoodTds       from '../good-ui/good-tds.jsx';
-import GoodInput       from '../good-ui/good-input.jsx';
-import GoodSwitch     from '../good-ui/good-switch.jsx';
-import GoodUpload from '../good-ui/good-uploads.jsx';
-import { Dialog,Button,Input,Radio,Switch,Checkbox } from 'element-react';
-import GoodKey from '../good-ui/good-key.jsx';
 import {Link} from 'react-router-dom'
+import { Dialog,Button,Input,Radio,Switch,Checkbox } from 'element-react';
+import { 
+  global,
+  GoodBreadbar,
+  GoodTds,
+  GoodTag,
+  GoodUpload,
+  GoodKey,
+  GoodSwitch } from '../good-ui';
 export default class Welcome extends Component {
   constructor(props) {
     super(props);

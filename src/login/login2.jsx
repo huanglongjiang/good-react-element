@@ -1,13 +1,12 @@
-import React            from 'react';
-import './css/login2.css';
-import { Dialog,Button,Input,Radio,Tabs,Message } from 'element-react';
+import React   from 'react';
+import axios  from 'axios';
+import logo    from '../logo.svg';
+import yzm   from './images/yzm.png';
+import github    from '../github.svg';
 import { withRouter,Router } from "react-router-dom"
-import logo             from '../logo.svg';
-import yzm             from './images/yzm.png';
-import github             from '../github.svg';
-import global           from '../global';
-import GoodButton       from '../good-ui/good-button.jsx';
-import axios            from 'axios';
+import { global } from '../good-ui';
+import { Dialog,Button,Input,Radio,Tabs,Message } from 'element-react';
+import './css/login2.css';
 
 class Login extends React.Component {
   constructor(props) {
