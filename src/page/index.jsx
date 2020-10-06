@@ -70,7 +70,7 @@ export default class Log extends React.Component {
           </div>
           
           <div className="clear"></div>
-          <div className="width-400 height-180 background-red margin-right-20 margin-bottom-20 float-left radius-5 padding-20" style={{background:'#20a0ff',width:'28%',minWidth:'400px'}}>
+          <div className="width-400 height-180 background-red margin-right-20 margin-bottom-20 float-left radius-5 padding-20" style={{background:'#20a0ff',width:'28%',minWidth:'360px'}}>
             <div>
 
               当前用户访问次数<span className=" block font-size-24 padding-top-10">{ data.login_total }</span>
@@ -82,7 +82,7 @@ export default class Log extends React.Component {
           
           </div>
     
-          <div className="width-400 height-180 background-red margin-right-20 margin-bottom-20 float-left radius-5 padding-20" style={{background:'#f7ba2a',width:'28%',minWidth:'400px'}}>
+          <div className="width-400 height-180 background-red margin-right-20 margin-bottom-20 float-left radius-5 padding-20" style={{background:'#f7ba2a',width:'28%',minWidth:'360px'}}>
             <span>用户</span>
             <span className="block font-size-36 margin-top-30 align-center">
               <Link to="user" className="none-line color-white">{ data.user_total }</Link>
@@ -90,7 +90,7 @@ export default class Log extends React.Component {
            
           </div>
 
-          <div className="width-400 height-180 background-red margin-right-20 margin-bottom-20 float-left radius-5 padding-20" style={{background:'#f7ba2a',width:'28%',minWidth:'400px'}}>
+          <div className="width-400 height-180 background-red margin-right-20 margin-bottom-20 float-left radius-5 padding-20" style={{background:'#f7ba2a',width:'28%',minWidth:'360px'}}>
             <span>文章</span>
             <span className="block font-size-36 margin-top-30 align-center">
               <Link to="article" className="none-line color-white">{ data.article_total }</Link>
@@ -98,19 +98,19 @@ export default class Log extends React.Component {
           </div>
 
 
-          <div className="width-400 height-180 background-red margin-right-20 margin-bottom-20 float-left radius-5 padding-20" style={{background:'#20a0ff',width:'28%',minWidth:'400px'}}>
+          <div className="width-400 height-180 background-red margin-right-20 margin-bottom-20 float-left radius-5 padding-20" style={{background:'#20a0ff',width:'28%',minWidth:'360px'}}>
             <span>访问</span>
             <span className="block font-size-36 margin-top-30 align-center">{ data.rizhi_total }</span>
           </div>
 
 
 
-          <div className="width-400 height-180 background-red margin-right-20 margin-bottom-20 float-left radius-5 padding-20" style={{background:'#f7ba2a',width:'28%',minWidth:'400px'}}>
+          <div className="width-400 height-180 background-red margin-right-20 margin-bottom-20 float-left radius-5 padding-20" style={{background:'#f7ba2a',width:'28%',minWidth:'360px'}}>
             <span>今日访问</span>
             <span className="block font-size-36 margin-top-30 align-center">{ data.today_total }</span>
           </div>
 
-          <div className="width-400 height-180 background-red margin-bottom-20 float-left radius-5 padding-20" style={{background:'#f7ba2a',width:'28%',minWidth:'400px'}}>
+          <div className="width-400 height-180 background-red margin-bottom-20 float-left radius-5 padding-20" style={{background:'#f7ba2a',width:'28%',minWidth:'360px'}}>
             <span>昨日访问</span>
             <span className="block font-size-36 margin-top-30 align-center">{ data.yesterday_total }</span>
           </div>
